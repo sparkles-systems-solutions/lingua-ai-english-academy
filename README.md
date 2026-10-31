@@ -1,48 +1,41 @@
 # Lingua AI English Academy
 
-A beginner-friendly English learning web application designed for learners starting from zero. The first phase focuses on clear, gradual learning with Sinhala support and a 15-minute daily routine.
+A mobile-friendly English learning academy for learners starting from zero, using gradual Sinhala-to-English teaching and a 15-minute daily routine.
 
-## Phase 1 — Beginner learning foundation
-
-### Included
-- Responsive learner dashboard
-- Five starter lessons: greetings, self-introduction, alphabet, numbers 1–10, and everyday words
-- English examples with Sinhala meanings
-- Browser text-to-speech pronunciation (where supported)
-- Starter vocabulary list with learned-word tracking
-- Five-question daily practice quiz with instant feedback
-- Lesson completion and progress overview
-- Local browser storage for progress (no account or server required)
-
-## Run locally
-1. Download or clone this repository.
-2. Open `index.html` in a modern browser.
-3. Your progress is saved in that browser on that device.
-
-No build tools, API keys, database, or installation are required for Phase 1.
-
-## Publish with GitHub Pages
-1. Open the repository **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select branch `main` and folder `/ (root)`, then save.
-4. Wait for GitHub Pages to publish the site. The Pages URL will appear in that settings section.
-
-## Learner profile and design principles
+## Learner profile
 - Starting level: Absolute beginner (zero)
-- Teaching approach: Gradual, simple explanations with Sinhala support
-- Learning goals: Speaking, listening, reading, writing, grammar, and vocabulary (to be introduced progressively)
+- Teaching approach: Sinhala explanations first, gradually increasing English
+- Goals: Speaking, listening, reading, writing, grammar, vocabulary, and pronunciation
 - Daily target: 15 minutes
-- Product principle: Start simple, practise consistently, and build confidence step by step.
 
-## Roadmap
-- **Phase 1:** Static beginner learning foundation (current)
-- **Phase 2:** Structured lesson engine, expanded A1 curriculum, placement and review
-- **Phase 3:** Learner accounts and cloud progress synchronisation
-- **Phase 4:** AI tutor for guided conversation and writing feedback
-- **Phase 5:** Speaking/listening practice, pronunciation feedback, and advanced progress analytics
+## Current repository status
+The original Phase 1 browser prototype is preserved in `index.html`. It currently provides a responsive dashboard, five starter lessons, Sinhala meanings, browser text-to-speech, vocabulary tracking, a five-question quiz, and local browser progress.
 
-## Technical notes
-Phase 1 is a static HTML/CSS/JavaScript application. Learning progress is stored in `localStorage`; it is not yet synced between browsers or devices. AI features are not connected in this phase.
+A full repository audit and product requirements are documented in:
+- [Repository audit](docs/REPOSITORY_AUDIT.md)
+- [Product requirements](docs/PRODUCT_REQUIREMENTS.md)
+- [Phased roadmap](docs/PHASE_ROADMAP.md)
+- [Acceptance checklist](tests/ACCEPTANCE_CHECKLIST.md)
 
-## License
-To be decided.
+Structured beginner curriculum: `curriculum/pre-a1-a1-foundation.json`.
+
+## Run the current prototype
+1. Clone or download this repository.
+2. Open `index.html` in a modern browser.
+3. Progress is saved in that browser on that device.
+
+No build tools or API keys are needed for the current static prototype.
+
+## Important implementation status
+The current browser prototype is not yet a complete AI platform. AI tutoring, server APIs, accounts, cloud synchronisation, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
+
+Never put AI provider keys or other secrets in browser JavaScript or committed files.
+
+## Phased delivery
+1. **Phase 1 — Learning foundation:** curriculum, accessible lesson engine, four-skill beginner practice, quizzes, revision, and reliable local progress.
+2. **Phase 2 — AI English Teacher:** Sinhala explanations, sentence correction, guided conversations, and writing feedback through a secured server endpoint.
+3. **Phase 3 — Speaking and listening:** listening exercises, microphone-based speaking practice, and browser-compatible pronunciation support.
+4. **Phase 4 — Adaptive learning:** mastery tracking, weak-area detection, spaced revision, and personalised next lessons.
+5. **Phase 5 — Complete academy:** secure learner accounts, cloud progress sync, reports, privacy controls, deployment, and monitoring.
+
+See [the roadmap](docs/PHASE_ROADMAP.md) for phase exit criteria and dependencies.
