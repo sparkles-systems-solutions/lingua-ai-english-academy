@@ -11,6 +11,18 @@
 @media(max-width:760px){.dict-layout{grid-template-columns:1fr}.dict-controls{grid-template-columns:1fr 1fr}.dict-controls input{grid-column:1/-1;grid-row:2}.dict-controls button{grid-column:2;grid-row:1}.dict-controls select{grid-column:1;grid-row:1}}
 @media(max-width:900px){.app{grid-template-columns:75px 1fr}.sidebar{padding:22px 10px;align-items:center}.brand{padding:0}.brand-text,.nav-label,.nav button .nav-text,.side-note{display:none}.nav{width:100%}.nav button{justify-content:center;padding:12px 5px}.nav .ico{font-size:18px}.content-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.main{padding:18px 13px 35px}.topbar{margin-bottom:20px}.welcome{align-items:flex-start;flex-direction:column}.hero{padding:22px 19px}.hero-stat{display:none}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:20px}.panel{padding:15px}.lesson-row{gap:9px}.pill{font-size:9px}.profile span{display:none}}
+
+.dict-practice-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.dict-practice-option{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left;color:var(--ink);font-size:14px}
+.dict-practice-option:disabled{opacity:.8;cursor:default}
+.dict-practice-option.practice-option-correct{border-color:#14866d;background:#e8f7f1}
+.dict-practice-option.practice-option-wrong{border-color:#c94b54;background:#fff0f0}
+.dict-practice-feedback{font-size:13px;margin-top:7px}
+.practice-correct{color:#14866d;font-weight:700}.practice-wrong{color:#b33d45;font-weight:700}
+.dict-practice-summary{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.dict-practice-summary button{padding:9px 12px;border-radius:9px;background:#eef0ff;color:#394bb6}
+.dict-practice-item .dict-actions{margin-top:8px}
+@media(max-width:600px){.dict-practice-options{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -150,20 +162,52 @@ function buildWordUsage(entry){
  // Use only stored, word-specific examples. These become Sinhala-to-English prompts.
  return Array.isArray(entry.examples)?entry.examples:[];
 }
+const dictionaryPracticeState={};
+function getPracticeOptions(correct){
+ const pool=getDictionary().flatMap(entry=>(entry.examples||[]).map(ex=>ex.en)).filter(sentence=>sentence&&sentence!==correct);
+ const unique=[...new Set(pool)];
+ for(let i=unique.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[unique[i],unique[j]]=[unique[j],unique[i]];}
+ return [correct,...unique.slice(0,3)].sort(()=>Math.random()-.5);
+}
 function renderExamplePractice(entry){
  const examples=buildWordUsage(entry);
  if(!examples.length)return "";
- return '<section class="dict-practice"><h4>Try saying it in English / ඉංග්‍රීසියෙන් කියන්න උත්සාහ කරන්න</h4><p class="sub">Read the Sinhala sentence first. Think of the English sentence, then reveal and listen.</p>'+
- examples.map((ex,i)=>'<div class="dict-example dict-practice-item"><small>'+dictEscape(ex.si)+'</small><strong class="dict-answer" data-example-answer="'+dictEscape(entry.id)+'-'+i+'" hidden>'+dictEscape(ex.en)+'</strong><div class="dict-actions"><button type="button" data-example-reveal="'+dictEscape(entry.id)+'-'+i+'">Show English</button><button type="button" data-example-speak="'+dictEscape(entry.id)+'-'+i+'">🔊 Listen</button></div></div>').join("")+'</section>';
+ const session=dictionaryPracticeState[entry.id]||{items:examples.map((ex,i)=>({index:i,answered:false,correct:false,options:getPracticeOptions(ex.en)})),score:0,wrong:[]};
+ dictionaryPracticeState[entry.id]=session;
+ const completed=session.items.filter(item=>item.answered).length;
+ const items=session.items.map(item=>{
+  const ex=examples[item.index],key=entry.id+"-"+item.index;
+  return '<div class="dict-example dict-practice-item"><small>'+dictEscape(ex.si)+'</small><div class="dict-practice-options">'+item.options.map(option=>'<button type="button" class="dict-practice-option" data-practice-answer="'+dictEscape(key)+'" data-option="'+dictEscape(option)+'" '+(item.answered?'disabled':'')+'>'+dictEscape(option)+'</button>').join("")+'</div><div class="dict-practice-feedback" data-practice-feedback="'+dictEscape(key)+'">'+(item.answered?(item.correct?'<span class="practice-correct">Correct! ✓</span>':'<span class="practice-wrong">Correct answer: '+dictEscape(ex.en)+'</span>'):'')+'</div><div class="dict-actions"><button type="button" data-example-reveal="'+dictEscape(key)+'">Show English</button><button type="button" data-example-speak="'+dictEscape(key)+'">🔊 Listen</button><strong class="dict-answer" data-example-answer="'+dictEscape(key)+'" hidden>'+dictEscape(ex.en)+'</strong></div></div>';
+ }).join("");
+ const done=completed===session.items.length;
+ return '<section class="dict-practice"><h4>Sentence practice / වාක්‍ය පුහුණුව</h4><p class="sub">Choose the correct English sentence for each Sinhala sentence. / Sinhala වාක්‍යයට ගැළපෙන English වාක්‍යය තෝරන්න.</p><p class="sub" data-practice-score="'+dictEscape(entry.id)+'">Answered '+completed+' / '+session.items.length+' · Score '+session.score+'</p>'+items+(done?'<div class="dict-practice-summary"><strong>Practice complete! Score: '+session.score+' / '+session.items.length+'</strong>'+(session.wrong.length?'<button type="button" data-practice-retry="'+dictEscape(entry.id)+'">Retry incorrect answers</button>':'<p>Excellent! All answers are correct.</p>')+'</div>':'')+'</section>';
 }
 function wireExamplePractice(){
+ document.querySelectorAll("[data-practice-answer]").forEach(button=>button.addEventListener("click",()=>{
+  const key=button.dataset.practiceAnswer,separator=key.lastIndexOf("-"),id=key.slice(0,separator),index=Number(key.slice(separator+1));
+  const entry=getDictionary().find(x=>x.id===id),session=dictionaryPracticeState[id],item=session&&session.items.find(x=>x.index===index);
+  if(!entry||!item||item.answered)return;
+  const correct=entry.examples[index].en===button.dataset.option;item.answered=true;item.correct=correct;
+  if(correct)session.score++;else if(!session.wrong.includes(index))session.wrong.push(index);
+  const feedback=document.querySelector('[data-practice-feedback="'+key+'"]');
+  if(feedback)feedback.innerHTML=correct?'<span class="practice-correct">Correct! ✓</span>':'<span class="practice-wrong">Not quite. Correct answer: '+dictEscape(entry.examples[index].en)+'</span>';
+  document.querySelectorAll('[data-practice-answer="'+key+'"]').forEach(b=>{b.disabled=true;if(b.dataset.option===entry.examples[index].en)b.classList.add("practice-option-correct");else if(b===button&&!correct)b.classList.add("practice-option-wrong");});
+  const score=document.querySelector('[data-practice-score="'+id+'"]');
+  if(score){const done=session.items.filter(x=>x.answered).length;score.textContent="Answered "+done+" / "+session.items.length+" · Score "+session.score;}
+  if(session.items.every(x=>x.answered))searchDictionary(id,false);
+ }));
+ document.querySelectorAll("[data-practice-retry]").forEach(button=>button.addEventListener("click",()=>{
+  const id=button.dataset.practiceRetry,entry=getDictionary().find(x=>x.id===id),old=dictionaryPracticeState[id];
+  if(!entry||!old)return;
+  const retry=old.wrong.slice();dictionaryPracticeState[id]={items:retry.map(index=>({index,answered:false,correct:false,options:getPracticeOptions(entry.examples[index].en)})),score:0,wrong:[]};
+  searchDictionary(id,false);
+ }));
  document.querySelectorAll("[data-example-reveal]").forEach(button=>button.addEventListener("click",()=>{
   const answer=document.querySelector('[data-example-answer="'+button.dataset.exampleReveal+'"]');
   if(answer){answer.hidden=!answer.hidden;button.textContent=answer.hidden?"Show English":"Hide English";}
  }));
  document.querySelectorAll("[data-example-speak]").forEach(button=>button.addEventListener("click",()=>{
-  const key=button.dataset.exampleSpeak,separator=key.lastIndexOf("-");
-  const id=key.slice(0,separator),index=key.slice(separator+1);
+  const key=button.dataset.exampleSpeak,separator=key.lastIndexOf("-"),id=key.slice(0,separator),index=Number(key.slice(separator+1));
   const entry=getDictionary().find(x=>x.id===id),example=entry&&entry.examples[Number(index)];
   if(example)speak(example.en);
  }));
