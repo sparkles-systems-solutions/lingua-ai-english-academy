@@ -31,11 +31,18 @@ The current browser prototype is not yet a complete AI platform. AI tutoring, se
 
 Never put AI provider keys or other secrets in browser JavaScript or committed files.
 
+## Platform requirements
+- Separate server-side backend API and database.
+- Separate administrator web panel with role-based access.
+- Passwordless email registration/login using short-lived, single-use OTP codes.
+- Shared cloud learner account and progress across web and Android.
+- Installable Android APK for learners, initially planned with a Capacitor wrapper.
+
 ## Phased delivery
 1. **Phase 1 — Learning foundation:** curriculum, accessible lesson engine, four-skill beginner practice, quizzes, revision, and reliable local progress.
-2. **Phase 2 — AI English Teacher:** Sinhala explanations, sentence correction, guided conversations, and writing feedback through a secured server endpoint.
-3. **Phase 3 — Speaking and listening:** listening exercises, microphone-based speaking practice, and browser-compatible pronunciation support.
-4. **Phase 4 — Adaptive learning:** mastery tracking, weak-area detection, spaced revision, and personalised next lessons.
-5. **Phase 5 — Complete academy:** secure learner accounts, cloud progress sync, reports, privacy controls, deployment, and monitoring.
+2. **Phase 2 — Backend and accounts:** backend API, database, email OTP login, secure sessions, separate admin panel, and cloud progress sync.
+3. **Phase 3 — AI English Teacher:** Sinhala explanations, sentence correction, guided conversations, and writing feedback through a secured server endpoint.
+4. **Phase 4 — Speaking, listening and adaptive learning:** audio practice, microphone features, mastery tracking, weak-area detection, spaced revision, and personalised next lessons.
+5. **Phase 5 — Android APK and production:** Android packaging/signing, shared account sync, reports, privacy controls, deployment, and monitoring.
 
-See [the roadmap](docs/PHASE_ROADMAP.md) for phase exit criteria and dependencies.
+See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFORM_ARCHITECTURE.md) for implementation details.
