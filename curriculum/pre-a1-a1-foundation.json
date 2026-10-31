@@ -1,0 +1,349 @@
+{
+  "version": "1.0.0",
+  "language": "en",
+  "supportLanguage": "si",
+  "level": "Pre-A1 to A1",
+  "dailyTargetMinutes": 15,
+  "units": [
+    {
+      "id": "unit-01",
+      "title": "First English words",
+      "title_si": "මුල්ම ඉංග්‍රීසි වචන",
+      "skill": "foundation",
+      "lessons": [
+        {
+          "id": "greetings",
+          "title": "Greetings",
+          "minutes": 5,
+          "objective": "Use simple greetings at different times of day.",
+          "phrases": [
+            {
+              "en": "Hello!",
+              "si": "හෙලෝ! / ආයුබෝවන්!"
+            },
+            {
+              "en": "Good morning.",
+              "si": "සුභ උදෑසනක්."
+            },
+            {
+              "en": "Good evening.",
+              "si": "සුභ සන්ධ්‍යාවක්."
+            },
+            {
+              "en": "How are you?",
+              "si": "ඔබට කොහොමද?"
+            },
+            {
+              "en": "I am fine, thank you.",
+              "si": "මම හොඳින්, ස්තූතියි."
+            }
+          ]
+        },
+        {
+          "id": "introducing-yourself",
+          "title": "Introducing yourself",
+          "minutes": 5,
+          "objective": "Say your name and where you are from.",
+          "phrases": [
+            {
+              "en": "My name is Amal.",
+              "si": "මගේ නම අමල්."
+            },
+            {
+              "en": "I am from Sri Lanka.",
+              "si": "මම ශ්‍රී ලංකාවෙන්."
+            },
+            {
+              "en": "Nice to meet you.",
+              "si": "ඔබ හමුවීම සතුටක්."
+            }
+          ]
+        },
+        {
+          "id": "polite-words",
+          "title": "Polite everyday words",
+          "minutes": 5,
+          "objective": "Use polite words in simple interactions.",
+          "phrases": [
+            {
+              "en": "Please.",
+              "si": "කරුණාකර."
+            },
+            {
+              "en": "Thank you.",
+              "si": "ස්තූතියි."
+            },
+            {
+              "en": "You are welcome.",
+              "si": "ඒකට කමක් නැහැ."
+            },
+            {
+              "en": "Sorry.",
+              "si": "සමාවෙන්න."
+            },
+            {
+              "en": "Excuse me.",
+              "si": "සමාවෙන්න / අවසරයි."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-02",
+      "title": "Letters and numbers",
+      "title_si": "අකුරු සහ ඉලක්කම්",
+      "skill": "reading",
+      "lessons": [
+        {
+          "id": "alphabet-a-e",
+          "title": "Alphabet: A to E",
+          "minutes": 5,
+          "objective": "Recognise and say the first five English letters.",
+          "items": [
+            {
+              "en": "A a",
+              "si": "ඒ"
+            },
+            {
+              "en": "B b",
+              "si": "බී"
+            },
+            {
+              "en": "C c",
+              "si": "සී"
+            },
+            {
+              "en": "D d",
+              "si": "ඩී"
+            },
+            {
+              "en": "E e",
+              "si": "ඊ"
+            }
+          ]
+        },
+        {
+          "id": "numbers-1-10",
+          "title": "Numbers 1 to 10",
+          "minutes": 5,
+          "objective": "Recognise and say numbers one to ten.",
+          "items": [
+            {
+              "en": "One — 1",
+              "si": "එක"
+            },
+            {
+              "en": "Two — 2",
+              "si": "දෙක"
+            },
+            {
+              "en": "Three — 3",
+              "si": "තුන"
+            },
+            {
+              "en": "Four — 4",
+              "si": "හතර"
+            },
+            {
+              "en": "Five — 5",
+              "si": "පහ"
+            },
+            {
+              "en": "Six — 6",
+              "si": "හය"
+            },
+            {
+              "en": "Seven — 7",
+              "si": "හත"
+            },
+            {
+              "en": "Eight — 8",
+              "si": "අට"
+            },
+            {
+              "en": "Nine — 9",
+              "si": "නවය"
+            },
+            {
+              "en": "Ten — 10",
+              "si": "දහය"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-03",
+      "title": "Simple sentences",
+      "title_si": "සරල වාක්‍ය",
+      "skill": "grammar",
+      "lessons": [
+        {
+          "id": "pronouns-i-you",
+          "title": "I and You",
+          "minutes": 5,
+          "objective": "Use I and you in short sentences.",
+          "examples": [
+            {
+              "en": "I am a student.",
+              "si": "මම ශිෂ්‍යයෙක් / ශිෂ්‍යාවක්."
+            },
+            {
+              "en": "You are my friend.",
+              "si": "ඔබ මගේ මිතුරා."
+            }
+          ]
+        },
+        {
+          "id": "be-verb-am-is-are",
+          "title": "am, is and are",
+          "minutes": 5,
+          "objective": "Choose am, is or are in simple present sentences.",
+          "examples": [
+            {
+              "en": "I am happy.",
+              "si": "මම සතුටින්."
+            },
+            {
+              "en": "He is a teacher.",
+              "si": "ඔහු ගුරුවරයෙක්."
+            },
+            {
+              "en": "They are friends.",
+              "si": "ඔවුන් මිතුරන්."
+            }
+          ]
+        },
+        {
+          "id": "simple-questions",
+          "title": "Simple questions",
+          "minutes": 5,
+          "objective": "Ask and answer basic personal questions.",
+          "examples": [
+            {
+              "en": "What is your name?",
+              "si": "ඔබේ නම කුමක්ද?"
+            },
+            {
+              "en": "Where are you from?",
+              "si": "ඔබ කොහෙන්ද?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-04",
+      "title": "Everyday life",
+      "title_si": "දෛනික ජීවිතය",
+      "skill": "vocabulary",
+      "lessons": [
+        {
+          "id": "family",
+          "title": "My family",
+          "minutes": 5,
+          "objective": "Name close family members.",
+          "items": [
+            {
+              "en": "Mother",
+              "si": "අම්මා"
+            },
+            {
+              "en": "Father",
+              "si": "තාත්තා"
+            },
+            {
+              "en": "Brother",
+              "si": "සහෝදරයා"
+            },
+            {
+              "en": "Sister",
+              "si": "සහෝදරිය"
+            }
+          ]
+        },
+        {
+          "id": "food-and-drink",
+          "title": "Food and drinks",
+          "minutes": 5,
+          "objective": "Name common foods and drinks.",
+          "items": [
+            {
+              "en": "Water",
+              "si": "වතුර"
+            },
+            {
+              "en": "Rice",
+              "si": "බත්"
+            },
+            {
+              "en": "Bread",
+              "si": "පාන්"
+            },
+            {
+              "en": "Tea",
+              "si": "තේ"
+            }
+          ]
+        },
+        {
+          "id": "daily-routine",
+          "title": "My daily routine",
+          "minutes": 5,
+          "objective": "Describe simple daily actions.",
+          "examples": [
+            {
+              "en": "I wake up.",
+              "si": "මම අවදි වෙනවා."
+            },
+            {
+              "en": "I go to work.",
+              "si": "මම වැඩට යනවා."
+            },
+            {
+              "en": "I study English.",
+              "si": "මම ඉංග්‍රීසි ඉගෙන ගන්නවා."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit-05",
+      "title": "Four-skill practice",
+      "title_si": "භාෂා කුසලතා හතර",
+      "skill": "integrated",
+      "lessons": [
+        {
+          "id": "listen-and-choose",
+          "title": "Listen and choose",
+          "minutes": 5,
+          "objective": "Listen to a short spoken phrase and identify its meaning.",
+          "activity": "listen-and-select"
+        },
+        {
+          "id": "read-a-short-message",
+          "title": "Read a short message",
+          "minutes": 5,
+          "objective": "Read a two- or three-sentence beginner message and answer simple questions.",
+          "activity": "reading-comprehension"
+        },
+        {
+          "id": "write-about-yourself",
+          "title": "Write about yourself",
+          "minutes": 5,
+          "objective": "Write two simple sentences about your name and home.",
+          "activity": "guided-writing"
+        },
+        {
+          "id": "speak-and-repeat",
+          "title": "Speak and repeat",
+          "minutes": 5,
+          "objective": "Listen to and repeat a short self-introduction.",
+          "activity": "listen-repeat"
+        }
+      ]
+    }
+  ]
+}
