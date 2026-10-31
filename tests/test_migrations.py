@@ -31,7 +31,7 @@ class MigrationExecutionTests(unittest.TestCase):
             "users", "learner_profiles", "otp_challenges", "sessions",
             "learner_saved_words", "lesson_progress", "quiz_attempts",
             "admin_audit_events", "admin_credentials", "admin_auth_policies",
-            "admin_mfa_factors", "admin_recovery_codes", "dictionary_entries",
+            "admin_mfa_factors", "admin_recovery_codes", "auth_rate_limits", "dictionary_entries",
             "dictionary_senses", "dictionary_examples", "dictionary_content_events",
         }
         self.assertTrue(expected.issubset(names), expected - names)
@@ -118,6 +118,22 @@ class MigrationExecutionTests(unittest.TestCase):
             self.db.execute(
                 "INSERT INTO otp_challenges (id, email_normalized, purpose, code_hash, expires_at) VALUES (?, ?, ?, ?, ?)",
                 ("bad-otp", "unique@example.test", "password_reset", "hash", "2030-01-01T00:00:00Z"),
+            )
+
+    def test_auth_rate_limit_bucket_constraints(self):
+        self.db.execute(
+            "INSERT INTO auth_rate_limits (bucket_key_hash, purpose, window_started_at, request_count) VALUES (?, ?, ?, ?)",
+            ("keyed-hash", "learner_otp_request", "2030-01-01T00:00:00Z", 1),
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO auth_rate_limits (bucket_key_hash, purpose, window_started_at) VALUES (?, ?, ?)",
+                ("bad-purpose", "email", "2030-01-01T00:00:00Z"),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO auth_rate_limits (bucket_key_hash, purpose, window_started_at, request_count) VALUES (?, ?, ?, ?)",
+                ("negative-count", "admin_auth", "2030-01-01T00:00:00Z", -1),
             )
 
     def test_foreign_key_pragma_is_enabled(self):
