@@ -46,4 +46,9 @@ window.LINGUA_DICTIONARY = [
 {id:"beautiful",en:"beautiful",si:["ලස්සන","සුන්දර"],pos:"adjective",pronunciation:"බියුටිෆුල්",examples:[{en:"It is a beautiful day.",si:"අද ලස්සන දවසක්."}]},
 {id:"right",en:"right",si:["නිවැරදි","දකුණ","අයිතිය"],pos:"adjective / noun",pronunciation:"රයිට්",examples:[{en:"Your answer is right.",si:"ඔබගේ පිළිතුර නිවැරදියි."},{en:"Turn right.",si:"දකුණට හැරෙන්න."}]},
 {id:"light",en:"light",si:["ආලෝකය","සැහැල්ලු"],pos:"noun / adjective",pronunciation:"ලයිට්",examples:[{en:"Turn on the light.",si:"විදුලි පහන දල්වන්න."}]}
+,
+{id:"dog",en:"dog",si:["බල්ලා","බල්ලි"],pos:"noun",pronunciation:"ඩෝග්",examples:[{en:"The dog is friendly.",si:"බල්ලා මිත්‍රශීලීයි."},{en:"I have a dog.",si:"මට බල්ලෙක් ඉන්නවා."}]},
+{id:"cat",en:"cat",si:["පූසා","බළලා"],pos:"noun",pronunciation:"කැට්",examples:[{en:"The cat is sleeping.",si:"පූසා නිදාගෙන ඉන්නවා."},{en:"I see a cat.",si:"මට පූසෙක් පේනවා."}]},
+{id:"bird",en:"bird",si:["කුරුල්ලා","පක්ෂියා"],pos:"noun",pronunciation:"බර්ඩ්",examples:[{en:"The bird can fly.",si:"කුරුල්ලාට පියාඹන්න පුළුවන්."}]},
+{id:"fish",en:"fish",si:["මාළුවා","මාළු"],pos:"noun",pronunciation:"ෆිෂ්",examples:[{en:"The fish is in the water.",si:"මාළුවා වතුරේ ඉන්නවා."}]}
 ];
