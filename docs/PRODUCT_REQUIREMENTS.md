@@ -16,8 +16,9 @@
 6. Writing exercises with grammar and sentence feedback.
 7. Grammar Academy with progressive explanations and practice.
 8. Vocabulary builder with pronunciation, examples, learned status, and revision.
-9. Daily quizzes and spaced review.
-10. Progress history and reports across all four skills.
+9. **Sinhala ↔ English Dictionary** with two-way search, meanings, pronunciation, examples and saved vocabulary.
+10. Daily quizzes and spaced review.
+11. Progress history and reports across all four skills.
 
 ## Teaching principles
 - Never assume prior English knowledge.
@@ -27,6 +28,32 @@
 - Encourage retrying rather than penalising mistakes.
 - Do not label a skill as mastered from a single correct answer.
 - Keep the daily plan close to 15 minutes and allow learners to pause.
+- Dictionary examples and explanations must be simple enough for beginner learners.
+
+## Dictionary requirements — Sinhala ↔ English
+- Provide two search directions: English-to-Sinhala and Sinhala-to-English.
+- Include a search box, direction selector, clear-search action, and useful empty/no-result states.
+- Support Sinhala Unicode typing and English case-insensitive search.
+- Show all relevant meanings/senses rather than assuming every word has only one translation.
+- Display part of speech (noun, verb, adjective, etc.) where known.
+- Show pronunciation in readable phonetic form and audio playback when a reliable recording is available.
+- Provide simple English example sentences with Sinhala translations.
+- Label context, usage, or alternative meanings where helpful.
+- Let signed-in learners save/favourite words, review recent searches, and practise saved words.
+- Connect saved words to the existing vocabulary builder and spaced revision system; avoid creating duplicate vocabulary records.
+- Provide a daily word feature as an optional learning prompt, not an interruption.
+- Give learners controls to clear search history and remove saved words.
+- The interface must work well on mobile screens and with Sinhala Unicode fonts.
+- Do not present unverified AI translations as authoritative dictionary definitions. Clearly label suggestions and allow review.
+- Use dictionary data that the project owns, has permission to use, or is properly licensed to redistribute; preserve required attribution.
+
+## Admin dictionary management
+- Add dictionary entry management to the separate Admin Panel.
+- Admins can create, edit, review, publish, unpublish/archive and search entries.
+- Manage headwords, language direction, multiple meanings, part of speech, pronunciation, audio references, usage labels, bilingual examples and source attribution.
+- Only published and approved entries appear in learner search.
+- Record who created or changed an entry and when; audit publish/archive actions.
+- Support bulk import only from appropriately licensed or project-owned datasets, with validation, duplicate detection and an import report.
 
 ## Quality requirements
 - Mobile-first responsive UI.
@@ -35,13 +62,13 @@
 - Request microphone permission only when the learner starts a speaking activity.
 - Clearly explain browser/device support for speech features.
 - Save progress safely and provide a clear privacy explanation.
-- Tests for lesson flow, answer evaluation, progress persistence, and API failure handling.
+- Tests for lesson flow, answer evaluation, progress persistence, dictionary search in both directions, Sinhala Unicode matching, multiple meanings, saved-word isolation, and API failure handling.
 
 ## Platform and account requirements (added 2026-10-31)
 
 ### Separate backend
 - Build a dedicated backend API, separate from the learner web interface and admin panel.
-- The backend is the trusted source for authentication, learner profiles, curriculum delivery, AI tutor requests, learning activity, progress, reports, and platform settings.
+- The backend is the trusted source for authentication, learner profiles, curriculum delivery, AI tutor requests, learning activity, progress, reports, dictionary content, and platform settings.
 - Validate all inputs and enforce authorization on the server; never rely on hidden UI controls for security.
 - Keep database credentials, email-provider credentials, AI-provider keys, and signing secrets in deployment secret storage, never in Git or browser code.
 - Include API versioning, structured error responses, request validation, rate limiting, audit events for privileged actions, and automated tests.
@@ -49,7 +76,7 @@
 ### Separate admin panel
 - Build a separate admin web application and route/deployment from the learner application.
 - Admin access must be role-based and protected by server-side authorization.
-- Admin features: overview dashboard, learner account management, curriculum/lesson management, vocabulary and quiz management, AI tutor configuration, usage/learning reports, and platform settings.
+- Admin features: overview dashboard, learner account management, curriculum/lesson management, dictionary entry management, vocabulary and quiz management, AI tutor configuration, usage/learning reports, and platform settings.
 - Admin actions that change learner access or curriculum must be auditable.
 - Learner-facing registration must never grant admin privileges.
 
@@ -92,3 +119,4 @@ The Admin Panel must support both of the following administrator sign-in methods
 - Learner registration cannot create or elevate an administrator.
 - Admin authorization is enforced by the API, not only by the UI.
 - Admin authentication changes and privileged operations are auditable.
+- Dictionary search returns correct-direction results, handles Sinhala Unicode, supports multiple senses, and exposes only approved published entries.
