@@ -194,13 +194,13 @@ function wireExamplePractice(){
   document.querySelectorAll('[data-practice-answer="'+key+'"]').forEach(b=>{b.disabled=true;if(b.dataset.option===entry.examples[index].en)b.classList.add("practice-option-correct");else if(b===button&&!correct)b.classList.add("practice-option-wrong");});
   const score=document.querySelector('[data-practice-score="'+id+'"]');
   if(score){const done=session.items.filter(x=>x.answered).length;score.textContent="Answered "+done+" / "+session.items.length+" · Score "+session.score;}
-  if(session.items.every(x=>x.answered))searchDictionary(id,false);
+  if(session.items.every(x=>x.answered))searchDictionary(entry.en,false);
  }));
  document.querySelectorAll("[data-practice-retry]").forEach(button=>button.addEventListener("click",()=>{
   const id=button.dataset.practiceRetry,entry=getDictionary().find(x=>x.id===id),old=dictionaryPracticeState[id];
   if(!entry||!old)return;
   const retry=old.wrong.slice();dictionaryPracticeState[id]={items:retry.map(index=>({index,answered:false,correct:false,options:getPracticeOptions(entry.examples[index].en)})),score:0,wrong:[]};
-  searchDictionary(id,false);
+  searchDictionary(entry.en,false);
  }));
  document.querySelectorAll("[data-example-reveal]").forEach(button=>button.addEventListener("click",()=>{
   const answer=document.querySelector('[data-example-answer="'+button.dataset.exampleReveal+'"]');
