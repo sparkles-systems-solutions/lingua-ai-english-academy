@@ -135,7 +135,7 @@ window.LINGUA_DICTIONARY = [
 {"id":"wife","en":"wife","si":["බිරිඳ"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"His wife is a nurse.","si":"ඔහුගේ බිරිඳ හෙදියක්."}]},
 {"id":"uncle","en":"uncle","si":["මාමා","බාප්පා"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My uncle lives nearby.","si":"මගේ මාමා ළඟපාත ජීවත් වෙනවා."}]},
 {"id":"aunt","en":"aunt","si":["නැන්දා","පුංචි"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My aunt is visiting us.","si":"මගේ නැන්දා අපිව බලන්න එනවා."}]},
-{"id":"cousin","en":"cousin","si":["ඥාති සහෝදරයා","ඥාති සහෝදරිය"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My cousin is my friend.","si":"මගේ ඥාති සහෝදරයා මගේ මිතුරෙක්."}]},
+{"id":"cousin","en":"cousin","si":["ඥාති සහෝදරයා / සහෝදරිය"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My cousin is my friend.","si":"මගේ ඥාති සහෝදරයා මගේ මිතුරෙක්."}]},
 {"id":"people","en":"people","si":["මිනිසුන්","ජනතාව"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"Many people are here.","si":"මෙතැන බොහෝ මිනිසුන් ඉන්නවා."}]},
 {"id":"boy","en":"boy","si":["පිරිමි ළමයා"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"The boy is reading.","si":"පිරිමි ළමයා කියවමින් ඉන්නවා."}]},
 {"id":"girl","en":"girl","si":["ගැහැණු ළමයා"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"The girl is singing.","si":"ගැහැණු ළමයා ගීතයක් ගායනා කරනවා."}]},
@@ -150,8 +150,8 @@ window.LINGUA_DICTIONARY = [
 {"id":"soap","en":"soap","si":["සබන්"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"Wash your hands with soap.","si":"සබන් දමා ඔබේ අත් සෝදන්න."}]},
 {"id":"sugar","en":"sugar","si":["සීනි"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"I do not take sugar in my tea.","si":"මම තේවලට සීනි දාන්නේ නැහැ."}]},
 {"id":"salt","en":"salt","si":["ලුණු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Please add a little salt.","si":"කරුණාකර ලුණු ටිකක් එකතු කරන්න."}]},
-{"id":"vegetable","en":"vegetable","si":["එළවළු","එළවළුව"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"We eat vegetables every day.","si":"අපි හැමදාම එළවළු කනවා."}]},
-{"id":"fruit","en":"fruit","si":["පලතුරු","පලතුර"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Fruit is good for you.","si":"පලතුරු ඔබට ගුණදායකයි."}]},
+{"id":"vegetable","en":"vegetable","si":["එළවළුව","එළවළු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"We eat vegetables every day.","si":"අපි හැමදාම එළවළු කනවා."}]},
+{"id":"fruit","en":"fruit","si":["පලතුර","පලතුරු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Fruit is good for you.","si":"පලතුරු ඔබට ගුණදායකයි."}]},
 {"id":"mango","en":"mango","si":["අඹ"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"This mango is sweet.","si":"මේ අඹ ගෙඩිය පැණිරසයි."}]},
 {"id":"potato","en":"potato","si":["අර්තාපල්"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"The potato is in the bag.","si":"අර්තාපල් බෑගයේ තියෙනවා."}]},
 {"id":"onion","en":"onion","si":["ලූනු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Cut the onion carefully.","si":"ලූනු පරිස්සමින් කපන්න."}]},
@@ -169,9 +169,9 @@ window.LINGUA_DICTIONARY = [
 {"id":"dirty","en":"dirty","si":["අපිරිසිදු","කිලිටි"],"pos":"adjective","category":"DESCRIPTIONS","pronunciation":"","examples":[{"en":"My shoes are dirty.","si":"මගේ සපත්තු අපිරිසිදුයි."}]},
 {"id":"tired","en":"tired","si":["මහන්සි","වෙහෙසට පත්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"I am tired today.","si":"මට අද මහන්සියි."}]},
 {"id":"hungry","en":"hungry","si":["බඩගිනි"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"The child is hungry.","si":"දරුවාට බඩගිනියි."}]},
-{"id":"thirsty","en":"thirsty","si":["තිබහ ඇති"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"I am thirsty.","si":"මට තිබහයි."}]},
+{"id":"thirsty","en":"thirsty","si":["පිපාසය ඇති","තිබහ ඇති"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"I am thirsty.","si":"මට තිබහයි."}]},
 {"id":"angry","en":"angry","si":["කෝපයෙන්","තරහින්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"He is angry.","si":"ඔහු කෝපයෙන් ඉන්නවා."}]},
 {"id":"afraid","en":"afraid","si":["බය වූ","බියෙන්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"The child is afraid.","si":"දරුවා බය වෙලා."}]},
 {"id":"rainy","en":"rainy","si":["වැසි සහිත"],"pos":"adjective","category":"WEATHER","pronunciation":"","examples":[{"en":"It is a rainy day.","si":"අද වැසි සහිත දවසක්."}]},
-{"id":"sunny","en":"sunny","si":["අව්ව සහිත"],"pos":"adjective","category":"WEATHER","pronunciation":"","examples":[{"en":"It is sunny today.","si":"අද අව්ව තියෙනවා."}]}
+{"id":"sunny","en":"sunny","si":["අව්ව සහිත"],"pos":"adjective","category":"WEATHER","pronunciation":"","examples":[{"en":"It is sunny today.","si":"අද හොඳට අව්ව පායනවා."}]}
 ];
