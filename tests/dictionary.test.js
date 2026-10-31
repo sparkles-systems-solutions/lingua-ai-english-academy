@@ -69,8 +69,8 @@ test("dictionary results include five bilingual word-practice prompts", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
   assert.match(html, /buildWordUsage\(entry\)/);
   assert.match(html, /Use this word – 5 practice sentences/);
-  assert.match(html, /I learned the word/);
-  assert.match(html, /How do you spell/);
+  assert.match(html, /I use \+word\+ every day/);
+  assert.match(html, /Where is the \+word\+/);
 });
 
 test("lesson exam has five questions, an 80 percent pass mark and retry question variation", () => {
