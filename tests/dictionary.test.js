@@ -81,3 +81,9 @@ test("lesson exam has five questions, an 80 percent pass mark and retry question
   assert.match(html, /signature!==previous/);
   assert.match(html, /Retry with new questions/);
 });
+
+test("common animal headwords dog and cat are searchable", () => {
+  assert.ok(search("dog", "en-si").some((entry) => entry.id === "dog"));
+  assert.ok(search("cat", "en-si").some((entry) => entry.id === "cat"));
+  assert.ok(search("බල්ලා", "si-en").some((entry) => entry.id === "dog"));
+});
