@@ -2,11 +2,11 @@
    Meanings are learner-friendly starter translations, not a complete scholarly lexicon. */
 window.LINGUA_DICTIONARY = [
 {id:"hello",en:"hello",si:["ආයුබෝවන්","හෙලෝ"],pos:"interjection",pronunciation:"හෙලෝ",examples:[{en:"Hello, how are you?",si:"හෙලෝ, ඔබට කොහොමද?"}]},
-{id:"good-morning",en:"good morning",si:["සුබ උදෑසනක්"],pos:"phrase",pronunciation:"ගුඩ් මෝර්නින්",examples:[{en:"Good morning, teacher.",si:"සුභ උදෑසනක්, ගුරුතුමනි."}]},
-{id:"good-evening",en:"good evening",si:["සුබ සන්ධ්‍යාවක්"],pos:"phrase",pronunciation:"ගුඩ් ඊව්නින්",examples:[{en:"Good evening, everyone.",si:"සැමට සුභ සන්ධ්‍යාවක්."}]},
+{id:"good-morning",en:"good morning",si:["සුබ උදෑසනක්"],pos:"phrase",pronunciation:"ගුඩ් මෝර්නින්",examples:[{en:"Good morning, teacher.",si:"සුබ උදෑසනක්, ගුරුතුමනි."}]},
+{id:"good-evening",en:"good evening",si:["සුබ සන්ධ්‍යාවක්"],pos:"phrase",pronunciation:"ගුඩ් ඊව්නින්",examples:[{en:"Good evening, everyone.",si:"සැමට සුබ සන්ධ්‍යාවක්."}]},
 {id:"goodbye",en:"goodbye",si:["ගිහින් එන්නම්","සමුගන්නවා"],pos:"interjection",pronunciation:"ගුඩ්බායි",examples:[{en:"Goodbye. See you tomorrow.",si:"ගිහින් එන්නම්. හෙට හමුවෙමු."}]},
 {id:"please",en:"please",si:["කරුණාකර"],pos:"adverb",pronunciation:"ප්ලීස්",examples:[{en:"Please sit down.",si:"කරුණාකර වාඩිවෙන්න."}]},
-{id:"thank-you",en:"thank you",si:["ස්තුතියි","ඔබට ස්තුතියි"],pos:"phrase",pronunciation:"තැන්ක් යූ",examples:[{en:"Thank you for your help.",si:"ඔබගේ උදව්වට ස්තූතියි."}]},
+{id:"thank-you",en:"thank you",si:["ස්තුතියි","ඔබට ස්තුතියි"],pos:"phrase",pronunciation:"තැන්ක් යූ",examples:[{en:"Thank you for your help.",si:"ඔබගේ උදව්වට ස්තුතියි."}]},
 {id:"sorry",en:"sorry",si:["සමාවෙන්න","කණගාටුයි"],pos:"adjective / interjection",pronunciation:"සොරි",examples:[{en:"I am sorry.",si:"මට සමාවෙන්න."}]},
 {id:"yes",en:"yes",si:["ඔව්"],pos:"adverb",pronunciation:"යෙස්",examples:[{en:"Yes, I understand.",si:"ඔව්, මට තේරෙනවා."}]},
 {id:"no",en:"no",si:["නැහැ","නොවේ"],pos:"adverb",pronunciation:"නෝ",examples:[{en:"No, thank you.",si:"නැහැ, ස්තුතියි."}]},
