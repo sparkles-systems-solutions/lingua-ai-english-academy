@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MIGRATIONS = [
     ROOT / "backend/migrations/0001_initial.sql",
     ROOT / "backend/migrations/0002_admin_dictionary.sql",
+    ROOT / "backend/migrations/0003_auth_rate_limits.sql",
 ]
 
 
