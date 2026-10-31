@@ -1,7 +1,5 @@
 -- Lingua AI English Academy: initial relational schema.
 -- Apply with Wrangler D1 migrations after creating the database.
-PRAGMA foreign_keys = ON;
-
 CREATE TABLE users (
   id TEXT PRIMARY KEY,
   email_normalized TEXT NOT NULL UNIQUE,
