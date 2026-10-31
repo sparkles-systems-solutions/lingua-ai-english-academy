@@ -4,18 +4,18 @@
  * Callers must enforce rate limits and persist only the HMAC digest.
  */
 
-export function normalizeEmail(value) {
+function normalizeEmail(value) {
   if (typeof value !== "string") return null;
   const email = value.trim().toLowerCase();
   if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return null;
   return email;
 }
 
-export function isValidOtp(value) {
+function isValidOtp(value) {
   return typeof value === "string" && /^[0-9]{6}$/.test(value);
 }
 
-export function createOtp(cryptoApi = globalThis.crypto) {
+function createOtp(cryptoApi = globalThis.crypto) {
   if (!cryptoApi?.getRandomValues) throw new Error("secure_random_unavailable");
   // Rejection sampling avoids modulo bias for a six-digit code.
   const limit = Math.floor(0x100000000 / 1000000) * 1000000;
@@ -28,7 +28,7 @@ export function createOtp(cryptoApi = globalThis.crypto) {
   return String(value % 1000000).padStart(6, "0");
 }
 
-export async function hashOtp(email, code, secret, cryptoApi = globalThis.crypto) {
+async function hashOtp(email, code, secret, cryptoApi = globalThis.crypto) {
   const normalized = normalizeEmail(email);
   if (!normalized || !isValidOtp(code)) throw new Error("invalid_otp_input");
   if (typeof secret !== "string" || secret.length < 32) throw new Error("otp_pepper_not_configured");
@@ -48,6 +48,8 @@ export async function hashOtp(email, code, secret, cryptoApi = globalThis.crypto
   return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
 }
 
-export function isValidOtpDigest(value) {
+function isValidOtpDigest(value) {
   return typeof value === "string" && /^[a-f0-9]{64}$/.test(value);
 }
+
+module.exports = { normalizeEmail, isValidOtp, createOtp, hashOtp, isValidOtpDigest };
