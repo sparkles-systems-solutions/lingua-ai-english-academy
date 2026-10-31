@@ -1,4 +1,4 @@
-/* Lingua AI English Academy — reviewed beginner dictionary starter data.
+/* Lingua AI English Academy — project-authored beginner dictionary starter data; review translations before production.
    Meanings are learner-friendly starter translations, not a complete scholarly lexicon. */
 window.LINGUA_DICTIONARY = [
 {id:"hello",en:"hello",si:["ආයුබෝවන්","හෙලෝ"],pos:"interjection",pronunciation:"හෙලෝ",examples:[{en:"Hello, how are you?",si:"හෙලෝ, ඔබට කොහොමද?"}]},
@@ -43,7 +43,7 @@ window.LINGUA_DICTIONARY = [
 {id:"time",en:"time",si:["වේලාව","කාලය"],pos:"noun",pronunciation:"ටයිම්",examples:[{en:"What time is it?",si:"දැන් වේලාව කීයද?"}]},
 {id:"help",en:"help",si:["උදව්","උදව් කරනවා"],pos:"noun / verb",pronunciation:"හෙල්ප්",examples:[{en:"Can you help me?",si:"ඔබට මට උදව් කරන්න පුළුවන්ද?"}]},
 {id:"love",en:"love",si:["ආදරය","ආදරය කරනවා"],pos:"noun / verb",pronunciation:"ලව්",examples:[{en:"I love learning English.",si:"මම ඉංග්‍රීසි ඉගෙනීමට කැමතියි."}]},
-{id:"book",en:"book",si:["පොත"],pos:"noun",pronunciation:"බුක්",examples:[{en:"I have a new book.",si:"මට අලුත් පොතක් තියෙනවා."}]},
+{id:"beautiful",en:"beautiful",si:["ලස්සන","සුන්දර"],pos:"adjective",pronunciation:"බියුටිෆුල්",examples:[{en:"It is a beautiful day.",si:"අද ලස්සන දවසක්."}]},
 {id:"right",en:"right",si:["නිවැරදි","දකුණ","අයිතිය"],pos:"adjective / noun",pronunciation:"රයිට්",examples:[{en:"Your answer is right.",si:"ඔබගේ පිළිතුර නිවැරදියි."},{en:"Turn right.",si:"දකුණට හැරෙන්න."}]},
 {id:"light",en:"light",si:["ආලෝකය","සැහැල්ලු"],pos:"noun / adjective",pronunciation:"ලයිට්",examples:[{en:"Turn on the light.",si:"විදුලි පහන දල්වන්න."}]}
 ];
