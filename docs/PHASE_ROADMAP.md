@@ -9,15 +9,17 @@
 
 **Exit criteria:** learner can complete a daily 15-minute beginner session and practise all four skills with browser-supported tools. Local progress works reliably while the backend is being built.
 
-## Phase 2 — Backend, email OTP accounts, and admin foundation
+## Phase 2 — Backend, accounts, and admin foundation
 - Create a dedicated backend API and database schema.
-- Implement email registration/login using short-lived, single-use OTP codes.
-- Add secure sessions, rate limits, resend cooldowns, audit events, and role-based authorization.
+- Implement learner registration/login using short-lived, single-use email OTP.
+- Implement both admin sign-in methods: (a) Email + Password + 2FA, and (b) passwordless Email OTP.
+- For password-based admin login, require successful verification of both password and a separate second factor (proposed default: authenticator-app TOTP); include secure recovery codes.
+- Add secure sessions, rate limits, resend cooldowns, lockout/progressive delays, audit events, and role-based authorization.
 - Build a separate admin panel with learner management and curriculum/content management.
 - Move learner progress from browser-only storage to authenticated cloud sync, preserving local progress during migration.
-- Add API tests, authorization tests, and account-isolation tests.
+- Add API tests, authentication tests, authorization tests, MFA-bypass tests, and account-isolation tests.
 
-**Exit criteria:** learner can sign in using email OTP; admin routes and APIs are protected by server-side roles; progress syncs between web sessions; no secrets are exposed in client code.
+**Exit criteria:** learner can sign in using email OTP; admin can use either approved sign-in method; password-based admin login cannot bypass 2FA; admin routes and APIs are protected by server-side roles; progress syncs between web sessions; no secrets are exposed in client code.
 
 ## Phase 3 — AI English Teacher and learning content services
 - Add a server-side AI tutor endpoint; no provider secret in client code.
@@ -50,9 +52,10 @@
 See [Platform Architecture](PLATFORM_ARCHITECTURE.md). The proposed baseline is a separate learner web app, separate admin app, server-side API, managed relational database, email OTP delivery adapter, and Android wrapper. Cloudflare Workers + D1 are a practical starting option given the project's deployment context; final provider choices should be confirmed before production credentials or paid services are configured.
 
 ## Dependencies and configuration
-- AI provider account/key for Phase 3; store as a server-side secret only.
 - Email delivery provider account/key for Phase 2; store as a server-side secret only.
 - Hosting and database account for backend APIs and cloud progress.
+- Authenticator-app TOTP implementation and secure recovery-code handling for admin password + 2FA.
+- AI provider account/key for Phase 3; store as a server-side secret only.
 - Android build environment and signing key for Phase 5; never commit signing secrets.
 - Speech capabilities vary by browser, OS, and language pack.
 - No credentials or personal learner data should be committed to this repository.
