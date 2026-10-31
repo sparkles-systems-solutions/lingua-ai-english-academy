@@ -87,3 +87,18 @@ test("common animal headwords dog and cat are searchable", () => {
   assert.ok(search("cat", "en-si").some((entry) => entry.id === "cat"));
   assert.ok(search("බල්ලා", "si-en").some((entry) => entry.id === "dog"));
 });
+
+test("expanded beginner vocabulary includes common everyday words", () => {
+  for (const word of ["dog", "cat", "family", "mother", "house", "school", "food", "go", "eat", "speak", "happy", "difficult"]) {
+    assert.ok(entries.some((entry) => entry.id === word), "missing headword: " + word);
+  }
+});
+
+test("expanded entries include category metadata for grouped learning", () => {
+  const categorized = entries.filter((entry) => entry.category);
+  assert.ok(categorized.length >= 70);
+  for (const entry of categorized) {
+    assert.ok(entry.si.length > 0);
+    assert.ok(entry.examples.length > 0);
+  }
+});
