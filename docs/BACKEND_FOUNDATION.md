@@ -2,14 +2,14 @@
 
 ## Current implementation
 
-The repository now contains a minimal Cloudflare Workers-compatible API entry point and two D1 schema migrations: core learner/account tables, followed by admin authentication metadata and bilingual dictionary moderation tables.
+The repository now contains a minimal Cloudflare Workers-compatible API entry point and three D1 schema migrations: core learner/account tables, followed by admin authentication metadata and bilingual dictionary moderation tables, then authentication rate-limit storage and lookup indexes.
 
 Implemented:
 - `GET /api/v1/health` returns a minimal service status.
 - Unknown API routes return a generic JSON 404.
 - CORS only reflects origins explicitly listed in `ALLOWED_ORIGINS`.
 - Responses include no-store and basic security headers.
-- Initial D1 tables cover users, learner profiles, OTP challenge metadata, sessions, saved words, lesson progress, quiz attempts, and admin audit events.
+- Initial D1 tables cover users, learner profiles, OTP challenge metadata, sessions, saved words, lesson progress, quiz attempts, admin audit events, admin authentication metadata, dictionary moderation, and hashed-key rate-limit counters.
 - Node regression tests cover the health route, generic routing, and CORS allowlisting.
 
 Not implemented:
@@ -52,8 +52,9 @@ The repository intentionally does not contain a fake database ID or production c
 ## Next implementation sequence
 
 1. Confirm Cloudflare account and create D1 database.
-2. Add migration execution and integration tests.
-3. Implement learner email OTP with a provider adapter and rate limits.
+2. Apply all three migrations to a staging D1 database and run D1-specific integration tests.
+3. Configure an email delivery provider and secrets.
+4. Implement learner email OTP with a provider adapter and enforce the rate-limit table atomically.
 4. Implement secure session lifecycle and learner profile/progress APIs.
 5. Implement admin provisioning, password + TOTP, passwordless admin email OTP, and server-side authorization.
 6. Build the separate Admin Panel and dictionary publishing workflow.
