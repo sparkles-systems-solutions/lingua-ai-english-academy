@@ -26,9 +26,9 @@ A full repository audit and product requirements are documented in:
 No build tools or API keys are needed for the current static prototype.
 
 ## Important implementation status
-The current browser prototype is not yet a complete AI platform. AI tutoring, server APIs, accounts, cloud synchronisation, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
+The current browser prototype is not yet a complete AI platform. AI tutoring, server APIs, accounts, cloud synchronisation, the full bilingual dictionary service, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
 
-The backend, admin panel, authentication methods, and Android APK are specified in project requirements and architecture; they are not yet implemented or production-ready.
+The backend, admin panel, authentication methods, dictionary module, and Android APK are specified in project requirements and architecture; they are not yet implemented or production-ready.
 
 Never put AI provider keys or other secrets in browser JavaScript or committed files.
 
@@ -38,14 +38,16 @@ Never put AI provider keys or other secrets in browser JavaScript or committed f
 - Learner registration/login using passwordless email OTP.
 - Admin Panel supports both Email + Password + 2FA and passwordless Email OTP.
 - Password-based admin login must verify both factors; the proposed default second factor is authenticator-app TOTP.
+- Sinhala ↔ English dictionary with two-way search, meanings, pronunciation, bilingual examples, saved words and revision.
+- Dictionary content must be reviewed and properly licensed/attributed.
 - Shared cloud learner account and progress across web and Android.
 - Installable Android APK for learners, initially planned with a Capacitor wrapper.
 
 ## Phased delivery
-1. **Phase 1 — Learning foundation:** curriculum, accessible lesson engine, four-skill beginner practice, quizzes, revision, and reliable local progress.
-2. **Phase 2 — Backend and accounts:** backend API, database, learner email OTP, both admin login methods, secure sessions, separate admin panel, and cloud progress sync.
-3. **Phase 3 — AI English Teacher:** Sinhala explanations, sentence correction, guided conversations, and writing feedback through a secured server endpoint.
+1. **Phase 1 — Learning foundation:** curriculum, beginner lessons, four-skill practice, initial bilingual dictionary, quizzes, revision, and reliable local progress.
+2. **Phase 2 — Backend and accounts:** backend API, database, learner email OTP, both admin login methods, secure sessions, separate admin panel, dictionary management and cloud progress sync.
+3. **Phase 3 — AI English Teacher:** Sinhala explanations, sentence correction, guided conversations, writing feedback, and reviewed AI-assisted dictionary support through a secured server endpoint.
 4. **Phase 4 — Speaking, listening and adaptive learning:** audio practice, microphone features, mastery tracking, weak-area detection, spaced revision, and personalised next lessons.
-5. **Phase 5 — Android APK and production:** Android packaging/signing, shared account sync, reports, privacy controls, deployment, and monitoring.
+5. **Phase 5 — Android APK and production:** Android packaging/signing, shared account sync, dictionary mobile QA, reports, privacy controls, deployment, and monitoring.
 
 See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFORM_ARCHITECTURE.md) for implementation details.
