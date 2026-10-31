@@ -1,6 +1,4 @@
 -- Phase 2: administrator authentication controls and approved bilingual dictionary.
-PRAGMA foreign_keys = ON;
-
 CREATE TABLE admin_credentials (
   user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
   password_hash TEXT NOT NULL,
