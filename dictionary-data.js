@@ -1,177 +1,2780 @@
-/* Lingua AI English Academy — project-authored beginner dictionary starter data; review translations before production.
-   Meanings are learner-friendly starter translations, not a complete scholarly lexicon. */
+/* Lingua AI English Academy — project-authored beginner dictionary starter data; AI-reviewed translations, not human-certified. */
 window.LINGUA_DICTIONARY = [
-{id:"hello",en:"hello",si:["ආයුබෝවන්","හෙලෝ"],pos:"interjection",pronunciation:"හෙලෝ",examples:[{en:"Hello, how are you?",si:"හෙලෝ, ඔබට කොහොමද?"}]},
-{id:"good-morning",en:"good morning",si:["සුබ උදෑසනක්"],pos:"phrase",pronunciation:"ගුඩ් මෝර්නින්",examples:[{en:"Good morning, teacher.",si:"සුබ උදෑසනක්, ගුරුතුමනි."}]},
-{id:"good-evening",en:"good evening",si:["සුබ සන්ධ්‍යාවක්"],pos:"phrase",pronunciation:"ගුඩ් ඊව්නින්",examples:[{en:"Good evening, everyone.",si:"සැමට සුබ සන්ධ්‍යාවක්."}]},
-{id:"goodbye",en:"goodbye",si:["ගිහින් එන්නම්","සමුගන්නවා"],pos:"interjection",pronunciation:"ගුඩ්බායි",examples:[{en:"Goodbye. See you tomorrow.",si:"ගිහින් එන්නම්. හෙට හමුවෙමු."}]},
-{id:"please",en:"please",si:["කරුණාකර"],pos:"adverb",pronunciation:"ප්ලීස්",examples:[{en:"Please sit down.",si:"කරුණාකර වාඩිවෙන්න."}]},
-{id:"thank-you",en:"thank you",si:["ස්තුතියි","ඔබට ස්තුතියි"],pos:"phrase",pronunciation:"තැන්ක් යූ",examples:[{en:"Thank you for your help.",si:"ඔබගේ උදව්වට ස්තුතියි."}]},
-{id:"sorry",en:"sorry",si:["සමාවෙන්න","කණගාටුයි"],pos:"adjective / interjection",pronunciation:"සොරි",examples:[{en:"I am sorry.",si:"මට සමාවෙන්න."}]},
-{id:"yes",en:"yes",si:["ඔව්"],pos:"adverb",pronunciation:"යෙස්",examples:[{en:"Yes, I understand.",si:"ඔව්, මට තේරෙනවා."}]},
-{id:"no",en:"no",si:["නැහැ","නොවේ"],pos:"adverb",pronunciation:"නෝ",examples:[{en:"No, thank you.",si:"නැහැ, ස්තුතියි."}]},
-{id:"name",en:"name",si:["නම"],pos:"noun",pronunciation:"නේම්",examples:[{en:"My name is Amal.",si:"මගේ නම අමල්."}]},
-{id:"friend",en:"friend",si:["මිතුරා","මිතුරිය","යහළුවා"],pos:"noun",pronunciation:"ෆ්‍රෙන්ඩ්",examples:[{en:"She is my friend.",si:"ඇය මගේ මිතුරියයි."}]},
-{id:"family",en:"family",si:["පවුල","පවුලේ අය"],pos:"noun",pronunciation:"ෆැමිලි",examples:[{en:"I love my family.",si:"මම මගේ පවුලට ආදරෙයි."}]},
-{id:"mother",en:"mother",si:["අම්මා","මව"],pos:"noun",pronunciation:"මදර්",examples:[{en:"My mother is kind.",si:"මගේ අම්මා කරුණාවන්තයි."}]},
-{id:"father",en:"father",si:["තාත්තා","පියා"],pos:"noun",pronunciation:"ෆාදර්",examples:[{en:"My father is at home.",si:"මගේ තාත්තා ගෙදර ඉන්නවා."}]},
-{id:"brother",en:"brother",si:["සහෝදරයා","අයියා","මල්ලී"],pos:"noun",pronunciation:"බ්‍රදර්",examples:[{en:"I have one brother.",si:"මට සහෝදරයෙක් ඉන්නවා."}]},
-{id:"sister",en:"sister",si:["සහෝදරිය","අක්කා","නංගී"],pos:"noun",pronunciation:"සිස්ටර්",examples:[{en:"My sister is a student.",si:"මගේ සහෝදරිය ශිෂ්‍යාවක්."}]},
-{id:"water",en:"water",si:["වතුර","ජලය"],pos:"noun",pronunciation:"වෝටර්",examples:[{en:"I drink water.",si:"මම වතුර බොනවා."}]},
-{id:"food",en:"food",si:["ආහාර","කෑම"],pos:"noun",pronunciation:"ෆූඩ්",examples:[{en:"The food is good.",si:"කෑම රසයි."}]},
-{id:"rice",en:"rice",si:["බත්","සහල්"],pos:"noun",pronunciation:"රයිස්",examples:[{en:"I eat rice for lunch.",si:"මම දවල්ට බත් කනවා."}]},
-{id:"bread",en:"bread",si:["පාන්"],pos:"noun",pronunciation:"බ්‍රෙඩ්",examples:[{en:"I want some bread.",si:"මට පාන් ටිකක් ඕනෑ."}]},
-{id:"tea",en:"tea",si:["තේ"],pos:"noun",pronunciation:"ටී",examples:[{en:"I drink tea in the morning.",si:"මම උදේට තේ බොනවා."}]},
-{id:"book",en:"book",si:["පොත"],pos:"noun",pronunciation:"බුක්",examples:[{en:"This is my book.",si:"මේ මගේ පොත."}]},
-{id:"school",en:"school",si:["පාසල","ඉස්කෝලය"],pos:"noun",pronunciation:"ස්කූල්",examples:[{en:"The children go to school.",si:"ළමයි පාසලට යනවා."}]},
-{id:"teacher",en:"teacher",si:["ගුරුවරයා","ගුරුවරිය","ගුරුතුමා"],pos:"noun",pronunciation:"ටීචර්",examples:[{en:"My teacher is kind.",si:"මගේ ගුරුවරයා කරුණාවන්තයි."}]},
-{id:"student",en:"student",si:["ශිෂ්‍යයා","ශිෂ්‍යාව","සිසුවා"],pos:"noun",pronunciation:"ස්ටූඩන්ට්",examples:[{en:"I am a student.",si:"මම ශිෂ්‍යයෙක් / ශිෂ්‍යාවක්."}]},
-{id:"house",en:"house",si:["ගෙදර","නිවස"],pos:"noun",pronunciation:"හවුස්",examples:[{en:"This is my house.",si:"මේ මගේ ගෙදර."}]},
-{id:"work",en:"work",si:["වැඩ","රැකියාව","වැඩ කරනවා"],pos:"noun / verb",pronunciation:"වර්ක්",examples:[{en:"I go to work.",si:"මම වැඩට යනවා."}]},
-{id:"go",en:"go",si:["යනවා","ගමන් කරනවා"],pos:"verb",pronunciation:"ගෝ",examples:[{en:"I go to school.",si:"මම පාසලට යනවා."}]},
-{id:"come",en:"come",si:["එනවා","පැමිණෙනවා"],pos:"verb",pronunciation:"කම්",examples:[{en:"Please come here.",si:"කරුණාකර මෙතැනට එන්න."}]},
-{id:"eat",en:"eat",si:["කනවා","ආහාර ගන්නවා"],pos:"verb",pronunciation:"ඊට්",examples:[{en:"I eat an apple.",si:"මම ඇපල් ගෙඩියක් කනවා."}]},
-{id:"drink",en:"drink",si:["බොනවා","පානය කරනවා"],pos:"verb",pronunciation:"ඩ්‍රින්ක්",examples:[{en:"I drink water.",si:"මම වතුර බොනවා."}]},
-{id:"read",en:"read",si:["කියවනවා","කියවන්න"],pos:"verb",pronunciation:"රීඩ්",examples:[{en:"I read a book.",si:"මම පොතක් කියවනවා."}]},
-{id:"write",en:"write",si:["ලියනවා","ලියන්න"],pos:"verb",pronunciation:"රයිට්",examples:[{en:"Please write your name.",si:"කරුණාකර ඔබේ නම ලියන්න."}]},
-{id:"happy",en:"happy",si:["සතුටු","සතුටින්"],pos:"adjective",pronunciation:"හැපි",examples:[{en:"I am happy today.",si:"මම අද සතුටින් ඉන්නවා."}]},
-{id:"good",en:"good",si:["හොඳ","යහපත්"],pos:"adjective",pronunciation:"ගුඩ්",examples:[{en:"This is a good book.",si:"මේක හොඳ පොතක්."}]},
-{id:"big",en:"big",si:["ලොකු","විශාල"],pos:"adjective",pronunciation:"බිග්",examples:[{en:"That is a big house.",si:"ඒක ලොකු ගෙයක්."}]},
-{id:"small",en:"small",si:["කුඩා","පොඩි"],pos:"adjective",pronunciation:"ස්මෝල්",examples:[{en:"I have a small bag.",si:"මට පොඩි බෑගයක් තියෙනවා."}]},
-{id:"today",en:"today",si:["අද"],pos:"adverb / noun",pronunciation:"ටුඩේ",examples:[{en:"I am busy today.",si:"මම අද කාර්යබහුලයි."}]},
-{id:"tomorrow",en:"tomorrow",si:["හෙට"],pos:"adverb / noun",pronunciation:"ටුමොරෝ",examples:[{en:"See you tomorrow.",si:"හෙට හමුවෙමු."}]},
-{id:"time",en:"time",si:["වේලාව","කාලය"],pos:"noun",pronunciation:"ටයිම්",examples:[{en:"What time is it?",si:"දැන් වේලාව කීයද?"}]},
-{id:"help",en:"help",si:["උදව්","උදව් කරනවා"],pos:"noun / verb",pronunciation:"හෙල්ප්",examples:[{en:"Can you help me?",si:"ඔබට මට උදව් කරන්න පුළුවන්ද?"}]},
-{id:"love",en:"love",si:["ආදරය","ආදරය කරනවා"],pos:"noun / verb",pronunciation:"ලව්",examples:[{en:"I love learning English.",si:"මම ඉංග්‍රීසි ඉගෙනීමට ගොඩක් කැමතියි."}]},
-{id:"beautiful",en:"beautiful",si:["ලස්සන","සුන්දර"],pos:"adjective",pronunciation:"බියුටිෆුල්",examples:[{en:"It is a beautiful day.",si:"අද ලස්සන දවසක්."}]},
-{id:"right",en:"right",si:["නිවැරදි","දකුණ","අයිතිය"],pos:"adjective / noun",pronunciation:"රයිට්",examples:[{en:"Your answer is right.",si:"ඔබගේ පිළිතුර නිවැරදියි."},{en:"Turn right.",si:"දකුණට හැරෙන්න."}]},
-{id:"light",en:"light",si:["ආලෝකය","සැහැල්ලු"],pos:"noun / adjective",pronunciation:"ලයිට්",examples:[{en:"Turn on the light.",si:"විදුලි පහන දල්වන්න."}]}
-,
-{id:"dog",en:"dog",si:["බල්ලා","බල්ලෙක්"],pos:"noun",pronunciation:"ඩෝග්",examples:[{en:"The dog is friendly.",si:"බල්ලා මිත්‍රශීලීයි."},{en:"I have a dog.",si:"මට බල්ලෙක් ඉන්නවා."}]},
-{id:"cat",en:"cat",si:["පූසා","බළලා"],pos:"noun",pronunciation:"කැට්",examples:[{en:"The cat is sleeping.",si:"පූසා නිදාගෙන ඉන්නවා."},{en:"I see a cat.",si:"මට පූසෙක් පේනවා."}]},
-{id:"bird",en:"bird",si:["කුරුල්ලා","පක්ෂියා"],pos:"noun",pronunciation:"බර්ඩ්",examples:[{en:"The bird can fly.",si:"කුරුල්ලාට පියාඹන්න පුළුවන්."}]},
-{id:"fish",en:"fish",si:["මාළුවා","මාළු"],pos:"noun",pronunciation:"ෆිෂ්",examples:[{en:"The fish is in the water.",si:"මාළුවා වතුරේ ඉන්නවා."}]}
-,
-{id:"child",en:"child",si:["දරුවා"],pos:"noun",category:"FAMILY",pronunciation:"",examples:[{en:"The child is playing.",si:"දරුවා සෙල්ලම් කරනවා."}]},
-{id:"baby",en:"baby",si:["බබා"],pos:"noun",category:"FAMILY",pronunciation:"",examples:[{en:"The baby is sleeping.",si:"බබා නිදාගෙන ඉන්නවා."}]},
-{id:"man",en:"man",si:["පිරිමියා"],pos:"noun",category:"PEOPLE",pronunciation:"",examples:[{en:"The man is tall.",si:"ඒ පිරිමියා උසයි."}]},
-{id:"woman",en:"woman",si:["කාන්තාව"],pos:"noun",category:"PEOPLE",pronunciation:"",examples:[{en:"The woman is kind.",si:"ඒ කාන්තාව කරුණාවන්තයි."}]},
-{id:"person",en:"person",si:["පුද්ගලයා"],pos:"noun",category:"PEOPLE",pronunciation:"",examples:[{en:"One person is waiting.",si:"එක් පුද්ගලයෙක් බලාගෙන ඉන්නවා."}]},
-{id:"room",en:"room",si:["කාමරය"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"My room is clean.",si:"මගේ කාමරය පිරිසිදුයි."}]},
-{id:"door",en:"door",si:["දොර"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"Open the door.",si:"දොර අරින්න."}]},
-{id:"window",en:"window",si:["ජනේලය"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"Close the window.",si:"ජනේලය වහන්න."}]},
-{id:"table",en:"table",si:["මේසය"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"The book is on the table.",si:"පොත මේසය උඩ තියෙනවා."}]},
-{id:"chair",en:"chair",si:["පුටුව"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"Please sit on the chair.",si:"කරුණාකර පුටුවේ වාඩිවෙන්න."}]},
-{id:"bed",en:"bed",si:["ඇඳ"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"The bed is comfortable.",si:"ඇඳ සුවපහසුයි."}]},
-{id:"kitchen",en:"kitchen",si:["මුළුතැන්ගෙය"],pos:"noun",category:"HOME",pronunciation:"",examples:[{en:"Mother is in the kitchen.",si:"අම්මා මුළුතැන්ගෙයි ඉන්නවා."}]},
-{id:"pen",en:"pen",si:["පෑන"],pos:"noun",category:"EDUCATION",pronunciation:"",examples:[{en:"I have a blue pen.",si:"මට නිල් පෑනක් තියෙනවා."}]},
-{id:"paper",en:"paper",si:["කඩදාසිය"],pos:"noun",category:"EDUCATION",pronunciation:"",examples:[{en:"Write on the paper.",si:"කඩදාසියේ ලියන්න."}]},
-{id:"bag",en:"bag",si:["බෑගය"],pos:"noun",category:"EDUCATION",pronunciation:"",examples:[{en:"My bag is black.",si:"මගේ බෑගය කළුයි."}]},
-{id:"milk",en:"milk",si:["කිරි"],pos:"noun",category:"FOOD",pronunciation:"",examples:[{en:"The baby drinks milk.",si:"බබා කිරි බොනවා."}]},
-{id:"apple",en:"apple",si:["ඇපල්"],pos:"noun",category:"FOOD",pronunciation:"",examples:[{en:"I eat an apple.",si:"මම ඇපල් ගෙඩියක් කනවා."}]},
-{id:"banana",en:"banana",si:["කෙසෙල්"],pos:"noun",category:"FOOD",pronunciation:"",examples:[{en:"The banana is yellow.",si:"කෙසෙල් ගෙඩිය කහ පාටයි."}]},
-{id:"egg",en:"egg",si:["බිත්තරය"],pos:"noun",category:"FOOD",pronunciation:"",examples:[{en:"I cook an egg.",si:"මම බිත්තරයක් පිසිනවා."}]},
-{id:"morning",en:"morning",si:["උදෑසන"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"Good morning.",si:"සුභ උදෑසනක්."}]},
-{id:"night",en:"night",si:["රාත්‍රිය"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"Good night.",si:"සුභ රාත්‍රියක්."}]},
-{id:"yesterday",en:"yesterday",si:["ඊයේ"],pos:"adverb",category:"TIME",pronunciation:"",examples:[{en:"I was at home yesterday.",si:"මම ඊයේ ගෙදර හිටියා."}]},
-{id:"day",en:"day",si:["දවස"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"Have a nice day.",si:"සුභ දවසක් වේවා."}]},
-{id:"week",en:"week",si:["සතිය"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"A week has seven days.",si:"සතියකට දවස් හතක් තියෙනවා."}]},
-{id:"month",en:"month",si:["මාසය"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"This month is busy.",si:"මේ මාසය කාර්යබහුලයි."}]},
-{id:"year",en:"year",si:["අවුරුද්ද"],pos:"noun",category:"TIME",pronunciation:"",examples:[{en:"A year has twelve months.",si:"අවුරුද්දකට මාස දොළහක් තියෙනවා."}]},
-{id:"sun",en:"sun",si:["ඉර","සූර්යයා"],pos:"noun",category:"NATURE",pronunciation:"",examples:[{en:"The sun is hot.",si:"ඉර රස්නෙයි."}]},
-{id:"moon",en:"moon",si:["සඳ"],pos:"noun",category:"NATURE",pronunciation:"",examples:[{en:"The moon is bright.",si:"සඳ දීප්තිමත්."}]},
-{id:"rain",en:"rain",si:["වැස්ස"],pos:"noun",category:"NATURE",pronunciation:"",examples:[{en:"The rain is heavy.",si:"වැස්ස තදයි."}]},
-{id:"tree",en:"tree",si:["ගස"],pos:"noun",category:"NATURE",pronunciation:"",examples:[{en:"The tree is tall.",si:"ගස උසයි."}]},
-{id:"flower",en:"flower",si:["මල"],pos:"noun",category:"NATURE",pronunciation:"",examples:[{en:"This flower is beautiful.",si:"මේ මල ලස්සනයි."}]},
-{id:"car",en:"car",si:["මෝටර් රථය"],pos:"noun",category:"TRAVEL",pronunciation:"",examples:[{en:"The car is new.",si:"මෝටර් රථය අලුත්."}]},
-{id:"bus",en:"bus",si:["බස් රථය"],pos:"noun",category:"TRAVEL",pronunciation:"",examples:[{en:"I go by bus.",si:"මම බස් එකෙන් යනවා."}]},
-{id:"road",en:"road",si:["පාර"],pos:"noun",category:"TRAVEL",pronunciation:"",examples:[{en:"The road is long.",si:"පාර දිගයි."}]},
-{id:"shop",en:"shop",si:["කඩය"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"The shop is open.",si:"කඩය විවෘතයි."}]},
-{id:"hospital",en:"hospital",si:["රෝහල"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"She works at a hospital.",si:"ඇය රෝහලක වැඩ කරනවා."}]},
-{id:"office",en:"office",si:["කාර්යාලය"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"He is at the office.",si:"ඔහු කාර්යාලයේ ඉන්නවා."}]},
-{id:"market",en:"market",si:["වෙළඳපොළ"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"We go to the market.",si:"අපි වෙළඳපොළට යනවා."}]},
-{id:"city",en:"city",si:["නගරය"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"Colombo is a city.",si:"කොළඹ නගරයක්."}]},
-{id:"village",en:"village",si:["ගම"],pos:"noun",category:"PLACES",pronunciation:"",examples:[{en:"My village is beautiful.",si:"මගේ ගම ලස්සනයි."}]},
-{id:"money",en:"money",si:["මුදල්"],pos:"noun",category:"DAILY LIFE",pronunciation:"",examples:[{en:"I need money.",si:"මට මුදල් අවශ්‍යයි."}]},
-{id:"phone",en:"phone",si:["දුරකථනය"],pos:"noun",category:"DAILY LIFE",pronunciation:"",examples:[{en:"My phone is here.",si:"මගේ දුරකථනය මෙතැන."}]},
-{id:"speak",en:"speak",si:["කතා කරනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I speak English.",si:"මම ඉංග්‍රීසි කතා කරනවා."}]},
-{id:"listen",en:"listen",si:["සවන් දෙනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Listen to the teacher.",si:"ගුරුවරයාට සවන් දෙන්න."}]},
-{id:"learn",en:"learn",si:["ඉගෙන ගන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I learn English.",si:"මම ඉංග්‍රීසි ඉගෙන ගන්නවා."}]},
-{id:"teach",en:"teach",si:["උගන්වනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"They teach English.",si:"ඔවුන් ඉංග්‍රීසි උගන්වනවා."}]},
-{id:"see",en:"see",si:["දකිනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I see a bird.",si:"මම කුරුල්ලෙක් දකිනවා."}]},
-{id:"look",en:"look",si:["බලනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Look at the picture.",si:"පින්තූරය දෙස බලන්න."}]},
-{id:"make",en:"make",si:["හදනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I make tea.",si:"මම තේ හදනවා."}]},
-{id:"do",en:"do",si:["කරනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I do my work.",si:"මම මගේ වැඩ කරනවා."}]},
-{id:"open",en:"open",si:["අරිනවා","විවෘත කරනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Open the window.",si:"ජනේලය අරින්න."}]},
-{id:"close",en:"close",si:["වහනවා","වසා දමනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Close the door.",si:"දොර වහන්න."}]},
-{id:"buy",en:"buy",si:["මිලදී ගන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I buy food.",si:"මම කෑම මිලදී ගන්නවා."}]},
-{id:"give",en:"give",si:["දෙනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Please give me water.",si:"කරුණාකර මට වතුර දෙන්න."}]},
-{id:"take",en:"take",si:["ගන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Take this book.",si:"මේ පොත ගන්න."}]},
-{id:"know",en:"know",si:["දන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I know the answer.",si:"මම පිළිතුර දන්නවා."}]},
-{id:"think",en:"think",si:["හිතනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I think it is good.",si:"මම හිතන්නේ ඒක හොඳයි."}]},
-{id:"want",en:"want",si:["ඕනෑ","අවශ්‍යයි"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I want some water.",si:"මට වතුර ටිකක් ඕනෑ."}]},
-{id:"need",en:"need",si:["අවශ්‍ය වෙනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I need your help.",si:"මට ඔබගේ උදව් අවශ්‍යයි."}]},
-{id:"like",en:"like",si:["කැමතියි"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I like English.",si:"මම ඉංග්‍රීසිවලට කැමතියි."}]},
-{id:"play",en:"play",si:["සෙල්ලම් කරනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Children play outside.",si:"ළමයි පිටත සෙල්ලම් කරනවා."}]},
-{id:"sleep",en:"sleep",si:["නිදාගන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I sleep at night.",si:"මම රාත්‍රියේ නිදාගන්නවා."}]},
-{id:"wake",en:"wake",si:["අවදි වෙනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"I wake up early.",si:"මම වේලාසනින් අවදි වෙනවා."}]},
-{id:"walk",en:"walk",si:["ඇවිදිනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"We walk to school.",si:"අපි පාසලට ඇවිදගෙන යනවා."}]},
-{id:"run",en:"run",si:["දුවනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"The boy can run.",si:"පිරිමි ළමයාට දුවන්න පුළුවන්."}]},
-{id:"sit",en:"sit",si:["වාඩි වෙනවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Please sit here.",si:"කරුණාකර මෙතැන වාඩිවෙන්න."}]},
-{id:"stand",en:"stand",si:["හිටගන්නවා"],pos:"verb",category:"ACTIONS",pronunciation:"",examples:[{en:"Please stand up.",si:"කරුණාකර නැගිටින්න."}]},
-{id:"sad",en:"sad",si:["දුකින්"],pos:"adjective",category:"FEELINGS",pronunciation:"",examples:[{en:"She is sad.",si:"ඇය දුකින් ඉන්නවා."}]},
-{id:"bad",en:"bad",si:["නරක"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"That is a bad idea.",si:"ඒක නරක අදහසක්."}]},
-{id:"hot",en:"hot",si:["රස්නෙයි","උණුසුම්"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"The tea is hot.",si:"තේ එක රස්නෙයි."}]},
-{id:"cold",en:"cold",si:["සීතල"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"The water is cold.",si:"වතුර සීතලයි."}]},
-{id:"new",en:"new",si:["අලුත්"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"I have a new phone.",si:"මට අලුත් දුරකථනයක් තියෙනවා."}]},
-{id:"old",en:"old",si:["පරණ","වයසක"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"This is an old book.",si:"මේක පරණ පොතක්."}]},
-{id:"easy",en:"easy",si:["ලේසි","පහසු"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"English can be easy.",si:"ඉංග්‍රීසි ලේසි වෙන්න පුළුවන්."}]},
-{id:"difficult",en:"difficult",si:["අමාරු","අපහසු"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"This question is difficult.",si:"මේ ප්‍රශ්නය අමාරුයි."}]},
-{id:"fast",en:"fast",si:["වේගවත්","ඉක්මන්"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"The car is fast.",si:"මෝටර් රථය වේගවත්."}]},
-{id:"slow",en:"slow",si:["මන්දගාමී","හෙමින්"],pos:"adjective",category:"DESCRIPTIONS",pronunciation:"",examples:[{en:"Please speak slowly.",si:"කරුණාකර හෙමින් කතා කරන්න."}]},
-{"id":"grandfather","en":"grandfather","si":["සීයා","මුත්තා"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My grandfather tells stories.","si":"මගේ සීයා කතා කියනවා."}]},
-{"id":"grandmother","en":"grandmother","si":["ආච්චි","අත්තම්මා"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My grandmother makes tea.","si":"මගේ ආච්චි තේ හදනවා."}]},
-{"id":"husband","en":"husband","si":["සැමියා"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"Her husband is a teacher.","si":"ඇගේ සැමියා ගුරුවරයෙක්."}]},
-{"id":"wife","en":"wife","si":["බිරිඳ"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"His wife is a nurse.","si":"ඔහුගේ බිරිඳ හෙදියක්."}]},
-{"id":"uncle","en":"uncle","si":["මාමා","බාප්පා"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My uncle lives nearby.","si":"මගේ මාමා ළඟපාත ජීවත් වෙනවා."}]},
-{"id":"aunt","en":"aunt","si":["නැන්දා","පුංචි"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My aunt is visiting us.","si":"මගේ නැන්දා අපිව බලන්න එනවා."}]},
-{"id":"cousin","en":"cousin","si":["ඥාති සහෝදරයා / සහෝදරිය"],"pos":"noun","category":"FAMILY","pronunciation":"","examples":[{"en":"My cousin is my friend.","si":"මගේ ඥාති සහෝදරයා මගේ මිතුරෙක්."}]},
-{"id":"people","en":"people","si":["මිනිසුන්","ජනතාව"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"Many people are here.","si":"මෙතැන බොහෝ මිනිසුන් ඉන්නවා."}]},
-{"id":"boy","en":"boy","si":["පිරිමි ළමයා"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"The boy is reading.","si":"පිරිමි ළමයා කියවමින් ඉන්නවා."}]},
-{"id":"girl","en":"girl","si":["ගැහැණු ළමයා"],"pos":"noun","category":"PEOPLE","pronunciation":"","examples":[{"en":"The girl is singing.","si":"ගැහැණු ළමයා ගීතයක් ගායනා කරනවා."}]},
-{"id":"wall","en":"wall","si":["බිත්තිය"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"The clock is on the wall.","si":"ඔරලෝසුව බිත්තියේ තියෙනවා."}]},
-{"id":"floor","en":"floor","si":["බිම","මහල"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"The floor is clean.","si":"බිම පිරිසිදුයි."}]},
-{"id":"roof","en":"roof","si":["වහලය"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"The roof is red.","si":"වහලය රතු පාටයි."}]},
-{"id":"fan","en":"fan","si":["විදුලි පංකාව"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"Please switch on the fan.","si":"කරුණාකර විදුලි පංකාව ක්‍රියාත්මක කරන්න."}]},
-{"id":"lamp","en":"lamp","si":["ලාම්පුව","විදුලි පහන"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"The lamp is beside the bed.","si":"ලාම්පුව ඇඳ ළඟ තියෙනවා."}]},
-{"id":"cup","en":"cup","si":["කෝප්පය"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"This is my cup.","si":"මේ මගේ කෝප්පය."}]},
-{"id":"plate","en":"plate","si":["පිඟාන"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"Put the rice on the plate.","si":"බත් පිඟානට දාන්න."}]},
-{"id":"spoon","en":"spoon","si":["හැන්ද"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"I need a spoon.","si":"මට හැන්දක් ඕනෑ."}]},
-{"id":"soap","en":"soap","si":["සබන්"],"pos":"noun","category":"HOME","pronunciation":"","examples":[{"en":"Wash your hands with soap.","si":"සබන් ගා ඔබේ අත් සෝදන්න."}]},
-{"id":"sugar","en":"sugar","si":["සීනි"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"I do not take sugar in my tea.","si":"මම තේවලට සීනි දාන්නේ නැහැ."}]},
-{"id":"salt","en":"salt","si":["ලුණු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Please add a little salt.","si":"කරුණාකර ලුණු ටිකක් එකතු කරන්න."}]},
-{"id":"vegetable","en":"vegetable","si":["එළවළුව","එළවළු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"We eat vegetables every day.","si":"අපි හැමදාම එළවළු කනවා."}]},
-{"id":"fruit","en":"fruit","si":["පලතුර","පලතුරු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Fruit is good for you.","si":"පලතුරු ඔබට ගුණදායකයි."}]},
-{"id":"mango","en":"mango","si":["අඹ"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"This mango is sweet.","si":"මේ අඹ ගෙඩිය පැණිරසයි."}]},
-{"id":"potato","en":"potato","si":["අර්තාපල්"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"The potato is in the bag.","si":"අර්තාපල් ගෙඩිය බෑගයේ තියෙනවා."}]},
-{"id":"onion","en":"onion","si":["ලූනු"],"pos":"noun","category":"FOOD","pronunciation":"","examples":[{"en":"Cut the onion carefully.","si":"ලූනු ගෙඩිය පරිස්සමින් කපන්න."}]},
-{"id":"price","en":"price","si":["මිල","වටිනාකම"],"pos":"noun","category":"SHOPPING","pronunciation":"","examples":[{"en":"What is the price?","si":"මිල කීයද?"}]},
-{"id":"sell","en":"sell","si":["විකුණනවා"],"pos":"verb","category":"SHOPPING","pronunciation":"","examples":[{"en":"They sell fresh fruit.","si":"ඔවුන් නැවුම් පලතුරු විකුණනවා."}]},
-{"id":"cheap","en":"cheap","si":["ලාභ","අඩු මිල"],"pos":"adjective","category":"SHOPPING","pronunciation":"","examples":[{"en":"This bag is cheap.","si":"මේ බෑගය ලාභයි."}]},
-{"id":"expensive","en":"expensive","si":["මිල අධික"],"pos":"adjective","category":"SHOPPING","pronunciation":"","examples":[{"en":"That phone is expensive.","si":"ඒ දුරකථනය මිල අධිකයි."}]},
-{"id":"train","en":"train","si":["දුම්රිය","කෝච්චිය"],"pos":"noun","category":"TRANSPORT","pronunciation":"","examples":[{"en":"The train is late.","si":"දුම්රිය ප්‍රමාදයි."}]},
-{"id":"bicycle","en":"bicycle","si":["බයිසිකලය","පාපැදිය"],"pos":"noun","category":"TRANSPORT","pronunciation":"","examples":[{"en":"He rides a bicycle.","si":"ඔහු බයිසිකලයක් පදිනවා."}]},
-{"id":"station","en":"station","si":["නැවතුම්පොළ","ස්ථානය"],"pos":"noun","category":"PLACES","pronunciation":"","examples":[{"en":"The bus station is busy.","si":"බස් නැවතුම්පොළ කාර්යබහුලයි."}]},
-{"id":"bank","en":"bank","si":["බැංකුව"],"pos":"noun","category":"PLACES","pronunciation":"","examples":[{"en":"The bank closes at three.","si":"බැංකුව තුනට වහනවා."}]},
-{"id":"early","en":"early","si":["කලින්","වේලාසනින්"],"pos":"adverb / adjective","category":"TIME","pronunciation":"","examples":[{"en":"I wake up early.","si":"මම වේලාසනින් අවදි වෙනවා."}]},
-{"id":"late","en":"late","si":["පරක්කු","ප්‍රමාද"],"pos":"adjective / adverb","category":"TIME","pronunciation":"","examples":[{"en":"I am late for class.","si":"මට පන්තියට පරක්කුයි."}]},
-{"id":"wait","en":"wait","si":["බලාගෙන ඉන්නවා","රැඳී සිටිනවා"],"pos":"verb","category":"ACTIONS","pronunciation":"","examples":[{"en":"Please wait here.","si":"කරුණාකර මෙතැන බලාගෙන ඉන්න."}]},
-{"id":"dirty","en":"dirty","si":["අපිරිසිදු","කිලිටි"],"pos":"adjective","category":"DESCRIPTIONS","pronunciation":"","examples":[{"en":"My shoes are dirty.","si":"මගේ සපත්තු අපිරිසිදුයි."}]},
-{"id":"tired","en":"tired","si":["මහන්සි","වෙහෙසට පත්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"I am tired today.","si":"මට අද මහන්සියි."}]},
-{"id":"hungry","en":"hungry","si":["බඩගිනි"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"The child is hungry.","si":"දරුවාට බඩගිනියි."}]},
-{"id":"thirsty","en":"thirsty","si":["පිපාසය ඇති","තිබහ ඇති"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"I am thirsty.","si":"මට තිබහයි."}]},
-{"id":"angry","en":"angry","si":["කෝපයෙන්","තරහින්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"He is angry.","si":"ඔහු කෝපයෙන් ඉන්නවා."}]},
-{"id":"afraid","en":"afraid","si":["බය වූ","බියෙන්"],"pos":"adjective","category":"FEELINGS","pronunciation":"","examples":[{"en":"The child is afraid.","si":"දරුවා බය වෙලා."}]},
-{"id":"rainy","en":"rainy","si":["වැසි සහිත"],"pos":"adjective","category":"WEATHER","pronunciation":"","examples":[{"en":"It is a rainy day.","si":"අද වැසි සහිත දවසක්."}]},
-{"id":"sunny","en":"sunny","si":["අව්ව සහිත"],"pos":"adjective","category":"WEATHER","pronunciation":"","examples":[{"en":"It is sunny today.","si":"අද හොඳට අව්ව පායනවා."}]}
+  {
+    "id": "hello",
+    "en": "hello",
+    "si": [
+      "ආයුබෝවන්",
+      "හෙලෝ"
+    ],
+    "pos": "interjection",
+    "pronunciation": "හෙලෝ",
+    "examples": [
+      {
+        "en": "Hello, how are you?",
+        "si": "හෙලෝ, ඔබට කොහොමද?"
+      }
+    ]
+  },
+  {
+    "id": "good-morning",
+    "en": "good morning",
+    "si": [
+      "සුබ උදෑසනක්"
+    ],
+    "pos": "phrase",
+    "pronunciation": "ගුඩ් මෝර්නින්",
+    "examples": [
+      {
+        "en": "Good morning, teacher.",
+        "si": "සුබ උදෑසනක්, ගුරුතුමනි."
+      }
+    ]
+  },
+  {
+    "id": "good-evening",
+    "en": "good evening",
+    "si": [
+      "සුබ සන්ධ්‍යාවක්"
+    ],
+    "pos": "phrase",
+    "pronunciation": "ගුඩ් ඊව්නින්",
+    "examples": [
+      {
+        "en": "Good evening, everyone.",
+        "si": "සැමට සුබ සන්ධ්‍යාවක්."
+      }
+    ]
+  },
+  {
+    "id": "goodbye",
+    "en": "goodbye",
+    "si": [
+      "ගිහින් එන්නම්",
+      "සමුගන්නවා"
+    ],
+    "pos": "interjection",
+    "pronunciation": "ගුඩ්බායි",
+    "examples": [
+      {
+        "en": "Goodbye. See you tomorrow.",
+        "si": "ගිහින් එන්නම්. හෙට හමුවෙමු."
+      }
+    ]
+  },
+  {
+    "id": "please",
+    "en": "please",
+    "si": [
+      "කරුණාකර"
+    ],
+    "pos": "adverb",
+    "pronunciation": "ප්ලීස්",
+    "examples": [
+      {
+        "en": "Please sit down.",
+        "si": "කරුණාකර වාඩිවෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "thank-you",
+    "en": "thank you",
+    "si": [
+      "ස්තුතියි",
+      "ඔබට ස්තුතියි"
+    ],
+    "pos": "phrase",
+    "pronunciation": "තැන්ක් යූ",
+    "examples": [
+      {
+        "en": "Thank you for your help.",
+        "si": "ඔබගේ උදව්වට ස්තුතියි."
+      }
+    ]
+  },
+  {
+    "id": "sorry",
+    "en": "sorry",
+    "si": [
+      "සමාවෙන්න",
+      "කණගාටුයි"
+    ],
+    "pos": "adjective / interjection",
+    "pronunciation": "සොරි",
+    "examples": [
+      {
+        "en": "I am sorry.",
+        "si": "මට සමාවෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "yes",
+    "en": "yes",
+    "si": [
+      "ඔව්"
+    ],
+    "pos": "adverb",
+    "pronunciation": "යෙස්",
+    "examples": [
+      {
+        "en": "Yes, I understand.",
+        "si": "ඔව්, මට තේරෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "no",
+    "en": "no",
+    "si": [
+      "නැහැ",
+      "නොවේ"
+    ],
+    "pos": "adverb",
+    "pronunciation": "නෝ",
+    "examples": [
+      {
+        "en": "No, thank you.",
+        "si": "නැහැ, ස්තුතියි."
+      }
+    ]
+  },
+  {
+    "id": "name",
+    "en": "name",
+    "si": [
+      "නම"
+    ],
+    "pos": "noun",
+    "pronunciation": "නේම්",
+    "examples": [
+      {
+        "en": "My name is Amal.",
+        "si": "මගේ නම අමල්."
+      }
+    ]
+  },
+  {
+    "id": "friend",
+    "en": "friend",
+    "si": [
+      "මිතුරා",
+      "මිතුරිය",
+      "යහළුවා"
+    ],
+    "pos": "noun",
+    "pronunciation": "ෆ්‍රෙන්ඩ්",
+    "examples": [
+      {
+        "en": "She is my friend.",
+        "si": "ඇය මගේ මිතුරියයි."
+      }
+    ]
+  },
+  {
+    "id": "family",
+    "en": "family",
+    "si": [
+      "පවුල",
+      "පවුලේ අය"
+    ],
+    "pos": "noun",
+    "pronunciation": "ෆැමිලි",
+    "examples": [
+      {
+        "en": "I love my family.",
+        "si": "මම මගේ පවුලට ආදරෙයි."
+      }
+    ]
+  },
+  {
+    "id": "mother",
+    "en": "mother",
+    "si": [
+      "අම්මා",
+      "මව"
+    ],
+    "pos": "noun",
+    "pronunciation": "මදර්",
+    "examples": [
+      {
+        "en": "My mother is kind.",
+        "si": "මගේ අම්මා කරුණාවන්තයි."
+      }
+    ]
+  },
+  {
+    "id": "father",
+    "en": "father",
+    "si": [
+      "තාත්තා",
+      "පියා"
+    ],
+    "pos": "noun",
+    "pronunciation": "ෆාදර්",
+    "examples": [
+      {
+        "en": "My father is at home.",
+        "si": "මගේ තාත්තා ගෙදර ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "brother",
+    "en": "brother",
+    "si": [
+      "සහෝදරයා",
+      "අයියා",
+      "මල්ලී"
+    ],
+    "pos": "noun",
+    "pronunciation": "බ්‍රදර්",
+    "examples": [
+      {
+        "en": "I have one brother.",
+        "si": "මට සහෝදරයෙක් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "sister",
+    "en": "sister",
+    "si": [
+      "සහෝදරිය",
+      "අක්කා",
+      "නංගී"
+    ],
+    "pos": "noun",
+    "pronunciation": "සිස්ටර්",
+    "examples": [
+      {
+        "en": "My sister is a student.",
+        "si": "මගේ සහෝදරිය ශිෂ්‍යාවක්."
+      }
+    ]
+  },
+  {
+    "id": "water",
+    "en": "water",
+    "si": [
+      "වතුර",
+      "ජලය"
+    ],
+    "pos": "noun",
+    "pronunciation": "වෝටර්",
+    "examples": [
+      {
+        "en": "I drink water.",
+        "si": "මම වතුර බොනවා."
+      }
+    ]
+  },
+  {
+    "id": "food",
+    "en": "food",
+    "si": [
+      "ආහාර",
+      "කෑම"
+    ],
+    "pos": "noun",
+    "pronunciation": "ෆූඩ්",
+    "examples": [
+      {
+        "en": "The food is good.",
+        "si": "කෑම හොඳයි."
+      }
+    ]
+  },
+  {
+    "id": "rice",
+    "en": "rice",
+    "si": [
+      "බත්",
+      "සහල්"
+    ],
+    "pos": "noun",
+    "pronunciation": "රයිස්",
+    "examples": [
+      {
+        "en": "I eat rice for lunch.",
+        "si": "මම දවල්ට බත් කනවා."
+      }
+    ]
+  },
+  {
+    "id": "bread",
+    "en": "bread",
+    "si": [
+      "පාන්"
+    ],
+    "pos": "noun",
+    "pronunciation": "බ්‍රෙඩ්",
+    "examples": [
+      {
+        "en": "I want some bread.",
+        "si": "මට පාන් ටිකක් ඕනෑ."
+      }
+    ]
+  },
+  {
+    "id": "tea",
+    "en": "tea",
+    "si": [
+      "තේ"
+    ],
+    "pos": "noun",
+    "pronunciation": "ටී",
+    "examples": [
+      {
+        "en": "I drink tea in the morning.",
+        "si": "මම උදේට තේ බොනවා."
+      }
+    ]
+  },
+  {
+    "id": "book",
+    "en": "book",
+    "si": [
+      "පොත"
+    ],
+    "pos": "noun",
+    "pronunciation": "බුක්",
+    "examples": [
+      {
+        "en": "This is my book.",
+        "si": "මේ මගේ පොත."
+      }
+    ]
+  },
+  {
+    "id": "school",
+    "en": "school",
+    "si": [
+      "පාසල",
+      "ඉස්කෝලය"
+    ],
+    "pos": "noun",
+    "pronunciation": "ස්කූල්",
+    "examples": [
+      {
+        "en": "The children go to school.",
+        "si": "ළමයි පාසලට යනවා."
+      }
+    ]
+  },
+  {
+    "id": "teacher",
+    "en": "teacher",
+    "si": [
+      "ගුරුවරයා",
+      "ගුරුවරිය",
+      "ගුරුතුමා"
+    ],
+    "pos": "noun",
+    "pronunciation": "ටීචර්",
+    "examples": [
+      {
+        "en": "My teacher is kind.",
+        "si": "මගේ ගුරුවරයා කරුණාවන්තයි."
+      }
+    ]
+  },
+  {
+    "id": "student",
+    "en": "student",
+    "si": [
+      "ශිෂ්‍යයා",
+      "ශිෂ්‍යාව",
+      "සිසුවා"
+    ],
+    "pos": "noun",
+    "pronunciation": "ස්ටූඩන්ට්",
+    "examples": [
+      {
+        "en": "I am a student.",
+        "si": "මම ශිෂ්‍යයෙක් / ශිෂ්‍යාවක්."
+      }
+    ]
+  },
+  {
+    "id": "house",
+    "en": "house",
+    "si": [
+      "ගෙදර",
+      "නිවස"
+    ],
+    "pos": "noun",
+    "pronunciation": "හවුස්",
+    "examples": [
+      {
+        "en": "This is my house.",
+        "si": "මේ මගේ ගෙදර."
+      }
+    ]
+  },
+  {
+    "id": "work",
+    "en": "work",
+    "si": [
+      "වැඩ",
+      "රැකියාව",
+      "වැඩ කරනවා"
+    ],
+    "pos": "noun / verb",
+    "pronunciation": "වර්ක්",
+    "examples": [
+      {
+        "en": "I go to work.",
+        "si": "මම වැඩට යනවා."
+      }
+    ]
+  },
+  {
+    "id": "go",
+    "en": "go",
+    "si": [
+      "යනවා",
+      "ගමන් කරනවා"
+    ],
+    "pos": "verb",
+    "pronunciation": "ගෝ",
+    "examples": [
+      {
+        "en": "I go to school.",
+        "si": "මම පාසලට යනවා."
+      }
+    ]
+  },
+  {
+    "id": "come",
+    "en": "come",
+    "si": [
+      "එනවා",
+      "පැමිණෙනවා"
+    ],
+    "pos": "verb",
+    "pronunciation": "කම්",
+    "examples": [
+      {
+        "en": "Please come here.",
+        "si": "කරුණාකර මෙතැනට එන්න."
+      }
+    ]
+  },
+  {
+    "id": "eat",
+    "en": "eat",
+    "si": [
+      "කනවා",
+      "ආහාර ගන්නවා"
+    ],
+    "pos": "verb",
+    "pronunciation": "ඊට්",
+    "examples": [
+      {
+        "en": "I eat an apple.",
+        "si": "මම ඇපල් ගෙඩියක් කනවා."
+      }
+    ]
+  },
+  {
+    "id": "drink",
+    "en": "drink",
+    "si": [
+      "බොනවා",
+      "පානය කරනවා"
+    ],
+    "pos": "verb",
+    "pronunciation": "ඩ්‍රින්ක්",
+    "examples": [
+      {
+        "en": "I drink water.",
+        "si": "මම වතුර බොනවා."
+      }
+    ]
+  },
+  {
+    "id": "read",
+    "en": "read",
+    "si": [
+      "කියවනවා",
+      "කියවන්න"
+    ],
+    "pos": "verb",
+    "pronunciation": "රීඩ්",
+    "examples": [
+      {
+        "en": "I read a book.",
+        "si": "මම පොතක් කියවනවා."
+      }
+    ]
+  },
+  {
+    "id": "write",
+    "en": "write",
+    "si": [
+      "ලියනවා",
+      "ලියන්න"
+    ],
+    "pos": "verb",
+    "pronunciation": "රයිට්",
+    "examples": [
+      {
+        "en": "Please write your name.",
+        "si": "කරුණාකර ඔබේ නම ලියන්න."
+      }
+    ]
+  },
+  {
+    "id": "happy",
+    "en": "happy",
+    "si": [
+      "සතුටු",
+      "සතුටින්"
+    ],
+    "pos": "adjective",
+    "pronunciation": "හැපි",
+    "examples": [
+      {
+        "en": "I am happy today.",
+        "si": "මම අද සතුටින් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "good",
+    "en": "good",
+    "si": [
+      "හොඳ",
+      "යහපත්"
+    ],
+    "pos": "adjective",
+    "pronunciation": "ගුඩ්",
+    "examples": [
+      {
+        "en": "This is a good book.",
+        "si": "මේක හොඳ පොතක්."
+      }
+    ]
+  },
+  {
+    "id": "big",
+    "en": "big",
+    "si": [
+      "ලොකු",
+      "විශාල"
+    ],
+    "pos": "adjective",
+    "pronunciation": "බිග්",
+    "examples": [
+      {
+        "en": "That is a big house.",
+        "si": "ඒක ලොකු ගෙයක්."
+      }
+    ]
+  },
+  {
+    "id": "small",
+    "en": "small",
+    "si": [
+      "කුඩා",
+      "පොඩි"
+    ],
+    "pos": "adjective",
+    "pronunciation": "ස්මෝල්",
+    "examples": [
+      {
+        "en": "I have a small bag.",
+        "si": "මට පොඩි බෑගයක් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "today",
+    "en": "today",
+    "si": [
+      "අද"
+    ],
+    "pos": "adverb / noun",
+    "pronunciation": "ටුඩේ",
+    "examples": [
+      {
+        "en": "I am busy today.",
+        "si": "මම අද කාර්යබහුලයි."
+      }
+    ]
+  },
+  {
+    "id": "tomorrow",
+    "en": "tomorrow",
+    "si": [
+      "හෙට"
+    ],
+    "pos": "adverb / noun",
+    "pronunciation": "ටුමොරෝ",
+    "examples": [
+      {
+        "en": "See you tomorrow.",
+        "si": "හෙට හමුවෙමු."
+      }
+    ]
+  },
+  {
+    "id": "time",
+    "en": "time",
+    "si": [
+      "වේලාව",
+      "කාලය"
+    ],
+    "pos": "noun",
+    "pronunciation": "ටයිම්",
+    "examples": [
+      {
+        "en": "What time is it?",
+        "si": "දැන් වේලාව කීයද?"
+      }
+    ]
+  },
+  {
+    "id": "help",
+    "en": "help",
+    "si": [
+      "උදව්",
+      "උදව් කරනවා"
+    ],
+    "pos": "noun / verb",
+    "pronunciation": "හෙල්ප්",
+    "examples": [
+      {
+        "en": "Can you help me?",
+        "si": "ඔබට මට උදව් කරන්න පුළුවන්ද?"
+      }
+    ]
+  },
+  {
+    "id": "love",
+    "en": "love",
+    "si": [
+      "ආදරය",
+      "ආදරය කරනවා"
+    ],
+    "pos": "noun / verb",
+    "pronunciation": "ලව්",
+    "examples": [
+      {
+        "en": "I love my mother.",
+        "si": "මම මගේ අම්මාට ආදරෙයි."
+      }
+    ]
+  },
+  {
+    "id": "beautiful",
+    "en": "beautiful",
+    "si": [
+      "ලස්සන",
+      "සුන්දර"
+    ],
+    "pos": "adjective",
+    "pronunciation": "බියුටිෆුල්",
+    "examples": [
+      {
+        "en": "It is a beautiful day.",
+        "si": "අද ලස්සන දවසක්."
+      }
+    ]
+  },
+  {
+    "id": "right",
+    "en": "right",
+    "si": [
+      "නිවැරදි",
+      "දකුණ",
+      "අයිතිය"
+    ],
+    "pos": "adjective / noun",
+    "pronunciation": "රයිට්",
+    "examples": [
+      {
+        "en": "Your answer is right.",
+        "si": "ඔබගේ පිළිතුර නිවැරදියි."
+      },
+      {
+        "en": "Turn right.",
+        "si": "දකුණට හැරෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "light",
+    "en": "light",
+    "si": [
+      "ආලෝකය",
+      "සැහැල්ලු"
+    ],
+    "pos": "noun / adjective",
+    "pronunciation": "ලයිට්",
+    "examples": [
+      {
+        "en": "Turn on the light.",
+        "si": "විදුලි පහන දල්වන්න."
+      }
+    ]
+  },
+  {
+    "id": "dog",
+    "en": "dog",
+    "si": [
+      "බල්ලා",
+      "බල්ලෙක්"
+    ],
+    "pos": "noun",
+    "pronunciation": "ඩෝග්",
+    "examples": [
+      {
+        "en": "The dog is friendly.",
+        "si": "බල්ලා මිත්‍රශීලීයි."
+      },
+      {
+        "en": "I have a dog.",
+        "si": "මට බල්ලෙක් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "cat",
+    "en": "cat",
+    "si": [
+      "පූසා",
+      "බළලා"
+    ],
+    "pos": "noun",
+    "pronunciation": "කැට්",
+    "examples": [
+      {
+        "en": "The cat is sleeping.",
+        "si": "පූසා නිදාගෙන ඉන්නවා."
+      },
+      {
+        "en": "I see a cat.",
+        "si": "මට පූසෙක් පේනවා."
+      }
+    ]
+  },
+  {
+    "id": "bird",
+    "en": "bird",
+    "si": [
+      "කුරුල්ලා",
+      "පක්ෂියා"
+    ],
+    "pos": "noun",
+    "pronunciation": "බර්ඩ්",
+    "examples": [
+      {
+        "en": "The bird can fly.",
+        "si": "කුරුල්ලාට පියාඹන්න පුළුවන්."
+      }
+    ]
+  },
+  {
+    "id": "fish",
+    "en": "fish",
+    "si": [
+      "මාළුවා",
+      "මාළු"
+    ],
+    "pos": "noun",
+    "pronunciation": "ෆිෂ්",
+    "examples": [
+      {
+        "en": "The fish is in the water.",
+        "si": "මාළුවා වතුරේ ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "child",
+    "en": "child",
+    "si": [
+      "දරුවා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The child is playing.",
+        "si": "දරුවා සෙල්ලම් කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "baby",
+    "en": "baby",
+    "si": [
+      "බබා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The baby is sleeping.",
+        "si": "බබා නිදාගෙන ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "man",
+    "en": "man",
+    "si": [
+      "පිරිමියා"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The man is tall.",
+        "si": "ඒ පිරිමියා උසයි."
+      }
+    ]
+  },
+  {
+    "id": "woman",
+    "en": "woman",
+    "si": [
+      "කාන්තාව"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The woman is kind.",
+        "si": "ඒ කාන්තාව කරුණාවන්තයි."
+      }
+    ]
+  },
+  {
+    "id": "person",
+    "en": "person",
+    "si": [
+      "පුද්ගලයා"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "One person is waiting.",
+        "si": "එක් පුද්ගලයෙක් බලාගෙන ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "room",
+    "en": "room",
+    "si": [
+      "කාමරය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My room is clean.",
+        "si": "මගේ කාමරය පිරිසිදුයි."
+      }
+    ]
+  },
+  {
+    "id": "door",
+    "en": "door",
+    "si": [
+      "දොර"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Open the door.",
+        "si": "දොර අරින්න."
+      }
+    ]
+  },
+  {
+    "id": "window",
+    "en": "window",
+    "si": [
+      "ජනේලය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Close the window.",
+        "si": "ජනේලය වහන්න."
+      }
+    ]
+  },
+  {
+    "id": "table",
+    "en": "table",
+    "si": [
+      "මේසය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The book is on the table.",
+        "si": "පොත මේසය උඩ තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "chair",
+    "en": "chair",
+    "si": [
+      "පුටුව"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please sit on the chair.",
+        "si": "කරුණාකර පුටුවේ වාඩිවෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "bed",
+    "en": "bed",
+    "si": [
+      "ඇඳ"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The bed is comfortable.",
+        "si": "ඇඳ සුවපහසුයි."
+      }
+    ]
+  },
+  {
+    "id": "kitchen",
+    "en": "kitchen",
+    "si": [
+      "මුළුතැන්ගෙය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Mother is in the kitchen.",
+        "si": "අම්මා මුළුතැන්ගෙයි ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "pen",
+    "en": "pen",
+    "si": [
+      "පෑන"
+    ],
+    "pos": "noun",
+    "category": "EDUCATION",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I have a blue pen.",
+        "si": "මට නිල් පෑනක් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "paper",
+    "en": "paper",
+    "si": [
+      "කඩදාසිය"
+    ],
+    "pos": "noun",
+    "category": "EDUCATION",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Write on the paper.",
+        "si": "කඩදාසියේ ලියන්න."
+      }
+    ]
+  },
+  {
+    "id": "bag",
+    "en": "bag",
+    "si": [
+      "බෑගය"
+    ],
+    "pos": "noun",
+    "category": "EDUCATION",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My bag is black.",
+        "si": "මගේ බෑගය කළුයි."
+      }
+    ]
+  },
+  {
+    "id": "milk",
+    "en": "milk",
+    "si": [
+      "කිරි"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The baby drinks milk.",
+        "si": "බබා කිරි බොනවා."
+      }
+    ]
+  },
+  {
+    "id": "apple",
+    "en": "apple",
+    "si": [
+      "ඇපල්"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I eat an apple.",
+        "si": "මම ඇපල් ගෙඩියක් කනවා."
+      }
+    ]
+  },
+  {
+    "id": "banana",
+    "en": "banana",
+    "si": [
+      "කෙසෙල්"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The banana is yellow.",
+        "si": "කෙසෙල් ගෙඩිය කහ පාටයි."
+      }
+    ]
+  },
+  {
+    "id": "egg",
+    "en": "egg",
+    "si": [
+      "බිත්තරය"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I cook an egg.",
+        "si": "මම බිත්තරයක් පිසිනවා."
+      }
+    ]
+  },
+  {
+    "id": "morning",
+    "en": "morning",
+    "si": [
+      "උදෑසන"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Good morning.",
+        "si": "සුබ උදෑසනක්."
+      }
+    ]
+  },
+  {
+    "id": "night",
+    "en": "night",
+    "si": [
+      "රාත්‍රිය"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Good night.",
+        "si": "සුබ රාත්‍රියක්."
+      }
+    ]
+  },
+  {
+    "id": "yesterday",
+    "en": "yesterday",
+    "si": [
+      "ඊයේ"
+    ],
+    "pos": "adverb",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I was at home yesterday.",
+        "si": "මම ඊයේ ගෙදර හිටියා."
+      }
+    ]
+  },
+  {
+    "id": "day",
+    "en": "day",
+    "si": [
+      "දවස"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Have a nice day.",
+        "si": "සුබ දවසක් වේවා."
+      }
+    ]
+  },
+  {
+    "id": "week",
+    "en": "week",
+    "si": [
+      "සතිය"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "A week has seven days.",
+        "si": "සතියකට දවස් හතක් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "month",
+    "en": "month",
+    "si": [
+      "මාසය"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This month is busy.",
+        "si": "මේ මාසය කාර්යබහුලයි."
+      }
+    ]
+  },
+  {
+    "id": "year",
+    "en": "year",
+    "si": [
+      "අවුරුද්ද"
+    ],
+    "pos": "noun",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "A year has twelve months.",
+        "si": "අවුරුද්දකට මාස දොළහක් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "sun",
+    "en": "sun",
+    "si": [
+      "ඉර",
+      "සූර්යයා"
+    ],
+    "pos": "noun",
+    "category": "NATURE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The sun is hot.",
+        "si": "ඉර රස්නෙයි."
+      }
+    ]
+  },
+  {
+    "id": "moon",
+    "en": "moon",
+    "si": [
+      "සඳ"
+    ],
+    "pos": "noun",
+    "category": "NATURE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The moon is bright.",
+        "si": "සඳ දීප්තිමත්."
+      }
+    ]
+  },
+  {
+    "id": "rain",
+    "en": "rain",
+    "si": [
+      "වැස්ස"
+    ],
+    "pos": "noun",
+    "category": "NATURE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The rain is heavy.",
+        "si": "වැස්ස තදයි."
+      }
+    ]
+  },
+  {
+    "id": "tree",
+    "en": "tree",
+    "si": [
+      "ගස"
+    ],
+    "pos": "noun",
+    "category": "NATURE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The tree is tall.",
+        "si": "ගස උසයි."
+      }
+    ]
+  },
+  {
+    "id": "flower",
+    "en": "flower",
+    "si": [
+      "මල"
+    ],
+    "pos": "noun",
+    "category": "NATURE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This flower is beautiful.",
+        "si": "මේ මල ලස්සනයි."
+      }
+    ]
+  },
+  {
+    "id": "car",
+    "en": "car",
+    "si": [
+      "මෝටර් රථය"
+    ],
+    "pos": "noun",
+    "category": "TRAVEL",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The car is new.",
+        "si": "මෝටර් රථය අලුත්."
+      }
+    ]
+  },
+  {
+    "id": "bus",
+    "en": "bus",
+    "si": [
+      "බස් රථය"
+    ],
+    "pos": "noun",
+    "category": "TRAVEL",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I go by bus.",
+        "si": "මම බස් එකෙන් යනවා."
+      }
+    ]
+  },
+  {
+    "id": "road",
+    "en": "road",
+    "si": [
+      "පාර"
+    ],
+    "pos": "noun",
+    "category": "TRAVEL",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The road is long.",
+        "si": "පාර දිගයි."
+      }
+    ]
+  },
+  {
+    "id": "shop",
+    "en": "shop",
+    "si": [
+      "කඩය"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The shop is open.",
+        "si": "කඩය විවෘතයි."
+      }
+    ]
+  },
+  {
+    "id": "hospital",
+    "en": "hospital",
+    "si": [
+      "රෝහල"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "She works at a hospital.",
+        "si": "ඇය රෝහලක වැඩ කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "office",
+    "en": "office",
+    "si": [
+      "කාර්යාලය"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "He is at the office.",
+        "si": "ඔහු කාර්යාලයේ ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "market",
+    "en": "market",
+    "si": [
+      "වෙළඳපොළ"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "We go to the market.",
+        "si": "අපි වෙළඳපොළට යනවා."
+      }
+    ]
+  },
+  {
+    "id": "city",
+    "en": "city",
+    "si": [
+      "නගරය"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Colombo is a city.",
+        "si": "කොළඹ නගරයක්."
+      }
+    ]
+  },
+  {
+    "id": "village",
+    "en": "village",
+    "si": [
+      "ගම"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My village is beautiful.",
+        "si": "මගේ ගම ලස්සනයි."
+      }
+    ]
+  },
+  {
+    "id": "money",
+    "en": "money",
+    "si": [
+      "මුදල්"
+    ],
+    "pos": "noun",
+    "category": "DAILY LIFE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I need money.",
+        "si": "මට මුදල් අවශ්‍යයි."
+      }
+    ]
+  },
+  {
+    "id": "phone",
+    "en": "phone",
+    "si": [
+      "දුරකථනය"
+    ],
+    "pos": "noun",
+    "category": "DAILY LIFE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My phone is here.",
+        "si": "මගේ දුරකථනය මෙතැන."
+      }
+    ]
+  },
+  {
+    "id": "speak",
+    "en": "speak",
+    "si": [
+      "කතා කරනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I speak English.",
+        "si": "මම ඉංග්‍රීසි කතා කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "listen",
+    "en": "listen",
+    "si": [
+      "සවන් දෙනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Listen to the teacher.",
+        "si": "ගුරුවරයාට සවන් දෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "learn",
+    "en": "learn",
+    "si": [
+      "ඉගෙන ගන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I learn English.",
+        "si": "මම ඉංග්‍රීසි ඉගෙන ගන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "teach",
+    "en": "teach",
+    "si": [
+      "උගන්වනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "They teach English.",
+        "si": "ඔවුන් ඉංග්‍රීසි උගන්වනවා."
+      }
+    ]
+  },
+  {
+    "id": "see",
+    "en": "see",
+    "si": [
+      "දකිනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I see a bird.",
+        "si": "මම කුරුල්ලෙක් දකිනවා."
+      }
+    ]
+  },
+  {
+    "id": "look",
+    "en": "look",
+    "si": [
+      "බලනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Look at the picture.",
+        "si": "පින්තූරය දෙස බලන්න."
+      }
+    ]
+  },
+  {
+    "id": "make",
+    "en": "make",
+    "si": [
+      "හදනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I make tea.",
+        "si": "මම තේ හදනවා."
+      }
+    ]
+  },
+  {
+    "id": "do",
+    "en": "do",
+    "si": [
+      "කරනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I do my work.",
+        "si": "මම මගේ වැඩ කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "open",
+    "en": "open",
+    "si": [
+      "අරිනවා",
+      "විවෘත කරනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Open the window.",
+        "si": "ජනේලය අරින්න."
+      }
+    ]
+  },
+  {
+    "id": "close",
+    "en": "close",
+    "si": [
+      "වහනවා",
+      "වසා දමනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Close the door.",
+        "si": "දොර වහන්න."
+      }
+    ]
+  },
+  {
+    "id": "buy",
+    "en": "buy",
+    "si": [
+      "මිලදී ගන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I buy food.",
+        "si": "මම කෑම මිලදී ගන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "give",
+    "en": "give",
+    "si": [
+      "දෙනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please give me water.",
+        "si": "කරුණාකර මට වතුර දෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "take",
+    "en": "take",
+    "si": [
+      "ගන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Take this book.",
+        "si": "මේ පොත ගන්න."
+      }
+    ]
+  },
+  {
+    "id": "know",
+    "en": "know",
+    "si": [
+      "දන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I know the answer.",
+        "si": "මම පිළිතුර දන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "think",
+    "en": "think",
+    "si": [
+      "හිතනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I think it is good.",
+        "si": "මම හිතන්නේ ඒක හොඳයි."
+      }
+    ]
+  },
+  {
+    "id": "want",
+    "en": "want",
+    "si": [
+      "ඕනෑ",
+      "අවශ්‍යයි"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I want some water.",
+        "si": "මට වතුර ටිකක් ඕනෑ."
+      }
+    ]
+  },
+  {
+    "id": "need",
+    "en": "need",
+    "si": [
+      "අවශ්‍ය වෙනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I need your help.",
+        "si": "මට ඔබගේ උදව් අවශ්‍යයි."
+      }
+    ]
+  },
+  {
+    "id": "like",
+    "en": "like",
+    "si": [
+      "කැමතියි"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I like English.",
+        "si": "මම ඉංග්‍රීසිවලට කැමතියි."
+      }
+    ]
+  },
+  {
+    "id": "play",
+    "en": "play",
+    "si": [
+      "සෙල්ලම් කරනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Children play outside.",
+        "si": "ළමයි පිටත සෙල්ලම් කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "sleep",
+    "en": "sleep",
+    "si": [
+      "නිදාගන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I sleep at night.",
+        "si": "මම රාත්‍රියේ නිදාගන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "wake",
+    "en": "wake",
+    "si": [
+      "අවදි වෙනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I wake up early.",
+        "si": "මම වේලාසනින් අවදි වෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "walk",
+    "en": "walk",
+    "si": [
+      "ඇවිදිනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "We walk to school.",
+        "si": "අපි පාසලට ඇවිදගෙන යනවා."
+      }
+    ]
+  },
+  {
+    "id": "run",
+    "en": "run",
+    "si": [
+      "දුවනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The boy can run.",
+        "si": "පිරිමි ළමයාට දුවන්න පුළුවන්."
+      }
+    ]
+  },
+  {
+    "id": "sit",
+    "en": "sit",
+    "si": [
+      "වාඩි වෙනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please sit here.",
+        "si": "කරුණාකර මෙතැන වාඩිවෙන්න."
+      }
+    ]
+  },
+  {
+    "id": "stand",
+    "en": "stand",
+    "si": [
+      "හිටගන්නවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please stand here.",
+        "si": "කරුණාකර මෙතැන හිටගන්න."
+      }
+    ]
+  },
+  {
+    "id": "sad",
+    "en": "sad",
+    "si": [
+      "දුකින්"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "She is sad.",
+        "si": "ඇය දුකින් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "bad",
+    "en": "bad",
+    "si": [
+      "නරක"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "That is a bad idea.",
+        "si": "ඒක නරක අදහසක්."
+      }
+    ]
+  },
+  {
+    "id": "hot",
+    "en": "hot",
+    "si": [
+      "රස්නෙයි",
+      "උණුසුම්"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The tea is hot.",
+        "si": "තේ එක රස්නෙයි."
+      }
+    ]
+  },
+  {
+    "id": "cold",
+    "en": "cold",
+    "si": [
+      "සීතල"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The water is cold.",
+        "si": "වතුර සීතලයි."
+      }
+    ]
+  },
+  {
+    "id": "new",
+    "en": "new",
+    "si": [
+      "අලුත්"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I have a new phone.",
+        "si": "මට අලුත් දුරකථනයක් තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "old",
+    "en": "old",
+    "si": [
+      "පරණ",
+      "වයසක"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This is an old book.",
+        "si": "මේක පරණ පොතක්."
+      }
+    ]
+  },
+  {
+    "id": "easy",
+    "en": "easy",
+    "si": [
+      "ලේසි",
+      "පහසු"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "English can be easy.",
+        "si": "ඉංග්‍රීසි ලේසි වෙන්න පුළුවන්."
+      }
+    ]
+  },
+  {
+    "id": "difficult",
+    "en": "difficult",
+    "si": [
+      "අමාරු",
+      "අපහසු"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This question is difficult.",
+        "si": "මේ ප්‍රශ්නය අමාරුයි."
+      }
+    ]
+  },
+  {
+    "id": "fast",
+    "en": "fast",
+    "si": [
+      "වේගවත්",
+      "ඉක්මන්"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The car is fast.",
+        "si": "මෝටර් රථය වේගවත්."
+      }
+    ]
+  },
+  {
+    "id": "slow",
+    "en": "slow",
+    "si": [
+      "මන්දගාමී",
+      "හෙමින්"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The bus is slow.",
+        "si": "බස් රථය මන්දගාමීයි."
+      }
+    ]
+  },
+  {
+    "id": "grandfather",
+    "en": "grandfather",
+    "si": [
+      "සීයා",
+      "මුත්තා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My grandfather tells stories.",
+        "si": "මගේ සීයා කතා කියනවා."
+      }
+    ]
+  },
+  {
+    "id": "grandmother",
+    "en": "grandmother",
+    "si": [
+      "ආච්චි",
+      "අත්තම්මා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My grandmother makes tea.",
+        "si": "මගේ ආච්චි තේ හදනවා."
+      }
+    ]
+  },
+  {
+    "id": "husband",
+    "en": "husband",
+    "si": [
+      "සැමියා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Her husband is a teacher.",
+        "si": "ඇගේ සැමියා ගුරුවරයෙක්."
+      }
+    ]
+  },
+  {
+    "id": "wife",
+    "en": "wife",
+    "si": [
+      "බිරිඳ"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "His wife is a nurse.",
+        "si": "ඔහුගේ බිරිඳ හෙදියක්."
+      }
+    ]
+  },
+  {
+    "id": "uncle",
+    "en": "uncle",
+    "si": [
+      "මාමා",
+      "බාප්පා"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My uncle lives nearby.",
+        "si": "මගේ මාමා ළඟපාත ජීවත් වෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "aunt",
+    "en": "aunt",
+    "si": [
+      "නැන්දා",
+      "පුංචි"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My aunt is visiting us.",
+        "si": "මගේ නැන්දා අපිව බලන්න එනවා."
+      }
+    ]
+  },
+  {
+    "id": "cousin",
+    "en": "cousin",
+    "si": [
+      "ඥාති සහෝදරයා / සහෝදරිය"
+    ],
+    "pos": "noun",
+    "category": "FAMILY",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My cousin is my friend.",
+        "si": "මගේ ඥාති සහෝදරයා මගේ මිතුරෙක්."
+      }
+    ]
+  },
+  {
+    "id": "people",
+    "en": "people",
+    "si": [
+      "මිනිසුන්",
+      "ජනතාව"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Many people are here.",
+        "si": "මෙතැන බොහෝ මිනිසුන් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "boy",
+    "en": "boy",
+    "si": [
+      "පිරිමි ළමයා"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The boy is reading.",
+        "si": "පිරිමි ළමයා කියවමින් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "girl",
+    "en": "girl",
+    "si": [
+      "ගැහැණු ළමයා"
+    ],
+    "pos": "noun",
+    "category": "PEOPLE",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The girl is singing.",
+        "si": "ගැහැණු ළමයා ගීතයක් ගායනා කරනවා."
+      }
+    ]
+  },
+  {
+    "id": "wall",
+    "en": "wall",
+    "si": [
+      "බිත්තිය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The clock is on the wall.",
+        "si": "ඔරලෝසුව බිත්තියේ තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "floor",
+    "en": "floor",
+    "si": [
+      "බිම",
+      "මහල"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The floor is clean.",
+        "si": "බිම පිරිසිදුයි."
+      }
+    ]
+  },
+  {
+    "id": "roof",
+    "en": "roof",
+    "si": [
+      "වහලය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The roof is red.",
+        "si": "වහලය රතු පාටයි."
+      }
+    ]
+  },
+  {
+    "id": "fan",
+    "en": "fan",
+    "si": [
+      "විදුලි පංකාව"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please switch on the fan.",
+        "si": "කරුණාකර විදුලි පංකාව ක්‍රියාත්මක කරන්න."
+      }
+    ]
+  },
+  {
+    "id": "lamp",
+    "en": "lamp",
+    "si": [
+      "ලාම්පුව",
+      "විදුලි පහන"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The lamp is beside the bed.",
+        "si": "ලාම්පුව ඇඳ ළඟ තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "cup",
+    "en": "cup",
+    "si": [
+      "කෝප්පය"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This is my cup.",
+        "si": "මේ මගේ කෝප්පය."
+      }
+    ]
+  },
+  {
+    "id": "plate",
+    "en": "plate",
+    "si": [
+      "පිඟාන"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Put the rice on the plate.",
+        "si": "බත් පිඟානට දාන්න."
+      }
+    ]
+  },
+  {
+    "id": "spoon",
+    "en": "spoon",
+    "si": [
+      "හැන්ද"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I need a spoon.",
+        "si": "මට හැන්දක් ඕනෑ."
+      }
+    ]
+  },
+  {
+    "id": "soap",
+    "en": "soap",
+    "si": [
+      "සබන්"
+    ],
+    "pos": "noun",
+    "category": "HOME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Wash your hands with soap.",
+        "si": "සබන් ගා ඔබේ අත් සෝදන්න."
+      }
+    ]
+  },
+  {
+    "id": "sugar",
+    "en": "sugar",
+    "si": [
+      "සීනි"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I do not take sugar in my tea.",
+        "si": "මම තේවලට සීනි දාන්නේ නැහැ."
+      }
+    ]
+  },
+  {
+    "id": "salt",
+    "en": "salt",
+    "si": [
+      "ලුණු"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please add a little salt.",
+        "si": "කරුණාකර ලුණු ටිකක් එකතු කරන්න."
+      }
+    ]
+  },
+  {
+    "id": "vegetable",
+    "en": "vegetable",
+    "si": [
+      "එළවළුව",
+      "එළවළු"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "We eat vegetables every day.",
+        "si": "අපි හැමදාම එළවළු කනවා."
+      }
+    ]
+  },
+  {
+    "id": "fruit",
+    "en": "fruit",
+    "si": [
+      "පලතුර",
+      "පලතුරු"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Fruit is good for you.",
+        "si": "පලතුරු ඔබට ගුණදායකයි."
+      }
+    ]
+  },
+  {
+    "id": "mango",
+    "en": "mango",
+    "si": [
+      "අඹ"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This mango is sweet.",
+        "si": "මේ අඹ ගෙඩිය පැණිරසයි."
+      }
+    ]
+  },
+  {
+    "id": "potato",
+    "en": "potato",
+    "si": [
+      "අර්තාපල්"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The potato is in the bag.",
+        "si": "අර්තාපල් ගෙඩිය බෑගයේ තියෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "onion",
+    "en": "onion",
+    "si": [
+      "ලූනු"
+    ],
+    "pos": "noun",
+    "category": "FOOD",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Cut the onion carefully.",
+        "si": "ලූනු ගෙඩිය පරිස්සමින් කපන්න."
+      }
+    ]
+  },
+  {
+    "id": "price",
+    "en": "price",
+    "si": [
+      "මිල",
+      "වටිනාකම"
+    ],
+    "pos": "noun",
+    "category": "SHOPPING",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "What is the price?",
+        "si": "මිල කීයද?"
+      }
+    ]
+  },
+  {
+    "id": "sell",
+    "en": "sell",
+    "si": [
+      "විකුණනවා"
+    ],
+    "pos": "verb",
+    "category": "SHOPPING",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "They sell fresh fruit.",
+        "si": "ඔවුන් නැවුම් පලතුරු විකුණනවා."
+      }
+    ]
+  },
+  {
+    "id": "cheap",
+    "en": "cheap",
+    "si": [
+      "ලාභ",
+      "අඩු මිල"
+    ],
+    "pos": "adjective",
+    "category": "SHOPPING",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "This bag is cheap.",
+        "si": "මේ බෑගය ලාභයි."
+      }
+    ]
+  },
+  {
+    "id": "expensive",
+    "en": "expensive",
+    "si": [
+      "මිල අධික"
+    ],
+    "pos": "adjective",
+    "category": "SHOPPING",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "That phone is expensive.",
+        "si": "ඒ දුරකථනය මිල අධිකයි."
+      }
+    ]
+  },
+  {
+    "id": "train",
+    "en": "train",
+    "si": [
+      "දුම්රිය",
+      "කෝච්චිය"
+    ],
+    "pos": "noun",
+    "category": "TRANSPORT",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The train is late.",
+        "si": "දුම්රිය ප්‍රමාදයි."
+      }
+    ]
+  },
+  {
+    "id": "bicycle",
+    "en": "bicycle",
+    "si": [
+      "බයිසිකලය",
+      "පාපැදිය"
+    ],
+    "pos": "noun",
+    "category": "TRANSPORT",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "He rides a bicycle.",
+        "si": "ඔහු බයිසිකලයක් පදිනවා."
+      }
+    ]
+  },
+  {
+    "id": "station",
+    "en": "station",
+    "si": [
+      "නැවතුම්පොළ",
+      "ස්ථානය"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The bus station is busy.",
+        "si": "බස් නැවතුම්පොළ කාර්යබහුලයි."
+      }
+    ]
+  },
+  {
+    "id": "bank",
+    "en": "bank",
+    "si": [
+      "බැංකුව"
+    ],
+    "pos": "noun",
+    "category": "PLACES",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The bank closes at three.",
+        "si": "බැංකුව තුනට වහනවා."
+      }
+    ]
+  },
+  {
+    "id": "early",
+    "en": "early",
+    "si": [
+      "කලින්",
+      "වේලාසනින්"
+    ],
+    "pos": "adverb / adjective",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I wake up early.",
+        "si": "මම වේලාසනින් අවදි වෙනවා."
+      }
+    ]
+  },
+  {
+    "id": "late",
+    "en": "late",
+    "si": [
+      "පරක්කු",
+      "ප්‍රමාද"
+    ],
+    "pos": "adjective / adverb",
+    "category": "TIME",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I am late for class.",
+        "si": "මට පන්තියට පරක්කුයි."
+      }
+    ]
+  },
+  {
+    "id": "wait",
+    "en": "wait",
+    "si": [
+      "බලාගෙන ඉන්නවා",
+      "රැඳී සිටිනවා"
+    ],
+    "pos": "verb",
+    "category": "ACTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "Please wait here.",
+        "si": "කරුණාකර මෙතැන බලාගෙන ඉන්න."
+      }
+    ]
+  },
+  {
+    "id": "dirty",
+    "en": "dirty",
+    "si": [
+      "අපිරිසිදු",
+      "කිලිටි"
+    ],
+    "pos": "adjective",
+    "category": "DESCRIPTIONS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "My shoes are dirty.",
+        "si": "මගේ සපත්තු අපිරිසිදුයි."
+      }
+    ]
+  },
+  {
+    "id": "tired",
+    "en": "tired",
+    "si": [
+      "මහන්සි",
+      "වෙහෙසට පත්"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I am tired today.",
+        "si": "මට අද මහන්සියි."
+      }
+    ]
+  },
+  {
+    "id": "hungry",
+    "en": "hungry",
+    "si": [
+      "බඩගිනි"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The child is hungry.",
+        "si": "දරුවාට බඩගිනියි."
+      }
+    ]
+  },
+  {
+    "id": "thirsty",
+    "en": "thirsty",
+    "si": [
+      "පිපාසය ඇති",
+      "තිබහ ඇති"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "I am thirsty.",
+        "si": "මට තිබහයි."
+      }
+    ]
+  },
+  {
+    "id": "angry",
+    "en": "angry",
+    "si": [
+      "කෝපයෙන්",
+      "තරහින්"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "He is angry.",
+        "si": "ඔහු කෝපයෙන් ඉන්නවා."
+      }
+    ]
+  },
+  {
+    "id": "afraid",
+    "en": "afraid",
+    "si": [
+      "බය වූ",
+      "බියෙන්"
+    ],
+    "pos": "adjective",
+    "category": "FEELINGS",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "The child is afraid.",
+        "si": "දරුවා බය වෙලා."
+      }
+    ]
+  },
+  {
+    "id": "rainy",
+    "en": "rainy",
+    "si": [
+      "වැසි සහිත"
+    ],
+    "pos": "adjective",
+    "category": "WEATHER",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "It is a rainy day.",
+        "si": "අද වැසි සහිත දවසක්."
+      }
+    ]
+  },
+  {
+    "id": "sunny",
+    "en": "sunny",
+    "si": [
+      "අව්ව සහිත"
+    ],
+    "pos": "adjective",
+    "category": "WEATHER",
+    "pronunciation": "",
+    "examples": [
+      {
+        "en": "It is sunny today.",
+        "si": "අද හොඳට අව්ව පායනවා."
+      }
+    ]
+  }
 ];
