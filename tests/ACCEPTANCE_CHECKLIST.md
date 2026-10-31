@@ -52,3 +52,12 @@
 - [ ] Empty searches and no-result searches show helpful messages.
 - [ ] Dictionary data contains unique IDs and valid examples.
 - [ ] No dictionary search query is inserted into HTML without escaping.
+
+- [ ] Dictionary suggestions update while typing without filling recent-search history on every keystroke.
+- [ ] Selecting a dictionary suggestion opens its complete entry.
+- [ ] Every dictionary result shows five bilingual vocabulary-practice prompts.
+- [ ] Each lesson ends with a five-question exam.
+- [ ] A score of at least 4/5 is required to pass and complete a lesson.
+- [ ] Failed learners can retry and receive a different question set.
+- [ ] Repeated retries do not immediately repeat the same five-question set.
+- [ ] Lesson exam pass/fail and retry flows work on mobile and desktop browsers.
