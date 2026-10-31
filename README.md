@@ -61,3 +61,8 @@ See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFO
 - Failed attempts can be retried with a newly selected question set.
 - Regression tests are in `tests/`; GitHub Actions runs them on pushes and pull requests using `node --test tests/*.test.js`.
 
+
+
+## Dictionary expansion
+
+The beginner dictionary now contains 126 entries, including a new categorized everyday-vocabulary batch. The longer-term target is 1,000+ reviewed words. See [Dictionary Expansion and AI-Assisted Lookup](docs/DICTIONARY_EXPANSION.md) for the staged vocabulary plan, data-quality rules and secure AI lookup design. AI lookup is documented as a backend feature and is not active yet.
