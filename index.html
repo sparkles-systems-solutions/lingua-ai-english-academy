@@ -116,13 +116,23 @@ function renderDictSuggestions(query){
  host.innerHTML=found.length?'<span class="sub">Suggestions / යෝජනා:</span>'+found.map(({entry})=>'<button type="button" data-dict-suggest="'+dictEscape(entry.id)+'">'+dictEscape(entry.en)+' · '+dictEscape(entry.si[0])+'</button>').join(""):'<span class="sub">No suggestions / යෝජනා නැහැ.</span>';
  host.querySelectorAll("[data-dict-suggest]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSuggest);if(entry){document.getElementById("dictQuery").value=entry.en;searchDictionary(entry.en);}}));
 }
+function buildWordUsage(entry){
+ const word=entry.en;
+ return [
+  {en:'I learned the word "'+word+'" today.',si:'මම අද "'+word+'" යන වචනය ඉගෙන ගත්තා.'},
+  {en:'Can you say "'+word+'" slowly?',si:'ඔබට "'+word+'" යන වචනය හෙමින් කියන්න පුළුවන්ද?'},
+  {en:'Please write "'+word+'" in your notebook.',si:'කරුණාකර ඔබගේ සටහන් පොතේ "'+word+'" ලියන්න.'},
+  {en:'How do you spell "'+word+'"?',si:'"'+word+'" යන වචනය අකුරු කරන්නේ කොහොමද?'},
+  {en:'I can use "'+word+'" in a sentence.',si:'මට "'+word+'" යන වචනය වාක්‍යයක භාවිතා කරන්න පුළුවන්.'}
+ ];
+}
 function searchDictionary(queryOverride,recordHistory=true){
  const input=document.getElementById("dictQuery"),direction=document.getElementById("dictDirection");
  const query=(queryOverride??input.value).trim();if(!query){document.getElementById("dictResults").innerHTML='<div class="dict-empty">Please type a word in English or Sinhala. / කරුණාකර වචනයක් ඇතුළත් කරන්න.</div>';document.getElementById("dictResultCount").textContent="0 results";return;}
  input.value=query;const matches=findDictionaryWords(query,direction.value);
  if(recordHistory){state.dictionaryHistory=[{q:query,direction:direction.value},...(state.dictionaryHistory||[]).filter(x=>x.q!==query||x.direction!==direction.value)].slice(0,8);save();}
  document.getElementById("dictResultCount").textContent=matches.length+" result"+(matches.length===1?"":"s");
- document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
+ document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<h4>Use this word – 5 practice sentences / වාක්‍ය 5ක්</h4>'+buildWordUsage(entry).map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
  document.querySelectorAll("[data-dict-speak]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSpeak);if(entry)speak(entry.en)}));
  document.querySelectorAll("[data-dict-save]").forEach(button=>button.addEventListener("click",()=>toggleDictionaryWord(button.dataset.dictSave)));
  renderDictionaryExtras();
@@ -146,7 +156,7 @@ function renderDictionary(){renderDictionaryExtras();}
 document.getElementById("dictSearchBtn").addEventListener("click",()=>searchDictionary());
  document.getElementById("dictQuery").addEventListener("input",event=>{const q=event.target.value;renderDictSuggestions(q);if(q.trim())searchDictionary(q,false);else{document.getElementById("dictResults").innerHTML="<p class=\"empty\">Type a word above to begin.</p>";document.getElementById("dictResultCount").textContent="Starter dictionary";}});
 document.getElementById("dictQuery").addEventListener("keydown",event=>{if(event.key==="Enter")searchDictionary();});
-document.getElementById("dictDirection").addEventListener("change",()=>{if(document.getElementById("dictQuery").value)searchDictionary();});
+document.getElementById("dictDirection").addEventListener("change",()=>{if(document.getElementById("dictQuery").value){renderDictSuggestions(document.getElementById("dictQuery").value);searchDictionary(undefined,false);}});
 document.getElementById("clearDictHistory").addEventListener("click",()=>{state.dictionaryHistory=[];save();renderDictionaryExtras();});
 document.getElementById("today").textContent=new Intl.DateTimeFormat("en",{weekday:"short",month:"short",day:"numeric"}).format(new Date());render();renderDictionary();showQuiz();
 </script>
