@@ -63,3 +63,9 @@
 - [ ] Lesson exam pass/fail and retry flows work on mobile and desktop browsers.
 
 \n## Sinhala translation quality\n- [ ] Search common nouns such as cat and water; verify that only reviewed, word-specific bilingual examples appear.\n- [ ] Confirm no generic English sentence is translated by simply appending a Sinhala dictionary meaning.\n- [ ] Have a fluent Sinhala reviewer check new meanings and example sentences before publication.\n
+
+## AI Sinhala–English QA
+- [ ] All 171 entries have been AI-reviewed for meaning, part of speech, grammar, and example alignment.
+- [ ] Targeted Sinhala correction regression tests pass.
+- [ ] Confirm the UI shows only word-specific examples and no generic auto-translations.
+- [ ] Android visual UAT after deployment.
