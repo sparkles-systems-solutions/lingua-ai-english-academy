@@ -2,7 +2,7 @@
 
 ## Current implementation
 
-The repository now contains a minimal Cloudflare Workers-compatible API entry point and an initial D1 schema migration.
+The repository now contains a minimal Cloudflare Workers-compatible API entry point and two D1 schema migrations: core learner/account tables, followed by admin authentication metadata and bilingual dictionary moderation tables.
 
 Implemented:
 - `GET /api/v1/health` returns a minimal service status.
