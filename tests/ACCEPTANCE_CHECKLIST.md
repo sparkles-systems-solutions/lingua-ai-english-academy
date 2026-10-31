@@ -11,6 +11,11 @@
 - [ ] No console errors during the core learning flow.
 - [ ] Keyboard navigation and visible focus are usable.
 
+## Backend foundation
+- [ ] Both SQL migrations execute successfully in SQLite CI.
+- [ ] Foreign-key constraints, learner defaults, role/status checks, and dictionary relationships pass migration tests.
+- [ ] Apply and verify migrations against a real Cloudflare D1 staging database before production.
+
 ## Phase 2
 - [ ] AI key exists only in server-side secret storage.
 - [ ] Sinhala mistake explanation and corrected sentence are returned.
