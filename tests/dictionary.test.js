@@ -137,3 +137,13 @@ test("AI QA corrections keep Sinhala and English examples aligned", () => {
   assert.ok(byId.potato.examples.some((x) => x.si === "අර්තාපල් ගෙඩිය බෑගයේ තියෙනවා."));
   assert.ok(byId.onion.examples.some((x) => x.si === "ලූනු ගෙඩිය පරිස්සමින් කපන්න."));
 });
+
+test("dictionary practice uses Sinhala prompts with revealable English and audio actions", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert.match(html, /Try saying it in English \/ ඉංග්‍රීසියෙන් කියන්න උත්සාහ කරන්න/);
+  assert.match(html, /data-example-reveal/);
+  assert.match(html, /data-example-speak/);
+  assert.match(html, /function wireExamplePractice/);
+  assert.match(html, /if\(example\)speak\(example\.en\)/);
+  assert.match(html, /data-example-answer/);
+});
