@@ -9,14 +9,14 @@ A mobile-friendly English learning academy for learners starting from zero, usin
 - Daily target: 15 minutes
 
 ## Current repository status
-The original Phase 1 browser prototype is preserved in `index.html`. It currently provides a responsive dashboard, five starter lessons, Sinhala meanings, browser text-to-speech, vocabulary tracking, a five-question quiz, and local browser progress.
+The Phase 1 learner app in `index.html` provides a responsive dashboard, five starter lessons, Sinhala meanings, browser text-to-speech, vocabulary tracking, a five-question quiz, and local browser progress. It now also includes a searchable Sinhala ↔ English starter dictionary with English/Sinhala/automatic search, examples, pronunciation playback, saved words, recent searches, and a daily word.
 
 A full repository audit and product requirements are documented in:
 - [Repository audit](docs/REPOSITORY_AUDIT.md)
 - [Product requirements](docs/PRODUCT_REQUIREMENTS.md)
 - [Phased roadmap](docs/PHASE_ROADMAP.md)
 - [Platform architecture](docs/PLATFORM_ARCHITECTURE.md)
-- Structured beginner curriculum: `curriculum/pre-a1-a1-foundation.json`
+- Structured beginner curriculum: `curriculum/pre-a1-a1-foundation.json`\n- Dictionary starter dataset: `dictionary-data.js`\n- Dictionary data tests: `node --test tests/dictionary.test.js`
 
 ## Run the current prototype
 1. Clone or download this repository.
@@ -26,7 +26,7 @@ A full repository audit and product requirements are documented in:
 No build tools or API keys are needed for the current static prototype.
 
 ## Important implementation status
-The current browser prototype is not yet a complete AI platform. AI tutoring, server APIs, accounts, cloud synchronisation, the full bilingual dictionary service, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
+The current browser prototype is not yet a complete AI platform. The dictionary is currently a local starter dataset and browser-side search; a managed dictionary API, larger reviewed/licensed dataset, AI tutoring, server APIs, accounts, cloud synchronisation, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
 
 The backend, admin panel, authentication methods, dictionary module, and Android APK are specified in project requirements and architecture; they are not yet implemented or production-ready.
 
