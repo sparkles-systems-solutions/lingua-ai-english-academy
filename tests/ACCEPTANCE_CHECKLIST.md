@@ -37,3 +37,18 @@
 - [ ] Data export and deletion are documented and tested.
 - [ ] Deployment and rollback steps are documented.
 - [ ] Monitoring excludes sensitive learner content.
+
+## Sinhala ↔ English Dictionary
+- [ ] Dictionary is reachable from the learner navigation on desktop and mobile.
+- [ ] English-to-Sinhala search returns matching entries.
+- [ ] Sinhala-to-English search handles Sinhala Unicode input.
+- [ ] Auto-detect search finds entries in either language.
+- [ ] Multiple meanings and part-of-speech labels are displayed.
+- [ ] Example sentences show Sinhala translations.
+- [ ] Pronunciation playback uses the browser speech feature and fails gracefully if unavailable.
+- [ ] Learners can save and remove words; saved words persist after refresh.
+- [ ] Recent searches persist and can be cleared.
+- [ ] Daily word is displayed and can be opened in search.
+- [ ] Empty searches and no-result searches show helpful messages.
+- [ ] Dictionary data contains unique IDs and valid examples.
+- [ ] No dictionary search query is inserted into HTML without escaping.
