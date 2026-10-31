@@ -1,7 +1,5 @@
 -- Phase 3 preparation: indexes and persistent rate-limit counters for authentication.
 -- Keys must be keyed hashes (not raw email addresses or IP addresses).
-PRAGMA foreign_keys = ON;
-
 CREATE TABLE auth_rate_limits (
   bucket_key_hash TEXT PRIMARY KEY,
   purpose TEXT NOT NULL CHECK (purpose IN ('learner_otp_request', 'learner_otp_verify', 'admin_auth')),
