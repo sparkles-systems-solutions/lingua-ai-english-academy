@@ -147,36 +147,9 @@ function renderDictSuggestions(query){
  host.querySelectorAll("[data-dict-suggest]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSuggest);if(entry){document.getElementById("dictQuery").value=entry.en;searchDictionary(entry.en);}}));
 }
 function buildWordUsage(entry){
- const word=entry.en,meaning=entry.si[0]||"";
- const pos=(entry.pos||"").toLowerCase();
- if(pos.includes("verb"))return [
-  {en:"I "+word+" every day.",si:"මම හැමදාම "+meaning+"."},
-  {en:"Can you "+word+"?",si:"ඔබට "+meaning+" පුළුවන්ද?"},
-  {en:"Please "+word+" slowly.",si:"කරුණාකර හෙමින් "+meaning+"."},
-  {en:"I want to "+word+".",si:"මට "+meaning+" අවශ්‍යයි."},
-  {en:"I can "+word+" well.",si:"මට හොඳින් "+meaning+" පුළුවන්."}
- ];
- if(pos.includes("adjective"))return [
-  {en:"I am "+word+".",si:"මම "+meaning+"."},
-  {en:"This is very "+word+".",si:"මේක ඉතාම "+meaning+"."},
-  {en:"The day is "+word+".",si:"දවස "+meaning+"."},
-  {en:"It looks "+word+".",si:"එය "+meaning+" ලෙස පෙනෙනවා."},
-  {en:"I feel "+word+" today.",si:"මට අද "+meaning+" දැනෙනවා."}
- ];
- if(pos.includes("noun"))return [
-  {en:"I like "+word+".",si:"මම "+meaning+" වලට කැමතියි."},
-  {en:"I need "+word+".",si:"මට "+meaning+" අවශ්‍යයි."},
-  {en:"Where is the "+word+"?",si:meaning+" කොහෙද?"},
-  {en:"This "+word+" is good.",si:"මේ "+meaning+" හොඳයි."},
-  {en:"I use "+word+" every day.",si:"මම හැමදාම "+meaning+" භාවිතා කරනවා."}
- ];
- return [
-  {en:"Please say "+word+".",si:"කරුණාකර "+word+" කියන්න."},
-  {en:"I use "+word+" when I greet someone.",si:"මම කෙනෙකුට ආචාර කරන විට "+word+" භාවිතා කරනවා."},
-  {en:"Can you say "+word+" slowly?",si:"ඔබට "+word+" හෙමින් කියන්න පුළුවන්ද?"},
-  {en:"Please remember "+word+".",si:"කරුණාකර "+word+" මතක තබාගන්න."},
-  {en:"I can use "+word+" in a sentence.",si:"මට "+word+" වාක්‍යයක භාවිතා කරන්න පුළුවන්."}
- ];
+ // Only show reviewed, word-specific bilingual examples. Never create Sinhala
+ // translations by attaching a dictionary meaning to a generic sentence.
+ return Array.isArray(entry.examples)?entry.examples:[];
 }
 
 function searchDictionary(queryOverride,recordHistory=true){
@@ -185,7 +158,7 @@ function searchDictionary(queryOverride,recordHistory=true){
  input.value=query;const matches=findDictionaryWords(query,direction.value);
  if(recordHistory){state.dictionaryHistory=[{q:query,direction:direction.value},...(state.dictionaryHistory||[]).filter(x=>x.q!==query||x.direction!==direction.value)].slice(0,8);save();}
  document.getElementById("dictResultCount").textContent=matches.length+" result"+(matches.length===1?"":"s");
- document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<h4>Use this word – 5 practice sentences / වාක්‍ය 5ක්</h4>'+buildWordUsage(entry).map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
+ document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<h4>Example sentences / උදාහරණ වාක්‍ය</h4>'+buildWordUsage(entry).map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
  document.querySelectorAll("[data-dict-speak]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSpeak);if(entry)speak(entry.en)}));
  document.querySelectorAll("[data-dict-save]").forEach(button=>button.addEventListener("click",()=>toggleDictionaryWord(button.dataset.dictSave)));
  renderDictionaryExtras();
