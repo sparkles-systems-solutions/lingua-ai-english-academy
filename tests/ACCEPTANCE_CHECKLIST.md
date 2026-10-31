@@ -69,3 +69,10 @@
 - [ ] Targeted Sinhala correction regression tests pass.
 - [ ] Confirm the UI shows only word-specific examples and no generic auto-translations.
 - [ ] Android visual UAT after deployment.
+
+## Dictionary sentence practice
+- [ ] Each entry uses its stored bilingual examples as Sinhala-to-English prompts.
+- [ ] English answer starts hidden and can be revealed/hidden.
+- [ ] Listen button speaks the matching English example.
+- [ ] No duplicate copy of the same examples appears in the result card.
+- [ ] Check practice controls on a narrow Android viewport.
