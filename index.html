@@ -147,15 +147,38 @@ function renderDictSuggestions(query){
  host.querySelectorAll("[data-dict-suggest]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSuggest);if(entry){document.getElementById("dictQuery").value=entry.en;searchDictionary(entry.en);}}));
 }
 function buildWordUsage(entry){
- const word=entry.en;
+ const word=entry.en,meaning=entry.si[0]||"";
+ const pos=(entry.pos||"").toLowerCase();
+ if(pos.includes("verb"))return [
+  {en:"I "+word+" every day.",si:"මම හැමදාම "+meaning+"."},
+  {en:"Can you "+word+"?",si:"ඔබට "+meaning+" පුළුවන්ද?"},
+  {en:"Please "+word+" slowly.",si:"කරුණාකර හෙමින් "+meaning+"."},
+  {en:"I want to "+word+".",si:"මට "+meaning+" අවශ්‍යයි."},
+  {en:"I can "+word+" well.",si:"මට හොඳින් "+meaning+" පුළුවන්."}
+ ];
+ if(pos.includes("adjective"))return [
+  {en:"I am "+word+".",si:"මම "+meaning+"."},
+  {en:"This is very "+word+".",si:"මේක ඉතාම "+meaning+"."},
+  {en:"The day is "+word+".",si:"දවස "+meaning+"."},
+  {en:"It looks "+word+".",si:"එය "+meaning+" ලෙස පෙනෙනවා."},
+  {en:"I feel "+word+" today.",si:"මට අද "+meaning+" දැනෙනවා."}
+ ];
+ if(pos.includes("noun"))return [
+  {en:"I like "+word+".",si:"මම "+meaning+" වලට කැමතියි."},
+  {en:"I need "+word+".",si:"මට "+meaning+" අවශ්‍යයි."},
+  {en:"Where is the "+word+"?",si:meaning+" කොහෙද?"},
+  {en:"This "+word+" is good.",si:"මේ "+meaning+" හොඳයි."},
+  {en:"I use "+word+" every day.",si:"මම හැමදාම "+meaning+" භාවිතා කරනවා."}
+ ];
  return [
-  {en:'I learned the word "'+word+'" today.',si:'මම අද "'+word+'" යන වචනය ඉගෙන ගත්තා.'},
-  {en:'Can you say "'+word+'" slowly?',si:'ඔබට "'+word+'" යන වචනය හෙමින් කියන්න පුළුවන්ද?'},
-  {en:'Please write "'+word+'" in your notebook.',si:'කරුණාකර ඔබගේ සටහන් පොතේ "'+word+'" ලියන්න.'},
-  {en:'How do you spell "'+word+'"?',si:'"'+word+'" යන වචනය අකුරු කරන්නේ කොහොමද?'},
-  {en:'I can use "'+word+'" in a sentence.',si:'මට "'+word+'" යන වචනය වාක්‍යයක භාවිතා කරන්න පුළුවන්.'}
+  {en:"Please say "+word+".",si:"කරුණාකර "+word+" කියන්න."},
+  {en:"I use "+word+" when I greet someone.",si:"මම කෙනෙකුට ආචාර කරන විට "+word+" භාවිතා කරනවා."},
+  {en:"Can you say "+word+" slowly?",si:"ඔබට "+word+" හෙමින් කියන්න පුළුවන්ද?"},
+  {en:"Please remember "+word+".",si:"කරුණාකර "+word+" මතක තබාගන්න."},
+  {en:"I can use "+word+" in a sentence.",si:"මට "+word+" වාක්‍යයක භාවිතා කරන්න පුළුවන්."}
  ];
 }
+
 function searchDictionary(queryOverride,recordHistory=true){
  const input=document.getElementById("dictQuery"),direction=document.getElementById("dictDirection");
  const query=(queryOverride??input.value).trim();if(!query){document.getElementById("dictResults").innerHTML='<div class="dict-empty">Please type a word in English or Sinhala. / කරුණාකර වචනයක් ඇතුළත් කරන්න.</div>';document.getElementById("dictResultCount").textContent="0 results";return;}
