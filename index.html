@@ -147,9 +147,25 @@ function renderDictSuggestions(query){
  host.querySelectorAll("[data-dict-suggest]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSuggest);if(entry){document.getElementById("dictQuery").value=entry.en;searchDictionary(entry.en);}}));
 }
 function buildWordUsage(entry){
- // Only show reviewed, word-specific bilingual examples. Never create Sinhala
- // translations by attaching a dictionary meaning to a generic sentence.
+ // Use only stored, word-specific examples. These become Sinhala-to-English prompts.
  return Array.isArray(entry.examples)?entry.examples:[];
+}
+function renderExamplePractice(entry){
+ const examples=buildWordUsage(entry);
+ if(!examples.length)return "";
+ return '<section class="dict-practice"><h4>Try saying it in English / ඉංග්‍රීසියෙන් කියන්න උත්සාහ කරන්න</h4><p class="sub">Read the Sinhala sentence first. Think of the English sentence, then reveal and listen.</p>'+
+ examples.map((ex,i)=>'<div class="dict-example dict-practice-item"><small>'+dictEscape(ex.si)+'</small><strong class="dict-answer" data-example-answer="'+dictEscape(entry.id)+'-'+i+'" hidden>'+dictEscape(ex.en)+'</strong><div class="dict-actions"><button type="button" data-example-reveal="'+dictEscape(entry.id)+'-'+i+'">Show English</button><button type="button" data-example-speak="'+dictEscape(entry.id)+'-'+i+'">🔊 Listen</button></div></div>').join("")+'</section>';
+}
+function wireExamplePractice(){
+ document.querySelectorAll("[data-example-reveal]").forEach(button=>button.addEventListener("click",()=>{
+  const answer=document.querySelector('[data-example-answer="'+button.dataset.exampleReveal+'"]');
+  if(answer){answer.hidden=!answer.hidden;button.textContent=answer.hidden?"Show English":"Hide English";}
+ }));
+ document.querySelectorAll("[data-example-speak]").forEach(button=>button.addEventListener("click",()=>{
+  const [id,index]=button.dataset.exampleSpeak.split("-");
+  const entry=getDictionary().find(x=>x.id===id),example=entry&&entry.examples[Number(index)];
+  if(example)speak(example.en);
+ }));
 }
 
 function searchDictionary(queryOverride,recordHistory=true){
@@ -158,7 +174,8 @@ function searchDictionary(queryOverride,recordHistory=true){
  input.value=query;const matches=findDictionaryWords(query,direction.value);
  if(recordHistory){state.dictionaryHistory=[{q:query,direction:direction.value},...(state.dictionaryHistory||[]).filter(x=>x.q!==query||x.direction!==direction.value)].slice(0,8);save();}
  document.getElementById("dictResultCount").textContent=matches.length+" result"+(matches.length===1?"":"s");
- document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<h4>Example sentences / උදාහරණ වාක්‍ය</h4>'+buildWordUsage(entry).map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
+ document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+renderExamplePractice(entry)+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
+ wireExamplePractice();
  document.querySelectorAll("[data-dict-speak]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSpeak);if(entry)speak(entry.en)}));
  document.querySelectorAll("[data-dict-save]").forEach(button=>button.addEventListener("click",()=>toggleDictionaryWord(button.dataset.dictSave)));
  renderDictionaryExtras();
