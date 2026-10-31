@@ -9,7 +9,7 @@ A mobile-friendly English learning academy for learners starting from zero, usin
 - Daily target: 15 minutes
 
 ## Current repository status
-The Phase 1 learner app in `index.html` provides a responsive dashboard, five starter lessons, Sinhala meanings, browser text-to-speech, vocabulary tracking, a five-question quiz, and local browser progress. It now also includes a searchable Sinhala ↔ English starter dictionary with English/Sinhala/automatic search, examples, pronunciation playback, saved words, recent searches, and a daily word.
+The learner app in `index.html` provides a responsive dashboard, five starter lessons, Sinhala meanings, browser text-to-speech, vocabulary tracking, lesson exams, local browser progress, and a searchable Sinhala ↔ English starter dictionary. Dictionary practice includes bilingual examples, pronunciation playback, saved words, recent searches, a daily word, scored sentence quizzes, and retry of incorrect answers.
 
 A full repository audit and product requirements are documented in:
 - [Repository audit](docs/REPOSITORY_AUDIT.md)
@@ -28,7 +28,7 @@ No build tools or API keys are needed for the current static prototype.
 ## Important implementation status
 The current browser prototype is not yet a complete AI platform. The dictionary is currently a local starter dataset and browser-side search; a managed dictionary API, larger reviewed/licensed dataset, AI tutoring, server APIs, accounts, cloud synchronisation, speech recognition, pronunciation scoring, and adaptive learning must not be considered available until their later phases are implemented, configured, and tested.
 
-The backend, admin panel, authentication methods, dictionary module, and Android APK are specified in project requirements and architecture; they are not yet implemented or production-ready.
+A minimal backend health endpoint and initial D1 schema migration have now been added as Phase 2 foundation work. Authentication, email delivery, Admin Panel, protected APIs, cloud sync, production database binding, and Android APK are not yet implemented or production-ready.
 
 Never put AI provider keys or other secrets in browser JavaScript or committed files.
 
@@ -56,7 +56,7 @@ See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFO
 ## Latest learning improvements
 
 - Dictionary search now updates as the learner types and displays matching suggestions in English or Sinhala.
-- Dictionary entries show five beginner sentence patterns with Sinhala support, adapted to the word's part of speech.
+- Dictionary entries use stored bilingual examples for interactive Sinhala-to-English sentence practice, with scoring and retry of incorrect answers.
 - Every lesson ends with a five-question exam. A learner needs at least 4/5 (80%) to pass.
 - Failed attempts can be retried with a newly selected question set.
 - Regression tests are in `tests/`; GitHub Actions runs them on pushes and pull requests using `node --test tests/*.test.js`.
@@ -65,4 +65,4 @@ See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFO
 
 ## Dictionary expansion
 
-The beginner dictionary now contains 171 entries, including a new categorized everyday-vocabulary batch. The longer-term target is 1,000+ reviewed words. See [Dictionary Expansion and AI-Assisted Lookup](docs/DICTIONARY_EXPANSION.md) for the staged vocabulary plan, data-quality rules and secure AI lookup design. AI lookup is documented as a backend feature and is not active yet.
+The beginner dictionary currently contains at least 171 entries, including categorized everyday vocabulary. The longer-term target is 1,000+ reviewed words. See [Dictionary Expansion and AI-Assisted Lookup](docs/DICTIONARY_EXPANSION.md) for the staged vocabulary plan, data-quality rules and secure AI lookup design. See [Backend Foundation](docs/BACKEND_FOUNDATION.md) for the current API/database starting point and deployment prerequisites. AI lookup is documented as a backend feature and is not active yet.
