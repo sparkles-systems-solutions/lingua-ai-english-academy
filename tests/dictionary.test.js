@@ -123,3 +123,17 @@ test("AI-reviewed Sinhala corrections remain in the dictionary", () => {
   assert.ok(byId.thirsty.si.includes("පිපාසය ඇති"));
   assert.ok(byId.sunny.examples[0].si.includes("අව්ව පායනවා"));
 });
+
+test("AI QA corrections keep Sinhala and English examples aligned", () => {
+  const byId = Object.fromEntries(entries.map((entry) => [entry.id, entry]));
+  assert.ok(byId.food.examples.some((x) => x.en === "The food is good." && x.si === "කෑම හොඳයි."));
+  assert.ok(byId.love.examples.some((x) => x.en === "I love my mother." && x.si === "මම මගේ අම්මාට ආදරෙයි."));
+  assert.ok(byId.slow.examples.some((x) => x.en === "The bus is slow." && x.si === "බස් රථය මන්දගාමීයි."));
+  assert.ok(byId.stand.examples.some((x) => x.en === "Please stand here." && x.si === "කරුණාකර මෙතැන හිටගන්න."));
+  assert.ok(byId.morning.examples.some((x) => x.si === "සුබ උදෑසනක්."));
+  assert.ok(byId.night.examples.some((x) => x.si === "සුබ රාත්‍රියක්."));
+  assert.ok(byId.day.examples.some((x) => x.si === "සුබ දවසක් වේවා."));
+  assert.ok(byId.soap.examples.some((x) => x.si === "සබන් ගා ඔබේ අත් සෝදන්න."));
+  assert.ok(byId.potato.examples.some((x) => x.si === "අර්තාපල් ගෙඩිය බෑගයේ තියෙනවා."));
+  assert.ok(byId.onion.examples.some((x) => x.si === "ලූනු ගෙඩිය පරිස්සමින් කපන්න."));
+});
