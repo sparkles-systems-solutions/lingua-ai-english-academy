@@ -17,7 +17,7 @@ Not implemented:
 - No OTP challenge persistence, email delivery, OTP verification endpoint, or session issuance. The primitives are not a complete login flow.
 - No password hashing, admin 2FA/TOTP, recovery codes, or session issuance.
 - No authenticated learner/admin APIs or cloud progress sync.
-- No database binding or production deployment.
+- Cloudflare Worker configuration now declares the `DB` D1 binding for the `lingua-academy-db` database. The binding is configured in `backend/wrangler.toml`; deployment and D1 migration execution are still pending.
 - No secrets, domains, email provider, or paid services have been configured.
 
 ## Local API test
@@ -36,11 +36,11 @@ node --test tests/*.test.js
 
 1. Create a Cloudflare account and decide which account/project owns the deployment.
 2. Create a D1 database named `lingua-academy-db`.
-3. Add a `wrangler.toml` (or `wrangler.jsonc`) with a Worker entry pointing to `backend/src/index.js` and a D1 binding named `DB`.
-4. Replace the database ID with the real ID returned by Cloudflare; never commit API tokens.
-5. Apply migrations with Wrangler's D1 migration command.
-6. Configure `ALLOWED_ORIGINS` as a Worker environment variable with the exact learner/admin web origins. Do not use wildcard origins with credentials.
-7. Deploy only after reviewing the environment and security settings.
+3. Use the committed `backend/wrangler.toml`; it points to `backend/src/index.js` (relative to the config file) and declares the `DB` binding.
+4. The D1 database ID in that configuration is the ID supplied from the user's Cloudflare dashboard. Never commit API tokens or secrets.
+5. From the repository root, apply migrations with `npx wrangler d1 migrations apply lingua-academy-db --remote --config backend/wrangler.toml` after authenticating Wrangler to the correct Cloudflare account.
+6. Configure `ALLOWED_ORIGINS` as a Worker environment variable with the exact learner/admin web origins once those origins are finalized. Do not use wildcard origins with credentials.
+7. Deploy with `npx wrangler deploy --config backend/wrangler.toml` only after reviewing the environment and security settings.
 
 The repository intentionally does not contain a fake database ID or production credentials. The schema is a starting point. GitHub Actions now executes both migration files against Python's SQLite engine in an in-memory database and checks table creation, defaults, constraints, foreign keys, and dictionary relationships. This validates SQLite migration execution in CI; it does not replace testing against a real Cloudflare D1 database.
 
