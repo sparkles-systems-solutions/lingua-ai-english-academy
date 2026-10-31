@@ -37,7 +37,7 @@ node --test tests/*.test.js
 6. Configure `ALLOWED_ORIGINS` as a Worker environment variable with the exact learner/admin web origins. Do not use wildcard origins with credentials.
 7. Deploy only after reviewing the environment and security settings.
 
-The repository intentionally does not contain a fake database ID or production credentials. The schema is a starting point and must receive migration tests before production use.
+The repository intentionally does not contain a fake database ID or production credentials. The schema is a starting point. GitHub Actions now executes both migration files against Python's SQLite engine in an in-memory database and checks table creation, defaults, constraints, foreign keys, and dictionary relationships. This validates SQLite migration execution in CI; it does not replace testing against a real Cloudflare D1 database.
 
 ## Security gates before authentication
 
