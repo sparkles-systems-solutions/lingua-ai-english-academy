@@ -57,3 +57,27 @@ test("entries can contain multiple contextual meanings and examples", () => {
   assert.ok(right.si.length >= 2);
   assert.ok(right.examples.length >= 2);
 });
+
+test("dictionary page reacts while the learner types and offers suggestions", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert.match(html, /dictQuery"\)\.addEventListener\("input"/);
+  assert.match(html, /renderDictSuggestions/);
+  assert.match(html, /data-dict-suggest/);
+});
+
+test("dictionary results include five bilingual word-practice prompts", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert.match(html, /buildWordUsage\(entry\)/);
+  assert.match(html, /Use this word – 5 practice sentences/);
+  assert.match(html, /I learned the word/);
+  assert.match(html, /How do you spell/);
+});
+
+test("lesson exam has five questions, an 80 percent pass mark and retry question variation", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert.match(html, /startLessonExam\(i\)/);
+  assert.match(html, /exam\.position<4/);
+  assert.match(html, /exam\.score>=4/);
+  assert.match(html, /signature!==previous/);
+  assert.match(html, /Retry with new questions/);
+});
