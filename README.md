@@ -51,3 +51,13 @@ Never put AI provider keys or other secrets in browser JavaScript or committed f
 5. **Phase 5 — Android APK and production:** Android packaging/signing, shared account sync, dictionary mobile QA, reports, privacy controls, deployment, and monitoring.
 
 See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFORM_ARCHITECTURE.md) for implementation details.
+
+
+## Latest learning improvements
+
+- Dictionary search now updates as the learner types and displays matching suggestions in English or Sinhala.
+- Dictionary entries show five beginner sentence patterns with Sinhala support, adapted to the word's part of speech.
+- Every lesson ends with a five-question exam. A learner needs at least 4/5 (80%) to pass.
+- Failed attempts can be retried with a newly selected question set.
+- Regression tests are in `tests/`; GitHub Actions runs them on pushes and pull requests using `node --test tests/*.test.js`.
+
