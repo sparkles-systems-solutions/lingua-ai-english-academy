@@ -53,13 +53,27 @@
 - Admin actions that change learner access or curriculum must be auditable.
 - Learner-facing registration must never grant admin privileges.
 
-### Email registration and OTP login
+### Learner email registration and OTP login
 - Learners can register and sign in using an email address.
 - Send a short-lived one-time passcode (OTP) to the supplied email address and verify it before issuing a session.
 - Include OTP expiry, single-use enforcement, resend cooldown, attempt limits, rate limiting, generic responses that reduce account enumeration, and secure session expiry/revocation.
 - Store OTP verification material securely (prefer hashed codes); do not log OTP values.
-- Do not require a password for the initial passwordless email OTP flow. Password or social login may be considered later only if explicitly approved.
+- Do not require a password for the initial passwordless learner email OTP flow.
 - Email delivery provider must be configurable; credentials stay server-side.
+
+### Administrator authentication — both methods required
+The Admin Panel must support both of the following administrator sign-in methods:
+
+1. **Email + Password + 2FA:** Admin enters email and password, then completes a separate second-factor challenge. The proposed default second factor is TOTP from an authenticator app. Secure recovery codes are required. Email OTP fallback is optional and must be explicitly enabled by platform policy.
+2. **Passwordless Email OTP:** Admin can alternatively sign in using a short-lived, single-use OTP sent to the admin's pre-authorised email address.
+
+- These are two distinct supported admin login methods. The password-plus-2FA route must never issue a session after password verification alone.
+- Admin accounts must be invited/provisioned by a trusted bootstrap or authorised admin process. Public learner registration cannot create admin accounts or grant admin roles.
+- Admin authentication method and required MFA policy are controlled server-side; admins cannot disable required security for themselves.
+- Sensitive actions require re-authentication or step-up verification.
+- Enforce server-side authorization for every admin API, plus rate limits, lockout/progressive delays, session expiry/revocation, and audit logging.
+- Never log passwords, OTP values, TOTP codes, recovery codes, or session tokens.
+- Passwords must be securely hashed; TOTP secrets encrypted at rest; OTPs and recovery codes stored as hashes.
 
 ### Android APK
 - Deliver an installable Android APK for the learner application.
@@ -71,3 +85,10 @@
 ### Cross-platform data
 - A learner's profile, completed lessons, quiz history, vocabulary mastery, review schedule, and learning analytics should sync through the backend.
 - Clearly show offline or sync-pending states; resolve conflicts safely and never silently discard progress.
+
+### Security acceptance criteria
+- Admin can use either configured Email + Password + 2FA or passwordless Email OTP.
+- Password-plus-2FA sessions cannot be created unless both factors pass.
+- Learner registration cannot create or elevate an administrator.
+- Admin authorization is enforced by the API, not only by the UI.
+- Admin authentication changes and privileged operations are auditable.
