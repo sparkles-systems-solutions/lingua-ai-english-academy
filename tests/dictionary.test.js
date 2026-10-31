@@ -22,7 +22,7 @@ function search(query, direction = "auto") {
 
 test("starter dictionary exists and has unique stable IDs", () => {
   assert.ok(Array.isArray(entries));
-  assert.ok(entries.length >= 40);
+  assert.ok(entries.length >= 171);
   const ids = entries.map((entry) => entry.id);
   assert.equal(new Set(ids).size, ids.length);
 });
@@ -102,3 +102,5 @@ test("expanded entries include category metadata for grouped learning", () => {
     assert.ok(entry.examples.length > 0);
   }
 });
+
+test("latest categorized vocabulary batch is searchable in both languages", () => {\n  for (const word of ["grandfather", "grandmother", "husband", "vegetable", "price", "train", "station", "early", "wait", "tired", "rainy", "sunny"]) {\n    assert.ok(entries.some((entry) => entry.id === word), "missing headword: " + word);\n  }\n  assert.ok(search("සීයා", "si-en").some((entry) => entry.id === "grandfather"));\n  assert.ok(search("දුම්රිය", "si-en").some((entry) => entry.id === "train"));\n});\n
