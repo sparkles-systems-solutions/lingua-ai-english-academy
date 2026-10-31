@@ -1,0 +1,53 @@
+name: Apply Cloudflare D1 migrations
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Confirm applying the pending migrations to the D1 database in backend/wrangler.toml"
+        required: true
+        type: choice
+        options:
+          - "NO - do not apply"
+          - "YES - apply migrations"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lingua-academy-d1-migrations
+  cancel-in-progress: false
+
+jobs:
+  apply-migrations:
+    if: ${{ inputs.confirm == 'YES - apply migrations' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Validate Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret"; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository secret"; exit 1; }
+
+      - name: Apply pending migrations to the configured remote D1 database
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 d1 migrations apply lingua-academy-db --remote --config backend/wrangler.toml
+
+      - name: Verify applied migration history
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 d1 migrations list lingua-academy-db --remote --config backend/wrangler.toml
