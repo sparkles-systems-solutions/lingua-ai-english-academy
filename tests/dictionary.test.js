@@ -147,3 +147,13 @@ test("dictionary practice uses Sinhala prompts with revealable English and audio
   assert.match(html, /if\(example\)speak\(example\.en\)/);
   assert.match(html, /data-example-answer/);
 });
+
+test("dictionary sentence quiz scores answers and offers retry for mistakes", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert.match(html, /Choose the correct English sentence for each Sinhala sentence/);
+  assert.match(html, /data-practice-answer/);
+  assert.match(html, /session\.score\+\+/);
+  assert.match(html, /Retry incorrect answers/);
+  assert.match(html, /data-practice-retry/);
+  assert.match(html, /Practice complete! Score:/);
+});
