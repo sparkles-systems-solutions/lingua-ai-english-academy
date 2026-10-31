@@ -2,14 +2,14 @@
    Meanings are learner-friendly starter translations, not a complete scholarly lexicon. */
 window.LINGUA_DICTIONARY = [
 {id:"hello",en:"hello",si:["ආයුබෝවන්","හෙලෝ"],pos:"interjection",pronunciation:"හෙලෝ",examples:[{en:"Hello, how are you?",si:"හෙලෝ, ඔබට කොහොමද?"}]},
-{id:"good-morning",en:"good morning",si:["සුභ උදෑසනක්"],pos:"phrase",pronunciation:"ගුඩ් මෝර්නින්",examples:[{en:"Good morning, teacher.",si:"සුභ උදෑසනක්, ගුරුතුමනි."}]},
-{id:"good-evening",en:"good evening",si:["සුභ සන්ධ්‍යාවක්"],pos:"phrase",pronunciation:"ගුඩ් ඊව්නින්",examples:[{en:"Good evening, everyone.",si:"සැමට සුභ සන්ධ්‍යාවක්."}]},
+{id:"good-morning",en:"good morning",si:["සුබ උදෑසනක්"],pos:"phrase",pronunciation:"ගුඩ් මෝර්නින්",examples:[{en:"Good morning, teacher.",si:"සුභ උදෑසනක්, ගුරුතුමනි."}]},
+{id:"good-evening",en:"good evening",si:["සුබ සන්ධ්‍යාවක්"],pos:"phrase",pronunciation:"ගුඩ් ඊව්නින්",examples:[{en:"Good evening, everyone.",si:"සැමට සුභ සන්ධ්‍යාවක්."}]},
 {id:"goodbye",en:"goodbye",si:["ගිහින් එන්නම්","සමුගන්නවා"],pos:"interjection",pronunciation:"ගුඩ්බායි",examples:[{en:"Goodbye. See you tomorrow.",si:"ගිහින් එන්නම්. හෙට හමුවෙමු."}]},
 {id:"please",en:"please",si:["කරුණාකර"],pos:"adverb",pronunciation:"ප්ලීස්",examples:[{en:"Please sit down.",si:"කරුණාකර වාඩිවෙන්න."}]},
-{id:"thank-you",en:"thank you",si:["ස්තූතියි","ඔබට ස්තූතියි"],pos:"phrase",pronunciation:"තැන්ක් යූ",examples:[{en:"Thank you for your help.",si:"ඔබගේ උදව්වට ස්තූතියි."}]},
+{id:"thank-you",en:"thank you",si:["ස්තුතියි","ඔබට ස්තුතියි"],pos:"phrase",pronunciation:"තැන්ක් යූ",examples:[{en:"Thank you for your help.",si:"ඔබගේ උදව්වට ස්තූතියි."}]},
 {id:"sorry",en:"sorry",si:["සමාවෙන්න","කණගාටුයි"],pos:"adjective / interjection",pronunciation:"සොරි",examples:[{en:"I am sorry.",si:"මට සමාවෙන්න."}]},
 {id:"yes",en:"yes",si:["ඔව්"],pos:"adverb",pronunciation:"යෙස්",examples:[{en:"Yes, I understand.",si:"ඔව්, මට තේරෙනවා."}]},
-{id:"no",en:"no",si:["නැහැ","නොවේ"],pos:"adverb",pronunciation:"නෝ",examples:[{en:"No, thank you.",si:"එපා, ස්තූතියි."}]},
+{id:"no",en:"no",si:["නැහැ","නොවේ"],pos:"adverb",pronunciation:"නෝ",examples:[{en:"No, thank you.",si:"නැහැ, ස්තුතියි."}]},
 {id:"name",en:"name",si:["නම"],pos:"noun",pronunciation:"නේම්",examples:[{en:"My name is Amal.",si:"මගේ නම අමල්."}]},
 {id:"friend",en:"friend",si:["මිතුරා","මිතුරිය","යහළුවා"],pos:"noun",pronunciation:"ෆ්‍රෙන්ඩ්",examples:[{en:"She is my friend.",si:"ඇය මගේ මිතුරියයි."}]},
 {id:"family",en:"family",si:["පවුල","පවුලේ අය"],pos:"noun",pronunciation:"ෆැමිලි",examples:[{en:"I love my family.",si:"මම මගේ පවුලට ආදරෙයි."}]},
@@ -42,12 +42,12 @@ window.LINGUA_DICTIONARY = [
 {id:"tomorrow",en:"tomorrow",si:["හෙට"],pos:"adverb / noun",pronunciation:"ටුමොරෝ",examples:[{en:"See you tomorrow.",si:"හෙට හමුවෙමු."}]},
 {id:"time",en:"time",si:["වේලාව","කාලය"],pos:"noun",pronunciation:"ටයිම්",examples:[{en:"What time is it?",si:"දැන් වේලාව කීයද?"}]},
 {id:"help",en:"help",si:["උදව්","උදව් කරනවා"],pos:"noun / verb",pronunciation:"හෙල්ප්",examples:[{en:"Can you help me?",si:"ඔබට මට උදව් කරන්න පුළුවන්ද?"}]},
-{id:"love",en:"love",si:["ආදරය","ආදරය කරනවා"],pos:"noun / verb",pronunciation:"ලව්",examples:[{en:"I love learning English.",si:"මම ඉංග්‍රීසි ඉගෙනීමට කැමතියි."}]},
+{id:"love",en:"love",si:["ආදරය","ආදරය කරනවා"],pos:"noun / verb",pronunciation:"ලව්",examples:[{en:"I love learning English.",si:"මම ඉංග්‍රීසි ඉගෙනීමට ගොඩක් කැමතියි."}]},
 {id:"beautiful",en:"beautiful",si:["ලස්සන","සුන්දර"],pos:"adjective",pronunciation:"බියුටිෆුල්",examples:[{en:"It is a beautiful day.",si:"අද ලස්සන දවසක්."}]},
 {id:"right",en:"right",si:["නිවැරදි","දකුණ","අයිතිය"],pos:"adjective / noun",pronunciation:"රයිට්",examples:[{en:"Your answer is right.",si:"ඔබගේ පිළිතුර නිවැරදියි."},{en:"Turn right.",si:"දකුණට හැරෙන්න."}]},
 {id:"light",en:"light",si:["ආලෝකය","සැහැල්ලු"],pos:"noun / adjective",pronunciation:"ලයිට්",examples:[{en:"Turn on the light.",si:"විදුලි පහන දල්වන්න."}]}
 ,
-{id:"dog",en:"dog",si:["බල්ලා","බල්ලි"],pos:"noun",pronunciation:"ඩෝග්",examples:[{en:"The dog is friendly.",si:"බල්ලා මිත්‍රශීලීයි."},{en:"I have a dog.",si:"මට බල්ලෙක් ඉන්නවා."}]},
+{id:"dog",en:"dog",si:["බල්ලා","බල්ලෙක්"],pos:"noun",pronunciation:"ඩෝග්",examples:[{en:"The dog is friendly.",si:"බල්ලා මිත්‍රශීලීයි."},{en:"I have a dog.",si:"මට බල්ලෙක් ඉන්නවා."}]},
 {id:"cat",en:"cat",si:["පූසා","බළලා"],pos:"noun",pronunciation:"කැට්",examples:[{en:"The cat is sleeping.",si:"පූසා නිදාගෙන ඉන්නවා."},{en:"I see a cat.",si:"මට පූසෙක් පේනවා."}]},
 {id:"bird",en:"bird",si:["කුරුල්ලා","පක්ෂියා"],pos:"noun",pronunciation:"බර්ඩ්",examples:[{en:"The bird can fly.",si:"කුරුල්ලාට පියාඹන්න පුළුවන්."}]},
 {id:"fish",en:"fish",si:["මාළුවා","මාළු"],pos:"noun",pronunciation:"ෆිෂ්",examples:[{en:"The fish is in the water.",si:"මාළුවා වතුරේ ඉන්නවා."}]}
