@@ -1,7 +1,7 @@
 # Platform Architecture — Lingua AI English Academy
 
 ## Goals
-Deliver three connected products: a learner web application, a separate administrator web application, and an Android APK. All clients use one secured backend and one learner identity so progress follows the learner across devices.
+Deliver three connected products: a learner web application, a separate administrator web application, and an Android APK. All clients use one secured backend and one learner identity so progress follows the learner across devices. Provide a searchable Sinhala-English and English-Sinhala dictionary integrated with vocabulary learning.
 
 ## Logical components
 
@@ -10,7 +10,8 @@ Learner Web App ─────┐
                      ├── HTTPS API ── Authentication / OTP service
 Android APK ─────────┤             ├── Learner & progress services
                      │             ├── Curriculum / quiz services
-Admin Web App ───────┘             ├── AI tutor gateway
+Admin Web App ───────┘             ├── Bilingual dictionary service
+                                   ├── AI tutor gateway
                                    ├── Admin / reporting services
                                    └── Email delivery adapter
                                           │
@@ -18,8 +19,8 @@ Admin Web App ───────┘             ├── AI tutor gateway
 ```
 
 ## Applications
-- **Learner Web:** responsive student dashboard, lessons, vocabulary, quizzes, AI teacher, speaking/listening, writing, reading, progress and profile.
-- **Admin Panel:** separately deployed application and route; admin dashboard, learner management, curriculum/content editor, quiz management, usage reports, system settings, audit log.
+- **Learner Web:** responsive student dashboard, lessons, Sinhala-English dictionary, vocabulary, quizzes, AI teacher, speaking/listening, writing, reading, progress and profile.
+- **Admin Panel:** separately deployed application and route; admin dashboard, learner management, curriculum/content editor, dictionary entry editor, quiz management, usage reports, system settings, audit log.
 - **Android:** Capacitor-based wrapper is the proposed first APK approach. It loads the learner application and uses the same HTTPS API and account. Native microphone/audio permissions are requested only when needed.
 
 ## Backend responsibilities
@@ -27,9 +28,10 @@ Admin Web App ───────┘             ├── AI tutor gateway
 - Authorization: learner/admin roles enforced on every protected API route; admin permissions and elevated actions checked server-side.
 - Learner: profile, preferences, daily target and account state.
 - Curriculum: units, lessons, translations, examples, activities, quizzes and versioning.
-- Learning: attempts, answers, completion, vocabulary mastery, skill evidence, review queue.
+- **Dictionary:** bilingual search in both directions, entry/sense retrieval, pronunciation metadata, example sentences, content versioning and moderation.
+- Learning: attempts, answers, completion, vocabulary mastery, saved words, search history, skill evidence and review queue.
 - AI gateway: validate requests, apply limits, call configured model provider, return structured tutor feedback.
-- Administration: account actions, content publishing, reports, settings and audit events.
+- Administration: account actions, curriculum and dictionary publishing, reports, settings and audit events.
 - Synchronisation: authoritative server records, idempotent writes, updated timestamps and conflict-safe merge.
 
 ## Authentication policy
@@ -82,11 +84,26 @@ This is a proposed baseline, not a claim that these services have already been p
 - `admin_auth_policies`: user_id, allowed_methods, required_second_factor, updated_by, updated_at.
 - `sessions`: id, user_id, token_hash, auth_method, mfa_verified_at, expires_at, revoked_at, created_at.
 - `units`, `lessons`, `lesson_translations`, `activities`, `questions`: versioned curriculum content.
+- `dictionary_entries`: id, headword, normalized_headword, language, pronunciation_text, pronunciation_audio_ref, part_of_speech, status, source_attribution, content_version, created_at, updated_at.
+- `dictionary_senses`: id, entry_id, meaning_text, target_language, sense_order, usage_label.
+- `dictionary_examples`: id, sense_id, sentence_text, translation_text, audio_ref, example_order.
+- `learner_saved_words`: user_id, entry_id, saved_at, review_status.
+- `dictionary_search_history`: id, user_id, query_text, query_language, searched_at; retention and clear-history controls apply.
 - `lesson_attempts`, `quiz_attempts`, `answer_events`: learner activity and results.
 - `vocabulary_items`, `learner_vocabulary`, `review_schedule`: vocabulary and spaced review.
 - `skill_evidence`, `recommendations`: evidence-based mastery and next steps.
 - `admin_audit_events`: actor, action, target, timestamp and safe metadata.
 - `app_settings`: controlled platform configuration; secrets remain in secret storage, not this table.
+
+## Dictionary search and content rules
+- Search English-to-Sinhala and Sinhala-to-English, with language selection and an optional automatic direction.
+- Support Sinhala Unicode input, English case-insensitive matching, and sensible prefix matching; add typo-tolerance only when it can return clearly labelled, relevant suggestions.
+- A result may contain multiple senses. Show part of speech, concise translations, usage labels, pronunciation text/audio when available, and simple example sentences with translations.
+- Clearly distinguish verified dictionary content from AI-generated suggestions. AI suggestions must not silently become authoritative dictionary entries.
+- Dictionary content must come from content the project owns, has permission to use, or is properly licensed to redistribute. Preserve required source attribution and review entries before publication.
+- Let learners save words, view recent searches, practise saved words, and add suitable entries to revision.
+- Provide controls to clear personal search history and remove saved words. Do not expose one learner's saved words or search history to another learner.
+- Admins can draft, review, publish, update, archive and audit dictionary entries. Only published entries are visible to learners.
 
 ## Security and privacy baseline
 - HTTPS only; strict CORS allowlist; secure headers; input validation; output encoding.
@@ -96,13 +113,13 @@ This is a proposed baseline, not a claim that these services have already been p
 - OTP/session/password-reset secrets and AI/email credentials stored as deployment secrets.
 - Rate limiting for OTP, password attempts, MFA verification, AI, and sensitive admin operations.
 - Avoid logging raw OTPs, passwords, recovery codes, session tokens, or unnecessary learner writing/audio.
-- Data retention, export, deletion, and consent rules documented before production.
+- Data retention, export, deletion, and consent rules documented before production; apply appropriate retention to dictionary search history.
 - Backups and restore tests before launch.
 
 ## Build order
 1. API skeleton, database migrations, health endpoint and automated tests.
 2. Learner email OTP, admin password + 2FA and admin passwordless email OTP, secure sessions, role-based access and admin bootstrap process.
-3. Learner profile, curriculum API and cloud progress sync.
-4. Separate admin app and protected management APIs.
+3. Learner profile, curriculum API, dictionary search/content API and cloud progress sync.
+4. Separate admin app and protected learner, curriculum and dictionary management APIs.
 5. AI tutor gateway, then speaking/listening and adaptive services.
 6. Capacitor Android wrapper, signing and device QA.
