@@ -1,0 +1,13 @@
+name = "lingua-academy-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lingua-academy-db"
+database_id = "478e35dc-8dc5-476c-af43-4ad727436dc6"
+migrations_dir = "migrations"
