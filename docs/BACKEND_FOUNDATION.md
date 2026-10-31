@@ -13,7 +13,8 @@ Implemented:
 - Node regression tests cover the health route, generic routing, and CORS allowlisting.
 
 Not implemented:
-- No OTP generation, email delivery, or OTP verification.
+- Provider-neutral OTP primitives are implemented: six-digit cryptographically random code generation, email normalization, input validation, and HMAC-SHA-256 digest creation.
+- No OTP challenge persistence, email delivery, OTP verification endpoint, or session issuance. The primitives are not a complete login flow.
 - No password hashing, admin 2FA/TOTP, recovery codes, or session issuance.
 - No authenticated learner/admin APIs or cloud progress sync.
 - No database binding or production deployment.
@@ -26,6 +27,10 @@ Use Node.js 20 or later:
 ```sh
 node --test tests/*.test.js
 ```
+
+## OTP primitive module
+
+`backend/src/auth/otp.js` contains reusable primitives only. It requires a secret pepper of at least 32 characters for HMAC hashing. Store that pepper only as a Worker secret. The helper does not persist OTP challenges, send email, enforce rate limits, verify an OTP against D1, or issue sessions. Those operations must be implemented together with atomic D1 operations and a configured email provider before enabling login.
 
 ## Cloudflare D1 preparation
 
