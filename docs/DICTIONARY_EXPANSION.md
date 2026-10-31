@@ -7,7 +7,7 @@ Grow the learner dictionary to at least 1,000 useful English headwords with Sinh
 ## Current implementation
 
 - 171 dictionary entries are present after the latest expansion.
-- Added a second curated batch of 45 beginner words covering family, people, home, food, shopping, transport, places, time, actions, feelings, descriptions and weather. The dictionary contains 171 entries in total. covering family, people, home, education, food, time, nature, travel, places, daily life, actions, feelings and descriptions.
+- Added a second curated batch of 45 beginner words covering family, people, home, food, shopping, transport, places, time, actions, feelings, descriptions and weather. The dictionary contains 171 entries in total.
 - New entries carry a category, part of speech, Sinhala meaning and a bilingual example.
 - The existing live search and suggestion UI reads from the same dictionary dataset.
 
