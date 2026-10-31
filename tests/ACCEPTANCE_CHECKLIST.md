@@ -61,3 +61,5 @@
 - [ ] Failed learners can retry and receive a different question set.
 - [ ] Repeated retries do not immediately repeat the same five-question set.
 - [ ] Lesson exam pass/fail and retry flows work on mobile and desktop browsers.
+
+\n## Sinhala translation quality\n- [ ] Search common nouns such as cat and water; verify that only reviewed, word-specific bilingual examples appear.\n- [ ] Confirm no generic English sentence is translated by simply appending a Sinhala dictionary meaning.\n- [ ] Have a fluent Sinhala reviewer check new meanings and example sentences before publication.\n
