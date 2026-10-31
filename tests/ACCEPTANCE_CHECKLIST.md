@@ -38,7 +38,7 @@
 - [ ] Deployment and rollback steps are documented.
 - [ ] Monitoring excludes sensitive learner content.
 
-## Sinhala ↔ English Dictionary
+## Sinhala ↔ English Dictionary\n- [ ] Dictionary contains at least 171 unique, valid beginner entries until the next expansion milestone.\n- [ ] Newly added headwords are searchable by English and Sinhala.
 - [ ] Dictionary is reachable from the learner navigation on desktop and mobile.
 - [ ] English-to-Sinhala search returns matching entries.
 - [ ] Sinhala-to-English search handles Sinhala Unicode input.
