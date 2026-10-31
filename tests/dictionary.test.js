@@ -111,3 +111,15 @@ test("latest categorized vocabulary batch is searchable in both languages", () =
   assert.ok(search("සීයා", "si-en").some((entry) => entry.id === "grandfather"));
   assert.ok(search("දුම්රිය", "si-en").some((entry) => entry.id === "train"));
 });
+
+test("AI-reviewed Sinhala corrections remain in the dictionary", () => {
+  const byId = Object.fromEntries(entries.map((entry) => [entry.id, entry]));
+  assert.ok(byId.no.examples.some((x) => x.en === "No, thank you." && x.si === "නැහැ, ස්තුතියි."));
+  assert.ok(byId.dog.si.includes("බල්ලෙක්"));
+  assert.ok(!byId.dog.si.includes("බල්ලි"));
+  assert.ok(byId["good-morning"].si.includes("සුබ උදෑසනක්"));
+  assert.ok(byId["thank-you"].si.includes("ස්තුතියි"));
+  assert.ok(byId.cousin.si.includes("ඥාති සහෝදරයා / සහෝදරිය"));
+  assert.ok(byId.thirsty.si.includes("පිපාසය ඇති"));
+  assert.ok(byId.sunny.examples[0].si.includes("අව්ව පායනවා"));
+});
