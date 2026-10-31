@@ -103,4 +103,10 @@ test("expanded entries include category metadata for grouped learning", () => {
   }
 });
 
-test("latest categorized vocabulary batch is searchable in both languages", () => {\n  for (const word of ["grandfather", "grandmother", "husband", "vegetable", "price", "train", "station", "early", "wait", "tired", "rainy", "sunny"]) {\n    assert.ok(entries.some((entry) => entry.id === word), "missing headword: " + word);\n  }\n  assert.ok(search("සීයා", "si-en").some((entry) => entry.id === "grandfather"));\n  assert.ok(search("දුම්රිය", "si-en").some((entry) => entry.id === "train"));\n});\n
+test("latest categorized vocabulary batch is searchable in both languages", () => {
+  for (const word of ["grandfather", "grandmother", "husband", "vegetable", "price", "train", "station", "early", "wait", "tired", "rainy", "sunny"]) {
+    assert.ok(entries.some((entry) => entry.id === word), "missing headword: " + word);
+  }
+  assert.ok(search("සීයා", "si-en").some((entry) => entry.id === "grandfather"));
+  assert.ok(search("දුම්රිය", "si-en").some((entry) => entry.id === "train"));
+});
