@@ -76,3 +76,11 @@
 - [ ] Listen button speaks the matching English example.
 - [ ] No duplicate copy of the same examples appears in the result card.
 - [ ] Check practice controls on a narrow Android viewport.
+
+## Dictionary interactive sentence quiz
+- [ ] Show Sinhala prompt with four English answer choices when possible.
+- [ ] Correct answer increases score and shows positive feedback.
+- [ ] Incorrect answer reveals the correct sentence and is recorded for retry.
+- [ ] Completed quiz displays score.
+- [ ] Retry incorrect answers creates a fresh attempt with only missed items.
+- [ ] On mobile, answer choices stack in one column.
