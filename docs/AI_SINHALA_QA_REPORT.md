@@ -24,7 +24,12 @@
 - Clarified the gender-neutral learner gloss for `cousin` as `ඥාති සහෝදරයා / සහෝදරිය`.
 - Added `පිපාසය ඇති` as a clearer Sinhala gloss for `thirsty`.
 - Improved the `sunny` example to `අද හොඳට අව්ව පායනවා.`
-- Kept the `love learning English` example as a natural learner-level expression of strong liking, rather than forcing a literal word-for-word translation.
+- Changed the `love` example to `I love my mother.` / `මම මගේ අම්මාට ආදරෙයි.`, which clearly teaches the core meaning `ආදරය`.
+- Corrected `The food is good` to `කෑම හොඳයි` rather than changing `good` into `tasty`.
+- Replaced the `slow` example with `The bus is slow` / `බස් රථය මන්දගාමීයි`, matching the adjective form.
+- Replaced the `stand up` example with `Please stand here` / `කරුණාකර මෙතැන හිටගන්න`, so the Sinhala translation teaches `stand` rather than `get up`.
+- Improved the `soap`, `potato`, and `onion` examples with more natural, specific Sinhala phrasing.
+- Standardized `morning`, `night`, and `day` example greetings to `සුබ` spelling.
 - Removed automatically generated generic noun/verb/adjective practice sentences from the learner UI. Only word-specific reviewed examples are displayed.
 
 ## QA result
