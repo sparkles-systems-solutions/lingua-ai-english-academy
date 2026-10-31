@@ -36,3 +36,38 @@
 - Clearly explain browser/device support for speech features.
 - Save progress safely and provide a clear privacy explanation.
 - Tests for lesson flow, answer evaluation, progress persistence, and API failure handling.
+
+## Platform and account requirements (added 2026-10-31)
+
+### Separate backend
+- Build a dedicated backend API, separate from the learner web interface and admin panel.
+- The backend is the trusted source for authentication, learner profiles, curriculum delivery, AI tutor requests, learning activity, progress, reports, and platform settings.
+- Validate all inputs and enforce authorization on the server; never rely on hidden UI controls for security.
+- Keep database credentials, email-provider credentials, AI-provider keys, and signing secrets in deployment secret storage, never in Git or browser code.
+- Include API versioning, structured error responses, request validation, rate limiting, audit events for privileged actions, and automated tests.
+
+### Separate admin panel
+- Build a separate admin web application and route/deployment from the learner application.
+- Admin access must be role-based and protected by server-side authorization.
+- Admin features: overview dashboard, learner account management, curriculum/lesson management, vocabulary and quiz management, AI tutor configuration, usage/learning reports, and platform settings.
+- Admin actions that change learner access or curriculum must be auditable.
+- Learner-facing registration must never grant admin privileges.
+
+### Email registration and OTP login
+- Learners can register and sign in using an email address.
+- Send a short-lived one-time passcode (OTP) to the supplied email address and verify it before issuing a session.
+- Include OTP expiry, single-use enforcement, resend cooldown, attempt limits, rate limiting, generic responses that reduce account enumeration, and secure session expiry/revocation.
+- Store OTP verification material securely (prefer hashed codes); do not log OTP values.
+- Do not require a password for the initial passwordless email OTP flow. Password or social login may be considered later only if explicitly approved.
+- Email delivery provider must be configurable; credentials stay server-side.
+
+### Android APK
+- Deliver an installable Android APK for the learner application.
+- Reuse the learner web experience where practical through a maintained Android wrapper (for example Capacitor), while keeping native permissions and device integration explicit.
+- APK must use the same backend and learner account as the web app so progress synchronises across devices.
+- Include app signing, versioning, release build instructions, and a repeatable build process.
+- Do not claim an APK is ready until a release build has been generated and tested on Android devices.
+
+### Cross-platform data
+- A learner's profile, completed lessons, quiz history, vocabulary mastery, review schedule, and learning analytics should sync through the backend.
+- Clearly show offline or sync-pending states; resolve conflicts safely and never silently discard progress.
