@@ -54,7 +54,7 @@
   <p class="sub">Search in either language. Learn meanings, examples and pronunciation step by step.</p>
   <div class="panel dictionary-search">
    <div class="dict-controls"><select id="dictDirection" aria-label="Search direction"><option value="auto">Auto detect / භාෂාව හඳුනාගන්න</option><option value="en-si">English → Sinhala</option><option value="si-en">Sinhala → English</option></select><input id="dictQuery" type="search" placeholder="Type an English or Sinhala word..." aria-label="Dictionary search"><button class="btn" id="dictSearchBtn">Search</button></div>
-   <div class="sub">Examples: hello · water · ආදරය · පොත</div>
+   <div class="sub">Examples: hello · water · ආදරය · පොත</div><div id="dictSuggestions" class="dict-chips" aria-live="polite" style="margin-top:12px"></div>
   </div>
   <div class="dict-layout"><div><div class="panel"><div class="panel-head"><h3>Search results</h3><span class="sub" id="dictResultCount">Starter dictionary</span></div><div id="dictResults"><p class="empty">Type a word above to begin.</p></div></div>
    <div class="panel"><div class="panel-head"><h3>Recent searches</h3><button class="text-button" id="clearDictHistory">Clear history</button></div><div id="dictHistory" class="dict-chips"><span class="empty">Your recent searches will appear here.</span></div></div></div>
@@ -109,11 +109,18 @@ function findDictionaryWords(query,direction){
   return Number(exact(b))-Number(exact(a));
  });
 }
-function searchDictionary(queryOverride){
+function renderDictSuggestions(query){
+ const host=document.getElementById("dictSuggestions"),q=query.normalize("NFC").trim().toLocaleLowerCase();
+ if(!q){host.innerHTML="";return;}
+ const found=findDictionaryWords(q,document.getElementById("dictDirection").value).slice(0,6);
+ host.innerHTML=found.length?'<span class="sub">Suggestions / යෝජනා:</span>'+found.map(({entry})=>'<button type="button" data-dict-suggest="'+dictEscape(entry.id)+'">'+dictEscape(entry.en)+' · '+dictEscape(entry.si[0])+'</button>').join(""):'<span class="sub">No suggestions / යෝජනා නැහැ.</span>';
+ host.querySelectorAll("[data-dict-suggest]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSuggest);if(entry){document.getElementById("dictQuery").value=entry.en;searchDictionary(entry.en);}}));
+}
+function searchDictionary(queryOverride,recordHistory=true){
  const input=document.getElementById("dictQuery"),direction=document.getElementById("dictDirection");
  const query=(queryOverride??input.value).trim();if(!query){document.getElementById("dictResults").innerHTML='<div class="dict-empty">Please type a word in English or Sinhala. / කරුණාකර වචනයක් ඇතුළත් කරන්න.</div>';document.getElementById("dictResultCount").textContent="0 results";return;}
  input.value=query;const matches=findDictionaryWords(query,direction.value);
- state.dictionaryHistory=[{q:query,direction:direction.value},...(state.dictionaryHistory||[]).filter(x=>x.q!==query||x.direction!==direction.value)].slice(0,8);save();
+ if(recordHistory){state.dictionaryHistory=[{q:query,direction:direction.value},...(state.dictionaryHistory||[]).filter(x=>x.q!==query||x.direction!==direction.value)].slice(0,8);save();}
  document.getElementById("dictResultCount").textContent=matches.length+" result"+(matches.length===1?"":"s");
  document.getElementById("dictResults").innerHTML=matches.length?matches.map(({entry})=>'<article class="dict-result"><div class="dict-word-head"><div><h3>'+dictEscape(entry.en)+'</h3><div class="dict-pron">Pronunciation: '+dictEscape(entry.pronunciation||"Not available")+'</div></div><span class="dict-pos">'+dictEscape(entry.pos||"Word")+'</span></div><div class="dict-meaning">'+entry.si.map(dictEscape).join(" · ")+'</div>'+entry.examples.map(ex=>'<div class="dict-example"><strong>'+dictEscape(ex.en)+'</strong><small>'+dictEscape(ex.si)+'</small></div>').join("")+'<div class="dict-actions"><button data-dict-speak="'+dictEscape(entry.id)+'">🔊 Listen</button><button data-dict-save="'+dictEscape(entry.id)+'">'+(state.savedDictionaryWords.includes(entry.id)?"★ Saved":"☆ Save word")+'</button></div></article>').join(""):'<div class="dict-empty">No matching word found. Try another spelling or change the search direction. / ගැළපෙන වචනයක් හමු වුණේ නැහැ.</div>';
  document.querySelectorAll("[data-dict-speak]").forEach(button=>button.addEventListener("click",()=>{const entry=getDictionary().find(x=>x.id===button.dataset.dictSpeak);if(entry)speak(entry.en)}));
@@ -137,6 +144,7 @@ function renderDictionaryExtras(){
 }
 function renderDictionary(){renderDictionaryExtras();}
 document.getElementById("dictSearchBtn").addEventListener("click",()=>searchDictionary());
+ document.getElementById("dictQuery").addEventListener("input",event=>{const q=event.target.value;renderDictSuggestions(q);if(q.trim())searchDictionary(q,false);else{document.getElementById("dictResults").innerHTML="<p class=\"empty\">Type a word above to begin.</p>";document.getElementById("dictResultCount").textContent="Starter dictionary";}});
 document.getElementById("dictQuery").addEventListener("keydown",event=>{if(event.key==="Enter")searchDictionary();});
 document.getElementById("dictDirection").addEventListener("change",()=>{if(document.getElementById("dictQuery").value)searchDictionary();});
 document.getElementById("clearDictHistory").addEventListener("click",()=>{state.dictionaryHistory=[];save();renderDictionaryExtras();});
