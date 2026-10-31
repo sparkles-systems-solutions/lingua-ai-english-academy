@@ -90,11 +90,34 @@ class MigrationExecutionTests(unittest.TestCase):
             )
 
     def test_foreign_key_cascade_removes_learner_profile(self):
-        self.db.execute("DELETE FROM users WHERE id='learner-1'")
+        self.db.execute(
+            "INSERT INTO users (id, email_normalized) VALUES (?, ?)",
+            ("cascade-user", "cascade@example.test"),
+        )
+        self.db.execute(
+            "INSERT INTO learner_profiles (user_id) VALUES (?)", ("cascade-user",)
+        )
+        self.db.execute("DELETE FROM users WHERE id='cascade-user'")
         remaining = self.db.execute(
-            "SELECT COUNT(*) FROM learner_profiles WHERE user_id='learner-1'"
+            "SELECT COUNT(*) FROM learner_profiles WHERE user_id='cascade-user'"
         ).fetchone()[0]
         self.assertEqual(remaining, 0)
+
+    def test_email_uniqueness_and_otp_purpose_constraints(self):
+        self.db.execute(
+            "INSERT INTO users (id, email_normalized) VALUES (?, ?)",
+            ("unique-user", "unique@example.test"),
+        )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO users (id, email_normalized) VALUES (?, ?)",
+                ("duplicate-user", "unique@example.test"),
+            )
+        with self.assertRaises(sqlite3.IntegrityError):
+            self.db.execute(
+                "INSERT INTO otp_challenges (id, email_normalized, purpose, code_hash, expires_at) VALUES (?, ?, ?, ?, ?)",
+                ("bad-otp", "unique@example.test", "password_reset", "hash", "2030-01-01T00:00:00Z"),
+            )
 
     def test_foreign_key_pragma_is_enabled(self):
         self.assertEqual(self.db.execute("PRAGMA foreign_keys").fetchone()[0], 1)
