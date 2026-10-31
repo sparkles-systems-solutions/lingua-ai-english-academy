@@ -162,7 +162,8 @@ function wireExamplePractice(){
   if(answer){answer.hidden=!answer.hidden;button.textContent=answer.hidden?"Show English":"Hide English";}
  }));
  document.querySelectorAll("[data-example-speak]").forEach(button=>button.addEventListener("click",()=>{
-  const [id,index]=button.dataset.exampleSpeak.split("-");
+  const key=button.dataset.exampleSpeak,separator=key.lastIndexOf("-");
+  const id=key.slice(0,separator),index=key.slice(separator+1);
   const entry=getDictionary().find(x=>x.id===id),example=entry&&entry.examples[Number(index)];
   if(example)speak(example.en);
  }));
