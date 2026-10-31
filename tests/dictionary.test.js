@@ -67,7 +67,7 @@ test("dictionary page reacts while the learner types and offers suggestions", ()
 
 test("dictionary displays only reviewed, word-specific bilingual examples", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
-  assert.match(html, /Try saying it in English \/ ඉංග්‍රීසියෙන් කියන්න උත්සාහ කරන්න/);
+  assert.match(html, /Sentence practice \/ වාක්‍ය පුහුණුව/);
   assert.match(html, /return Array\.isArray\(entry\.examples\)\?entry\.examples:\[\]/);
   assert.doesNotMatch(html, /Use this word – 5 practice sentences/);
   assert.ok(entries.find((entry) => entry.id === "cat").examples.some((x) => x.en === "I see a cat." && x.si === "මට පූසෙක් පේනවා."));
@@ -140,7 +140,7 @@ test("AI QA corrections keep Sinhala and English examples aligned", () => {
 
 test("dictionary practice uses Sinhala prompts with revealable English and audio actions", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
-  assert.match(html, /Try saying it in English \/ ඉංග්‍රීසියෙන් කියන්න උත්සාහ කරන්න/);
+  assert.match(html, /Sentence practice \/ වාක්‍ය පුහුණුව/);
   assert.match(html, /data-example-reveal/);
   assert.match(html, /data-example-speak/);
   assert.match(html, /function wireExamplePractice/);
