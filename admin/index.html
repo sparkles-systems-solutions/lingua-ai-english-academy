@@ -36,6 +36,19 @@ label{display:block;font-size:13px;font-weight:650;margin:14px 0 6px}input{width
 </section>
 <section id="dashboard">
 <h1>Admin Console</h1><p class="muted">Authenticated administrator session</p><p id="adminIdentity"></p>
+<section id="totpSetup" class="notice">
+<strong>Authenticator app setup</strong>
+<p>First-time administrators: connect an authenticator app and verify it to enable Password + TOTP login.</p>
+<button class="action" id="startTotp" type="button">Set up authenticator</button>
+<div id="totpPending" hidden>
+<p>Scan/import this setup URI in your authenticator app, or enter the secret manually. Keep it private.</p>
+<label for="totpSecret">Authenticator secret</label><input id="totpSecret" readonly>
+<label for="totpUri">Setup URI</label><input id="totpUri" readonly>
+<label for="enrollCode">Current six-digit authenticator code</label><input id="enrollCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6">
+<button class="action" id="verifyTotp" type="button">Verify and enable</button>
+</div>
+<div id="totpStatus" role="status" aria-live="polite"></div>
+</section>
 <ul><li>Administrator access verified by the server.</li><li>Dictionary and learner management modules will be enabled in subsequent phases.</li></ul>
 <button class="action" id="logout" type="button">Sign out</button>
 </section>
@@ -55,11 +68,14 @@ async function call(path,body,auth){
  return data;
 }
 function showDashboard(user){$("login").style.display="none";$("dashboard").style.display="block";$("adminIdentity").textContent=user.email+" · Administrator"}
+async function startTotp(){const b=$("startTotp");b.disabled=true;$("totpStatus").textContent="Preparing secure enrollment…";try{const data=await call("/admin/mfa/totp/setup",{},token());$("totpSecret").value=data.secret;$("totpUri").value=data.otpauth_uri;$("totpPending").hidden=false;$("totpStatus").textContent="Add the account to your authenticator app, then enter its current six-digit code."}catch(err){$("totpStatus").textContent=err.message}finally{b.disabled=false}}
+async function verifyTotp(){const b=$("verifyTotp");b.disabled=true;try{const data=await call("/admin/mfa/totp/verify",{code:$("enrollCode").value},token());$("totpPending").hidden=true;$("totpSecret").value="";$("totpUri").value="";$("totpStatus").textContent=data.message}catch(err){$("totpStatus").textContent=err.message}finally{b.disabled=false}}
 async function restore(){if(!token())return;try{const data=await call("/admin/me",null,token());showDashboard(data.user)}catch{sessionStorage.removeItem(tokenKey)}}
 $("passwordTab").onclick=()=>{ $("passwordTab").setAttribute("aria-selected","true");$("otpTab").setAttribute("aria-selected","false");$("passwordForm").hidden=false;$("otpForm").hidden=true;message("Password login requires a valid authenticator code.")};
 $("otpTab").onclick=()=>{ $("passwordTab").setAttribute("aria-selected","false");$("otpTab").setAttribute("aria-selected","true");$("passwordForm").hidden=true;$("otpForm").hidden=false;message("An email code is available only to approved administrators.")};
 $("passwordForm").onsubmit=async e=>{e.preventDefault();const b=$("passwordForm").querySelector("button");b.disabled=true;message("Verifying credentials…");try{const data=await call("/admin/auth/password-totp",{email:$("pEmail").value,password:$("pPassword").value,totp:$("pTotp").value});sessionStorage.setItem(tokenKey,data.token);showDashboard(data.user)}catch(err){message(err.message)}finally{b.disabled=false}};
 $("otpForm").onsubmit=async e=>{e.preventDefault();const b=$("otpAction");b.disabled=true;try{let data;if(!otpRequested){data=await call("/admin/auth/otp/request",{email:$("oEmail").value});otpRequested=true;$("otpCodeWrap").hidden=false;b.textContent="Verify email code";message("If this address is an approved admin account, a code has been sent.")}else{data=await call("/admin/auth/otp/verify",{email:$("oEmail").value,code:$("oCode").value});sessionStorage.setItem(tokenKey,data.token);showDashboard(data.user)}}catch(err){message(err.message)}finally{b.disabled=false}};
+$("startTotp").onclick=startTotp;$("verifyTotp").onclick=verifyTotp;
 $("logout").onclick=async()=>{try{await fetch(API+"/auth/logout",{method:"POST",headers:{authorization:"Bearer "+token()}})}finally{sessionStorage.removeItem(tokenKey);location.reload()}};
 restore();
 })();
