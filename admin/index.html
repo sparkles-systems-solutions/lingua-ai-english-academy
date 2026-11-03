@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lingua AI · Admin Console</title>
+<style>
+:root{color-scheme:light;font-family:Inter,system-ui,Arial,sans-serif;background:#f4f6fb;color:#172033}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px}
+main{width:min(100%,480px);background:white;border:1px solid #e4e8f0;border-radius:20px;padding:30px;box-shadow:0 16px 50px #1b2a4412}
+.brand{font-weight:800;letter-spacing:.08em;color:#4257a6;font-size:13px}h1{font-size:27px;margin:12px 0 6px}.muted{color:#68738a;font-size:14px;line-height:1.5}
+.tabs{display:flex;gap:8px;margin:24px 0 18px}.tabs button{flex:1}.tabs button,.action{border:0;border-radius:10px;padding:12px 14px;background:#edf0f8;color:#26345b;font-weight:650;cursor:pointer}
+.tabs button[aria-selected=true],.action{background:#344c9b;color:white}
+label{display:block;font-size:13px;font-weight:650;margin:14px 0 6px}input{width:100%;padding:13px;border:1px solid #d8deea;border-radius:10px;font-size:15px}
+.action{width:100%;margin-top:18px}button:disabled{opacity:.55;cursor:not-allowed}
+.panel[hidden]{display:none}.notice{margin-top:16px;padding:12px;border-radius:10px;background:#f1f4fb;color:#3d4b6b;font-size:13px;white-space:pre-wrap}
+#dashboard{display:none}#dashboard ul{padding-left:20px}footer{margin-top:20px;font-size:12px;color:#778198}
+</style>
+</head>
+<body><main>
+<div class="brand">LINGUA AI ENGLISH ACADEMY</div>
+<section id="login">
+<h1>Administrator sign in</h1><p class="muted">Restricted access. Only approved administrator accounts can continue.</p>
+<div class="tabs" role="tablist"><button id="passwordTab" aria-selected="true" type="button">Password + TOTP</button><button id="otpTab" aria-selected="false" type="button">Email OTP</button></div>
+<form id="passwordForm" class="panel">
+<label for="pEmail">Administrator email</label><input id="pEmail" type="email" autocomplete="username" required maxlength="254">
+<label for="pPassword">Password</label><input id="pPassword" type="password" autocomplete="current-password" required maxlength="256">
+<label for="pTotp">Authenticator code</label><input id="pTotp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6" required>
+<button class="action" type="submit">Sign in securely</button>
+</form>
+<form id="otpForm" class="panel" hidden>
+<label for="oEmail">Administrator email</label><input id="oEmail" type="email" autocomplete="username" required maxlength="254">
+<div id="otpCodeWrap" hidden><label for="oCode">Six-digit email code</label><input id="oCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" minlength="6" maxlength="6"></div>
+<button class="action" id="otpAction" type="submit">Send email code</button>
+</form>
+<div id="message" class="notice" role="status" aria-live="polite">Choose a sign-in method.</div>
+</section>
+<section id="dashboard">
+<h1>Admin Console</h1><p class="muted">Authenticated administrator session</p><p id="adminIdentity"></p>
+<ul><li>Administrator access verified by the server.</li><li>Dictionary and learner management modules will be enabled in subsequent phases.</li></ul>
+<button class="action" id="logout" type="button">Sign out</button>
+</section>
+<footer>Security: sessions are held in this browser tab and can be revoked by signing out.</footer>
+</main>
+<script>
+(function(){
+const API="https://lingua-academy-api.dilshan7878787.workers.dev/api/v1";
+const $=id=>document.getElementById(id), tokenKey="lingua-admin-session";
+let otpRequested=false;
+function message(text){$("message").textContent=text}
+function token(){return sessionStorage.getItem(tokenKey)}
+async function call(path,body,auth){
+ const response=await fetch(API+path,{method:body?"POST":"GET",headers:{...(body?{"content-type":"application/json"}:{}),...(auth?{authorization:"Bearer "+auth}:{})},body:body?JSON.stringify(body):undefined});
+ let data={};try{data=await response.json()}catch{}
+ if(!response.ok)throw new Error(data.message||data.error||"Request failed ("+response.status+")");
+ return data;
+}
+function showDashboard(user){$("login").style.display="none";$("dashboard").style.display="block";$("adminIdentity").textContent=user.email+" · Administrator"}
+async function restore(){if(!token())return;try{const data=await call("/admin/me",null,token());showDashboard(data.user)}catch{sessionStorage.removeItem(tokenKey)}}
+$("passwordTab").onclick=()=>{ $("passwordTab").setAttribute("aria-selected","true");$("otpTab").setAttribute("aria-selected","false");$("passwordForm").hidden=false;$("otpForm").hidden=true;message("Password login requires a valid authenticator code.")};
+$("otpTab").onclick=()=>{ $("passwordTab").setAttribute("aria-selected","false");$("otpTab").setAttribute("aria-selected","true");$("passwordForm").hidden=true;$("otpForm").hidden=false;message("An email code is available only to approved administrators.")};
+$("passwordForm").onsubmit=async e=>{e.preventDefault();const b=$("passwordForm").querySelector("button");b.disabled=true;message("Verifying credentials…");try{const data=await call("/admin/auth/password-totp",{email:$("pEmail").value,password:$("pPassword").value,totp:$("pTotp").value});sessionStorage.setItem(tokenKey,data.token);showDashboard(data.user)}catch(err){message(err.message)}finally{b.disabled=false}};
+$("otpForm").onsubmit=async e=>{e.preventDefault();const b=$("otpAction");b.disabled=true;try{let data;if(!otpRequested){data=await call("/admin/auth/otp/request",{email:$("oEmail").value});otpRequested=true;$("otpCodeWrap").hidden=false;b.textContent="Verify email code";message("If this address is an approved admin account, a code has been sent.")}else{data=await call("/admin/auth/otp/verify",{email:$("oEmail").value,code:$("oCode").value});sessionStorage.setItem(tokenKey,data.token);showDashboard(data.user)}}catch(err){message(err.message)}finally{b.disabled=false}};
+$("logout").onclick=async()=>{try{await fetch(API+"/auth/logout",{method:"POST",headers:{authorization:"Bearer "+token()}})}finally{sessionStorage.removeItem(tokenKey);location.reload()}};
+restore();
+})();
+</script></body></html>
