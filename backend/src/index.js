@@ -125,11 +125,9 @@ async function verifyLearnerOtp(request, env) {
   const sessionId = randomId();
   const token = randomToken();
   const tokenHash = await hmac(token, env.SESSION_PEPPER);
-  const statements = [
-    env.DB.prepare("UPDATE otp_challenges SET consumed_at = datetime('now') WHERE id = ? AND consumed_at IS NULL").bind(challenge.id),
-    env.DB.prepare("INSERT INTO users (id, email_normalized, email_verified_at, role, status) VALUES (?, ?, datetime('now'), 'learner', 'active') ON CONFLICT(email_normalized) DO UPDATE SET email_verified_at = COALESCE(users.email_verified_at, datetime('now')), updated_at = datetime('now')").bind(userId, email)
-  ];
-  await env.DB.batch(statements);
+  const consumed = await env.DB.prepare("UPDATE otp_challenges SET consumed_at = datetime('now') WHERE id = ? AND consumed_at IS NULL AND attempt_count < ? AND datetime(expires_at) > datetime('now')").bind(challenge.id, MAX_OTP_ATTEMPTS).run();
+  if (Number(consumed?.meta?.changes ?? 0) !== 1) return json({ error: "invalid_code", message: "The code is invalid or expired." }, 400);
+  await env.DB.prepare("INSERT INTO users (id, email_normalized, email_verified_at, role, status) VALUES (?, ?, datetime('now'), 'learner', 'active') ON CONFLICT(email_normalized) DO UPDATE SET email_verified_at = COALESCE(users.email_verified_at, datetime('now')), updated_at = datetime('now')").bind(userId, email).run();
   const user = await env.DB.prepare("SELECT id, email_normalized, role, status FROM users WHERE email_normalized = ?").bind(email).first();
   if (!user || user.role !== "learner" || user.status !== "active") return json({ error: "account_unavailable" }, 403);
   await env.DB.prepare("INSERT INTO learner_profiles (user_id, level, teaching_language, daily_target_minutes) VALUES (?, 'pre-a1', 'si', 15) ON CONFLICT(user_id) DO NOTHING").bind(user.id).run();
