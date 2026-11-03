@@ -13,6 +13,51 @@ test("API health endpoint returns a minimal service status", async () => {
   });
 });
 
+test("database health endpoint reports missing D1 binding safely", async () => {
+  const response = await handleRequest(new Request("https://example.test/api/v1/health/database"));
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), {
+    status: "unavailable",
+    database: "not_configured"
+  });
+});
+
+test("database health endpoint queries D1 and returns application table count", async () => {
+  let query = "";
+  const env = {
+    DB: {
+      prepare(sql) {
+        query = sql;
+        return { first: async () => ({ table_count: 17 }) };
+      }
+    }
+  };
+  const response = await handleRequest(
+    new Request("https://example.test/api/v1/health/database"),
+    env
+  );
+  assert.equal(response.status, 200);
+  assert.match(query, /sqlite_master/);
+  assert.deepEqual(await response.json(), {
+    status: "ok",
+    database: "connected",
+    application_tables: 17
+  });
+});
+
+test("database health endpoint hides database errors", async () => {
+  const env = { DB: { prepare: () => ({ first: async () => { throw new Error("private detail"); } }) } };
+  const response = await handleRequest(
+    new Request("https://example.test/api/v1/health/database"),
+    env
+  );
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), {
+    status: "unavailable",
+    database: "query_failed"
+  });
+});
+
 test("unknown API routes do not expose implementation details", async () => {
   const response = await handleRequest(new Request("https://example.test/api/v1/private"));
   assert.equal(response.status, 404);
