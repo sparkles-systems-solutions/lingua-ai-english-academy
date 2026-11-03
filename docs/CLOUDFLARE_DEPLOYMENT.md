@@ -43,3 +43,16 @@ The root static deployment uses `.assetsignore` to exclude backend source, migra
 - Do not enable paid services or D1 read replication for this setup.
 - Do not change or delete unrelated D1 databases.
 - A successful GitHub UAT run tests the repository's automated checks; it does not prove that the live Worker or D1 binding works.
+
+## Optional GitHub Actions deployment
+
+A manual deployment workflow is available at `.github/workflows/deploy-api.yml`. It deploys only the API Worker and does not deploy the frontend.
+
+Before using it, add these two repository Actions secrets in GitHub:
+
+- `CLOUDFLARE_API_TOKEN`: a Cloudflare API token with the minimum Workers Scripts edit/deploy and D1 binding read permissions required for this Worker.
+- `CLOUDFLARE_ACCOUNT_ID`: the Cloudflare account ID (not a token).
+
+Never put either value in a source file, commit, issue, or chat message. After adding the secrets, open GitHub Actions, select **Deploy Lingua Academy API**, and run **Run workflow** on `main`.
+
+This workflow is manual-only. It will stop safely with a clear error if either secret is missing. The deployment still needs the existing D1 binding to be present in `backend/wrangler.toml` and the selected Cloudflare account. Check the Worker URL health routes after deployment.
