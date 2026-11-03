@@ -39,6 +39,25 @@ export async function handleRequest(request, env = {}) {
     return json({ status: "ok", service: "lingua-academy-api", version: "1" }, 200, cors);
   }
 
+  if (url.pathname === "/api/v1/health/database" && request.method === "GET") {
+    if (!env.DB || typeof env.DB.prepare !== "function") {
+      return json({ status: "unavailable", database: "not_configured" }, 503, cors);
+    }
+
+    try {
+      const result = await env.DB.prepare(
+        "SELECT COUNT(*) AS table_count FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' AND name != '_cf_KV'"
+      ).first();
+      return json({
+        status: "ok",
+        database: "connected",
+        application_tables: Number(result?.table_count ?? 0)
+      }, 200, cors);
+    } catch {
+      return json({ status: "unavailable", database: "query_failed" }, 503, cors);
+    }
+  }
+
   if (url.pathname.startsWith("/api/")) {
     return json({ error: "not_found" }, 404, cors);
   }
