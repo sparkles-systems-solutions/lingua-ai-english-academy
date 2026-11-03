@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lingua Admin Provisioning — Offline Tool</title>
+<style>
+:root{font-family:system-ui,Segoe UI,sans-serif;color:#172033;background:#f4f6fa}body{max-width:850px;margin:32px auto;padding:0 16px}main{background:white;border:1px solid #dce2ec;border-radius:16px;padding:24px}h1{font-size:24px}label{display:block;font-weight:600;margin:14px 0 6px}input{box-sizing:border-box;width:100%;padding:11px;border:1px solid #b9c3d3;border-radius:8px;font:inherit}button{margin:12px 8px 12px 0;padding:11px 16px;border:0;border-radius:8px;background:#164e9a;color:white;font-weight:650;cursor:pointer}pre,textarea{box-sizing:border-box;width:100%;white-space:pre-wrap;overflow-wrap:anywhere;background:#101827;color:#e6edf7;padding:14px;border-radius:8px;border:0}textarea{min-height:170px;font:13px ui-monospace,monospace}small,.note{color:#526078}.warning{background:#fff4dc;border:1px solid #f0d18a;padding:12px;border-radius:8px}.result{display:none;margin-top:20px}
+</style></head>
+<body><main>
+<h1>Lingua AI — Offline Admin Provisioning</h1>
+<p class="warning"><b>Security:</b> This page is a local-only helper. Download this HTML file and open it from your computer while offline. It has no network requests. Never share the generated password hash, TOTP secret, encryption key, or SQL output.</p>
+<label>Administrator email</label><input id="email" type="email" autocomplete="off" placeholder="admin@example.com">
+<label>Administrator password (minimum 12 characters)</label><input id="password" type="password" autocomplete="new-password">
+<label>Confirm password</label><input id="confirm" type="password" autocomplete="new-password">
+<button id="generate">Generate secure setup values</button>
+<div id="result" class="result">
+<h2>1. Cloudflare Worker secret</h2><p class="note">Add this value as the Worker Secret named <code>TOTP_ENCRYPTION_KEY</code>. Keep it safe; it is needed to decrypt the authenticator secret.</p><textarea id="key" readonly></textarea><button data-copy="key">Copy encryption key</button>
+<h2>2. Authenticator app</h2><p>Scan/import the URI in your authenticator app. If your app does not support URI import, use the displayed Base32 secret.</p>
+<label>Base32 TOTP secret</label><textarea id="totp" readonly></textarea><button data-copy="totp">Copy TOTP secret</button>
+<label>Authenticator setup URI</label><textarea id="uri" readonly></textarea><button data-copy="uri">Copy setup URI</button>
+<h2>3. D1 provisioning SQL</h2><p class="note">First add the encryption key in Cloudflare, then run this SQL once in the correct D1 database. Verify the email before running. The script creates an active admin account, password hash, policy, unverified TOTP factor and audit event. It does not mark TOTP verified.</p>
+<textarea id="sql" readonly></textarea><button data-copy="sql">Copy provisioning SQL</button>
+<p class="warning">After running SQL, complete TOTP verification through a secure enrollment flow before using Password + TOTP. This current release does not yet provide that enrollment screen; do not manually mark the factor verified without confirming a live authenticator code.</p>
+</div>
+</main>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const enc=new TextEncoder();
+function b64(bytes){let s="";for(const x of bytes)s+=String.fromCharCode(x);return btoa(s)}
+function base32(bytes){const alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";let bits=0,value=0,out="";for(const byte of bytes){value=(value<<8)|byte;bits+=8;while(bits>=5){out+=alphabet[(value>>>(bits-5))&31];bits-=5}}if(bits)out+=alphabet[(value<<(5-bits))&31];return out}
+function sqlq(s){return "'"+s.replace(/'/g,"''")+"'"}
+$("generate").addEventListener("click",async()=>{
+ const email=$("email").value.trim().toLowerCase(),pw=$("password").value,confirm=$("confirm").value;
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert("Enter a valid email address.");return}
+ if(pw.length<12||pw!==confirm){alert("Use a password of at least 12 characters and confirm it.");return}
+ const salt=crypto.getRandomValues(new Uint8Array(16)),totpBytes=crypto.getRandomValues(new Uint8Array(20)),iv=crypto.getRandomValues(new Uint8Array(12)),keyBytes=crypto.getRandomValues(new Uint8Array(32));
+ const material=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveBits"]);
+ const derived=new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",salt,iterations:310000,hash:"SHA-256"},material,256));
+ const passwordHash="PBKDF2-SHA256$310000$"+b64(salt)+"$"+b64(derived);
+ const encryptionKey=await crypto.subtle.importKey("raw",keyBytes,{name:"AES-GCM"},false,["encrypt"]);
+ const secret=base32(totpBytes);
+ const cipher=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},encryptionKey,enc.encode(secret)));
+ const encrypted=b64(iv)+"."+b64(cipher);
+ const userId=crypto.randomUUID(),factorId=crypto.randomUUID();
+ const uri="otpauth://totp/"+encodeURIComponent("Lingua AI:"+email)+"?secret="+secret+"&issuer="+encodeURIComponent("Lingua AI English Academy")+"&algorithm=SHA1&digits=6&period=30";
+ const now=new Date().toISOString();
+ const sql="PRAGMA foreign_keys=ON;\nBEGIN TRANSACTION;\n"+
+ "INSERT INTO users (id,email_normalized,email_verified_at,role,status) VALUES ("+[userId,email,now,"admin","active"].map(sqlq).join(", ")+");\n"+
+ "INSERT INTO admin_credentials (user_id,password_hash) VALUES ("+sqlq(userId)+", "+sqlq(passwordHash)+");\n"+
+ "INSERT INTO admin_auth_policies (user_id,allowed_methods_json,require_totp,updated_by) VALUES ("+sqlq(userId)+", "+sqlq('["password_totp","email_otp"]')+", 1, "+sqlq(userId)+");\n"+
+ "INSERT INTO admin_mfa_factors (id,user_id,factor_type,secret_ciphertext,enrolled_at,verified_at) VALUES ("+[factorId,userId,"totp",encrypted,now,null].map(x=>x===null?"NULL":sqlq(x)).join(", ")+");\n"+
+ "INSERT INTO admin_audit_events (id,actor_user_id,action,target_type,target_id,safe_metadata_json) VALUES ("+[crypto.randomUUID(),userId,"admin_provisioned","user",userId,'{"method":"offline_provisioning_tool","totp_verified":false}'].map(sqlq).join(", ")+");\nCOMMIT;";
+ $("key").value=b64(keyBytes);$("totp").value=secret;$("uri").value=uri;$("sql").value=sql;$("result").style.display="block";
+ $("password").value="";$("confirm").value="";
+});
+document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const el=$(btn.dataset.copy);await navigator.clipboard.writeText(el.value);btn.textContent="Copied";setTimeout(()=>btn.textContent="Copy",1400)}));
+</script></body></html>
