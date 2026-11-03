@@ -27,3 +27,34 @@ test("admin routes are not confused with learner routes", async () => {
   const response = await handleRequest(new Request("https://example.test/api/v1/admin/unknown"));
   assert.equal(response.status, 404);
 });
+
+
+test("TOTP enrollment setup requires an authenticated administrator session", async () => {
+  const response = await handleRequest(new Request("https://example.test/api/v1/admin/mfa/totp/setup", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({})
+  }), {
+    OTP_PEPPER: "x".repeat(40),
+    SESSION_PEPPER: "y".repeat(40),
+    TOTP_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString("base64"),
+    DB: { prepare() { throw new Error("DB must not be queried without a bearer token"); } }
+  });
+  assert.equal(response.status, 401);
+  assert.deepEqual(await response.json(), { error: "unauthorized" });
+});
+
+test("TOTP enrollment verification requires an authenticated administrator session", async () => {
+  const response = await handleRequest(new Request("https://example.test/api/v1/admin/mfa/totp/verify", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ code: "123456" })
+  }), {
+    OTP_PEPPER: "x".repeat(40),
+    SESSION_PEPPER: "y".repeat(40),
+    TOTP_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString("base64"),
+    DB: { prepare() { throw new Error("DB must not be queried without a bearer token"); } }
+  });
+  assert.equal(response.status, 401);
+  assert.deepEqual(await response.json(), { error: "unauthorized" });
+});
