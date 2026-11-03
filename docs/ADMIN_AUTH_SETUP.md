@@ -57,3 +57,16 @@ OTP expires after 10 minutes, is stored as an HMAC digest, and is single-use. Au
 ## Current implementation boundary
 
 This increment delivers the separate sign-in console and role-protected authentication/identity endpoints. Dictionary content management, learner administration, audit-log browsing, admin password reset, TOTP enrollment/recovery UI, and full production UAT remain subsequent work. Do not treat an admin login as fully production-ready until secrets are configured, the first administrator is provisioned securely, and both sign-in methods are tested against the live Worker.
+
+
+## Offline credential preparation helper
+
+A browser-only helper is provided at `tools/admin-provisioning-offline.html`. Download the file from the repository to a trusted computer and open the downloaded file locally. For the strongest isolation, disconnect from the network before entering credentials. The page uses the browser Web Crypto API and contains no fetch/XHR/network calls; it generates a PBKDF2-SHA256 password hash, a random TOTP secret, an AES-256-GCM encrypted TOTP value, a fresh encryption key, and a D1 provisioning SQL script. Nothing is uploaded by the helper.
+
+1. Generate the values locally. Do not share screenshots or copy the secrets into chat, issues, or source code.
+2. Add the generated encryption key as the Worker Secret `TOTP_ENCRYPTION_KEY` before running the SQL.
+3. Verify that the target email does not already exist in `users`, and verify the selected D1 database is `lingua-academy-db`. The generated SQL is an initial-account insert, not an account migration; do not run it if the email already exists.
+4. Review and run the SQL once in the intended D1 database. Keep the encryption key and TOTP secret in an approved password manager.
+5. The generated factor is deliberately unverified. The current Admin UI does not yet include a TOTP enrollment/confirmation screen. Email OTP can be used if the Resend secrets and sender are configured; Password + TOTP must remain unavailable until a secure enrollment confirmation flow has been implemented and a real authenticator code has been verified. Never manually set `verified_at` just to bypass enrollment.
+
+The helper is a convenience for preparing credentials only. It does not configure Cloudflare secrets, execute D1 SQL, send email, or activate an administrator. Review generated SQL before execution.
