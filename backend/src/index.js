@@ -254,6 +254,60 @@ async function verifyTotp(secret, code) {
   for (const drift of [-1, 0, 1]) if (safeEqual(await totpAt(secret, step + drift), code)) return true;
   return false;
 }
+
+function base32Encode(bytes) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+  let bits = 0, value = 0, out = "";
+  for (const byte of bytes) {
+    value = (value << 8) | byte; bits += 8;
+    while (bits >= 5) { out += alphabet[(value >>> (bits - 5)) & 31]; bits -= 5; }
+  }
+  if (bits) out += alphabet[(value << (5 - bits)) & 31];
+  return out;
+}
+async function encryptTotpSecret(secret, env) {
+  if (typeof env.TOTP_ENCRYPTION_KEY !== "string") throw new Error("totp_key_missing");
+  const raw = b64ToBytes(env.TOTP_ENCRYPTION_KEY);
+  if (raw.length !== 32) throw new Error("totp_key_invalid");
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["encrypt"]);
+  const encrypted = await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(secret));
+  return bytesToB64(iv) + "." + bytesToB64(new Uint8Array(encrypted));
+}
+async function beginAdminTotpEnrollment(request, env) {
+  if (!env.DB || !env.OTP_PEPPER || !env.SESSION_PEPPER || !env.TOTP_ENCRYPTION_KEY) return json({ error: "service_unavailable" }, 503);
+  const user = await authenticate(request, env);
+  if (!user || user.role !== "admin" || user.status !== "active") return json({ error: "unauthorized" }, 401);
+  if (!await consumeRateLimit(env, "admin_auth", "totp_setup:" + user.id, 5, 3600)) return json({ error: "rate_limited" }, 429);
+  const verified = await env.DB.prepare("SELECT id FROM admin_mfa_factors WHERE user_id = ? AND factor_type = 'totp' AND verified_at IS NOT NULL AND disabled_at IS NULL LIMIT 1").bind(user.id).first();
+  if (verified) return json({ error: "totp_already_enrolled", message: "An active authenticator is already enrolled. Contact an administrator for recovery." }, 409);
+  const secret = base32Encode(crypto.getRandomValues(new Uint8Array(20)));
+  const encrypted = await encryptTotpSecret(secret, env);
+  const factorId = randomId();
+  await env.DB.prepare("UPDATE admin_mfa_factors SET disabled_at = datetime('now') WHERE user_id = ? AND factor_type = 'totp' AND verified_at IS NULL AND disabled_at IS NULL").bind(user.id).run();
+  await env.DB.prepare("INSERT INTO admin_mfa_factors (id, user_id, factor_type, secret_ciphertext, enrolled_at, verified_at) VALUES (?, ?, 'totp', ?, datetime('now'), NULL)").bind(factorId, user.id, encrypted).run();
+  const issuer = "Lingua AI English Academy";
+  const uri = "otpauth://totp/" + encodeURIComponent(issuer + ":" + user.email_normalized) + "?secret=" + secret + "&issuer=" + encodeURIComponent(issuer) + "&algorithm=SHA1&digits=6&period=30";
+  await env.DB.prepare("INSERT INTO admin_audit_events (id, actor_user_id, action, target_type, target_id, safe_metadata_json) VALUES (?, ?, 'admin_totp_enrollment_started', 'mfa_factor', ?, '{}')").bind(randomId(), user.id, factorId).run();
+  return json({ status: "pending", secret, otpauth_uri: uri, message: "Add this account to your authenticator app, then verify a current six-digit code." });
+}
+async function verifyAdminTotpEnrollment(request, env) {
+  if (!env.DB || !env.SESSION_PEPPER || !env.TOTP_ENCRYPTION_KEY || !env.OTP_PEPPER) return json({ error: "service_unavailable" }, 503);
+  const user = await authenticate(request, env);
+  if (!user || user.role !== "admin" || user.status !== "active") return json({ error: "unauthorized" }, 401);
+  const body = await readJson(request);
+  if (!validOtp(body?.code)) return json({ error: "invalid_code" }, 400);
+  if (!await consumeRateLimit(env, "admin_auth", "totp_verify:" + user.id, 10, 900)) return json({ error: "rate_limited" }, 429);
+  const factor = await env.DB.prepare("SELECT id, secret_ciphertext FROM admin_mfa_factors WHERE user_id = ? AND factor_type = 'totp' AND verified_at IS NULL AND disabled_at IS NULL ORDER BY enrolled_at DESC LIMIT 1").bind(user.id).first();
+  if (!factor) return json({ error: "enrollment_not_found" }, 404);
+  const secret = await decryptTotpSecret(factor.secret_ciphertext, env);
+  if (!await verifyTotp(secret, body.code)) return json({ error: "invalid_code", message: "That code is not valid. Check your device time and try the current code." }, 400);
+  const updated = await env.DB.prepare("UPDATE admin_mfa_factors SET verified_at = datetime('now') WHERE id = ? AND user_id = ? AND verified_at IS NULL AND disabled_at IS NULL").bind(factor.id, user.id).run();
+  if (Number(updated?.meta?.changes ?? 0) !== 1) return json({ error: "enrollment_conflict" }, 409);
+  await env.DB.prepare("INSERT INTO admin_audit_events (id, actor_user_id, action, target_type, target_id, safe_metadata_json) VALUES (?, ?, 'admin_totp_enrollment_verified', 'mfa_factor', ?, '{}')").bind(randomId(), user.id, factor.id).run();
+  return json({ status: "verified", message: "Authenticator successfully enrolled. Password + TOTP sign-in is now enabled." });
+}
+
 async function createAdminSession(user, request, env, method) {
   const token = randomToken();
   const tokenHash = await hmac(token, env.SESSION_PEPPER);
@@ -372,6 +426,12 @@ export async function handleRequest(request, env = {}) {
   }
   if (url.pathname === "/api/v1/admin/auth/otp/verify" && request.method === "POST") {
     try { return withCors(await verifyAdminOtp(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
+  }
+  if (url.pathname === "/api/v1/admin/mfa/totp/setup" && request.method === "POST") {
+    try { return withCors(await beginAdminTotpEnrollment(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
+  }
+  if (url.pathname === "/api/v1/admin/mfa/totp/verify" && request.method === "POST") {
+    try { return withCors(await verifyAdminTotpEnrollment(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/admin/me" && request.method === "GET") {
     try { return withCors(await adminMe(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
