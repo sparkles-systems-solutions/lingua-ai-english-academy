@@ -51,12 +51,14 @@ Do not run the repository's historical migrations against the live database; the
 | POST | `/api/v1/admin/auth/otp/request` | Request admin email OTP |
 | POST | `/api/v1/admin/auth/otp/verify` | Verify one-use OTP; issue admin session |
 | GET | `/api/v1/admin/me` | Validate current admin session |
+| POST | `/api/v1/admin/mfa/totp/setup` | Create encrypted pending TOTP enrollment for the signed-in admin |
+| POST | `/api/v1/admin/mfa/totp/verify` | Verify authenticator code and activate the factor |
 
 OTP expires after 10 minutes, is stored as an HMAC digest, and is single-use. Authentication attempts use the persistent `admin_auth` rate-limit bucket. Successful logins are recorded in `admin_audit_events`.
 
 ## Current implementation boundary
 
-This increment delivers the separate sign-in console and role-protected authentication/identity endpoints. Dictionary content management, learner administration, audit-log browsing, admin password reset, TOTP enrollment/recovery UI, and full production UAT remain subsequent work. Do not treat an admin login as fully production-ready until secrets are configured, the first administrator is provisioned securely, and both sign-in methods are tested against the live Worker.
+This increment delivers the separate sign-in console and role-protected authentication/identity endpoints. Dictionary content management, learner administration, audit-log browsing, admin password reset, TOTP recovery UI, dictionary/learner management, and full production UAT remain subsequent work. Do not treat an admin login as fully production-ready until secrets are configured, the first administrator is provisioned securely, and both sign-in methods are tested against the live Worker.
 
 
 ## Offline credential preparation helper
