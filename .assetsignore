@@ -1,0 +1,7 @@
+# Keep backend source, database migrations, tests, and internal documentation
+# out of the public static-assets deployment.
+/backend/
+/tests/
+/docs/
+/.github/
+/README.md
