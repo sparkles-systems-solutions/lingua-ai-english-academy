@@ -71,7 +71,9 @@ async function signOut(){
  message("Sign out වුණා. මේ browser එකේ local progress එක තවමත් තියෙනවා.");
  document.getElementById("authPanel").classList.add("open");
 }
-let syncTimer=null;\nfunction scheduleSync(){if(syncTimer)clearTimeout(syncTimer);syncTimer=setTimeout(()=>{if(token())window.linguaCloudSync().catch(e=>console.warn("Cloud sync pending",e.message));},1500);}\nfunction init(){
+let syncTimer=null;
+function scheduleSync(){if(syncTimer)clearTimeout(syncTimer);syncTimer=setTimeout(()=>{if(token())window.linguaCloudSync().catch(e=>console.warn("Cloud sync pending",e.message));},1500);}
+function init(){
  const button=document.getElementById("accountButton");
  if(!button)return;
  button.addEventListener("click",()=>token()?signOut():document.getElementById("authPanel").classList.add("open"));
@@ -79,7 +81,8 @@ let syncTimer=null;\nfunction scheduleSync(){if(syncTimer)clearTimeout(syncTimer
  document.getElementById("verifyOtp").addEventListener("click",verifyCode);
  document.getElementById("closeAuth").addEventListener("click",()=>document.getElementById("authPanel").classList.remove("open"));
  if(token()){setSignedIn("Signed in");syncProgress().catch(e=>console.warn("Cloud sync pending",e.message));}
- window.queueLinguaCloudSync=scheduleSync;\n window.linguaCloudSync=async function(){
+ window.queueLinguaCloudSync=scheduleSync;
+ window.linguaCloudSync=async function(){
   if(!token())return;
   const state=JSON.parse(localStorage.getItem("lingua-progress")||"{}");
   const lessons=(state.completed||[]).map(n=>({lesson_id:"lesson-"+n,status:"completed",best_score:null}));
