@@ -66,3 +66,8 @@ See [the roadmap](docs/PHASE_ROADMAP.md) and [Platform Architecture](docs/PLATFO
 ## Dictionary expansion
 
 The beginner dictionary currently contains at least 171 entries, including categorized everyday vocabulary. The longer-term target is 1,000+ reviewed words. See [Dictionary Expansion and AI-Assisted Lookup](docs/DICTIONARY_EXPANSION.md) for the staged vocabulary plan, data-quality rules and secure AI lookup design. See [Backend Foundation](docs/BACKEND_FOUNDATION.md) for the current API/database starting point and deployment prerequisites. AI lookup is documented as a backend feature and is not active yet.
+
+
+## Administrator console
+
+A separate administrator sign-in console is available at `admin/`. See [Administrator Authentication Setup](docs/ADMIN_AUTH_SETUP.md) for required secrets, secure first-admin provisioning, and current implementation boundaries. The admin login APIs enforce the `admin` role server-side; public learner registration cannot grant administrator access.
