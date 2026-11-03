@@ -9,6 +9,11 @@ const OTP_TTL_MINUTES = 10;
 const SESSION_TTL_DAYS = 30;
 const MAX_OTP_ATTEMPTS = 5;
 
+function withCors(response, cors) {
+  const headers = new Headers(response.headers);
+  for (const [key, value] of Object.entries(cors)) headers.set(key, value);
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
 function json(data, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(data), { status, headers: { ...JSON_HEADERS, ...extraHeaders } });
 }
@@ -207,22 +212,22 @@ export async function handleRequest(request, env = {}) {
     } catch { return json({ status: "unavailable", database: "query_failed" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/auth/learner/otp/request" && request.method === "POST") {
-    try { return await requestLearnerOtp(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await requestLearnerOtp(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/auth/learner/otp/verify" && request.method === "POST") {
-    try { return await verifyLearnerOtp(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await verifyLearnerOtp(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/learner/me" && request.method === "GET") {
-    try { return await learnerMe(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await learnerMe(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/learner/profile" && request.method === "PUT") {
-    try { return await updateProfile(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await updateProfile(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/learner/progress/sync" && request.method === "POST") {
-    try { return await syncProgress(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await syncProgress(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname === "/api/v1/auth/logout" && request.method === "POST") {
-    try { return await logout(request, env); } catch { return json({ error: "service_unavailable" }, 503); }
+    try { return withCors(await logout(request, env), cors); } catch { return json({ error: "service_unavailable" }, 503, cors); }
   }
   if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404, cors);
   return json({ error: "not_found" }, 404);
