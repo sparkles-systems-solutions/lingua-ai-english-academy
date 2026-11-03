@@ -80,3 +80,37 @@ test("CORS only reflects an explicitly allowlisted origin", async () => {
   );
   assert.equal(response.headers.get("access-control-allow-origin"), "https://academy.example");
 });
+
+
+test("Pages origin is allowed for browser API requests", async () => {
+  const response = await handleRequest(
+    new Request("https://example.test/api/v1/health", {
+      headers: { Origin: "https://sparkles-systems-solutions.github.io" }
+    }),
+    { ALLOWED_ORIGINS: "https://sparkles-systems-solutions.github.io" }
+  );
+  assert.equal(response.status, 200);
+  assert.equal(
+    response.headers.get("access-control-allow-origin"),
+    "https://sparkles-systems-solutions.github.io"
+  );
+});
+
+test("CORS preflight accepts only the configured Pages origin", async () => {
+  const response = await handleRequest(
+    new Request("https://example.test/api/v1/health", {
+      method: "OPTIONS",
+      headers: {
+        Origin: "https://sparkles-systems-solutions.github.io",
+        "Access-Control-Request-Method": "GET"
+      }
+    }),
+    { ALLOWED_ORIGINS: "https://sparkles-systems-solutions.github.io" }
+  );
+  assert.equal(response.status, 204);
+  assert.equal(
+    response.headers.get("access-control-allow-origin"),
+    "https://sparkles-systems-solutions.github.io"
+  );
+  assert.match(response.headers.get("access-control-allow-methods"), /GET/);
+});
