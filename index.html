@@ -24,7 +24,7 @@
 .dict-practice-item .dict-actions{margin-top:8px}
 @media(max-width:600px){.dict-practice-options{grid-template-columns:1fr}}
 </style>
-</head>
+<style>.auth-panel{position:fixed;inset:0;background:#10182799;display:none;place-items:center;padding:18px;z-index:99}.auth-panel.open{display:grid}.auth-card{background:#fff;color:#20283a;width:min(440px,100%);padding:24px;border-radius:18px;box-shadow:0 20px 70px #0004}.auth-card input{width:100%;padding:12px;border:1px solid #d8deea;border-radius:9px;margin:7px 0 12px;font:inherit}.auth-status{min-height:24px;font-size:12px;color:#5267e8;margin:8px 0}</style></head>
 <body>
 <div class="app">
 <aside class="sidebar">
@@ -41,7 +41,7 @@
  <div class="side-note"><strong>Small steps. Big progress.</strong><p>15 minutes every day can build a strong English habit.</p></div>
 </aside>
 <main class="main">
- <div class="topbar"><div class="crumb">Learning Space / <strong id="crumb">Dashboard</strong></div><div class="profile"><div class="avatar">L</div><span>My Learning Profile</span></div></div>
+ <div class="topbar"><div class="crumb">Learning Space / <strong id="crumb">Dashboard</strong></div><div class="profile"><div class="avatar">L</div><span id="accountLabel">My Learning Profile</span><button class="btn secondary" id="accountButton" style="padding:7px 11px;font-size:11px">Sign in</button></div></div>
  <section class="view active" id="dashboard">
   <div class="welcome"><div><div class="eyebrow">YOUR ENGLISH JOURNEY STARTS HERE</div><h1>Good evening, Learner! 👋</h1><p>Every expert was once a beginner. Let's learn English step by step.</p></div><div class="date-chip" id="today"></div></div>
   <div class="hero"><div class="hero-copy"><div class="tag">YOUR NEXT 15-MINUTE SESSION</div><h2>Start with the basics</h2><p>Learn simple greetings, introduce yourself, and build your first English sentences.</p><button class="primary" onclick="openLesson(0)">Continue learning →</button></div><div class="hero-stat"><strong id="heroDone">0/5</strong><span>Lessons completed</span></div></div>
@@ -80,7 +80,9 @@
  <div class="footer">Lingua AI English Academy · Phase 1 · Learn a little every day</div>
 </main>
 </div>
+<div class="auth-panel" id="authPanel" role="dialog" aria-modal="true"><div class="auth-card"><div class="eyebrow">LINGUA AI ACCOUNT</div><h2>Sign in / Register</h2><p>ඔබගේ email ලිපිනයට OTP code එකක් එවන්නම්.</p><label for="authEmail">Email address</label><input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com"><div id="otpArea" hidden><label for="authCode">6-digit email code</label><input id="authCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="123456"></div><div class="auth-status" id="authStatus" aria-live="polite"></div><button class="btn" id="requestOtp">Send OTP</button> <button class="btn" id="verifyOtp" hidden>Verify & Sign in</button> <button class="btn secondary" id="closeAuth">Close</button><p>පරණ learning progress එක browser එකේ ආරක්ෂිතව තියෙනවා.</p></div></div>
 <script src="dictionary-data.js"></script>
+<script src="auth-client.js"></script>
 <script>
 const lessons=[
  {title:"Hello! Greetings",time:"5 min",topic:"Basic English",intro:"Let's learn how to greet someone in English.",examples:[["Hello!","හෙලෝ! / ආයුබෝවන්!"],["Good morning.","සුභ උදෑසනක්."],["Good evening.","සුභ සන්ධ්‍යාවක්."],["How are you?","ඔබට කොහොමද?"]],task:"Which phrase means 'සුභ උදෑසනක්'?",answer:"Good morning.",options:["Good night.","Good morning.","Goodbye."]},
